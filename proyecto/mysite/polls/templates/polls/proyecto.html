@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+
+{% load static %}
+
+
+{% block identificador %}
+PROYECTO
+{% endblock %}
+
+
+{% block estilos_css %}
+<link rel="canonical" href="{% static 'polls/starter-template/starter-template.css' %}">
+
+<style>
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+    }
+</style>
+
+<style>
+    /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+    #map {
+        height: 100%;
+    }
+
+    /* Optional: Makes the sample page fill the window. */
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+</style>
+{% endblock %}
+
+{% block bloque_1 %}
+
+
+<main role="main" class="container">
+    <div class="starter-template">
+        <h1>{{ proyecto.nombre }}</h1>
+        <p class="lead">
+            Sedes ejecutadas: {{ proyecto.sedes_total }}<br>
+            Sedes pendientes: {{ proyecto.sedes_pendientes }}</p>
+    </div>
+</main><!-- /.container -->
+<div class="text-center">
+    <img src="{% static 'polls/images/proyecto.jpg' %}" class="rounded" alt="Responsive image">
+</div>
+<div class="container">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col" rowspan="2">id</th>
+                <th scope="col" colspan="5">nombre</th>
+                <th scope="col" colspan="6">descripcion del trabajo</th>
+            </tr>
+            <tr>
+
+                <th scope="col">llave_forenea</th>
+                <th scope="col">nombre</th>
+                <th scope="col">coordenada_longitud</th>
+                <th scope="col">coordenada_latitud</th>
+                <th scope="col">situacion</th>
+                <th scope="col">contrata_equipo</th>
+                <th scope="col">contrata_acceso</th>
+                <th scope="col">finalizado</th>
+                <th scope="col">enlace</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for aa in proyecto.sede_set.all %}
+            <tr>
+
+                <th scope="row">{{ aa.id }}</th>
+                <td>{{ aa.llave_forenea }}</td>
+                <td>{{ aa.nombre }}</td>
+                <td>{{ aa.coordenada_longitud }}</td>
+                <td>{{ aa.coordenada_latitud }}</td>
+                <td>{{ aa.situacion }}</td>
+                <td>{{ aa.contrata_equipo }}</td>
+                <td>{{ aa.contrata_acceso }}</td>
+                <td>{{ aa.finalizado }}</td>
+                <td><a href="{% url 'polls:sede' aa.id %}">enlace</a></td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{{ casa }}<br><br>
+{{ prueba }}
+
+<div class="container" id="map"></div>
+
+
+
+{% endblock %}
+
+
+
+
+{% block javascript_ %}
+<script type="text/javascript">
+    var apla = "{{ prueba | escapejs }}";
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+<script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
+<script src="{% static 'polls/starter-template/prueba.js' %}"></script>
+
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGgSj0uh5_yPn4ZcLpxaK5H-llGvmvxEI&callback=initMap"></script>
+{% endblock %}

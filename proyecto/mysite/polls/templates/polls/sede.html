@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+
+{% block identificador %}
+SEDE        
+{% endblock %}
+
+
+
+{% block bloque_1 %}
+<div class="album py-5 bg-light">
+    <div class="container">
+
+        <div class="row">
+
+            {% for aa in sede.servicio_tcp_ip_set.all %}
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    {% if aa.nombre_servicio == "IPVPN con HSRP" %}
+                    <img src="{% static 'polls/images/trabajo infointernet.png' %}" class="rounded"
+                        alt="Responsive image" width="100%" height="100%" fill="#55595c">
+                    {% elif aa.nombre_servicio == "upgrade, configuraciones" %}
+                    <img src="{% static 'polls/images/trabajo doble operador.png' %}" class="rounded"
+                        alt="Responsive image" width="100%" height="100%" fill="#55595c">
+                    {% else %}
+                    <img src="{% static 'polls/images/trabajo QoS.png' %}" class="rounded" alt="Responsive image"
+                        width="100%" height="100%" fill="#55595c">
+                    {% endif %}
+
+                    <div class="card-body">
+
+                        <h1>{{ aa.nombre_servicio}} </h1>
+                        <ul class="list-unstyled"></ul>
+
+                        {% if aa.activo_capa_fisica is True %}<li><strong>capa_fisica:</strong> {{ aa.capa_fisica }}
+                        </li>{% endif %}
+                        {% if aa.activo_capa_acceso is True %}<li><strong>capa_acceso:</strong> {{ aa.capa_acceso }}
+                        </li>{% endif %}
+                        {% if aa.activo_capa_red is True %}<li><strong>capa_red:</strong> {{ aa.capa_red }} </li>
+                        {% endif %}
+                        {% if aa.activo_capa_trasporte is True %}<li><strong>capa_trasporte:</strong>
+                            {{ aa.capa_trasporte }} </li>{% endif %}
+                        {% if aa.activo_capa_aplicacion is True %}<li><strong>capa_aplicacion:</strong>
+                            {{ aa.capa_aplicacion }} </li>{% endif %}
+
+
+
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 50%"
+                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <td><a href="{% url 'polls:trabajo' aa.id %}">enlace</a></td>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                            </div>
+                            <small class="text-muted">9 mins</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <div id="info-box">?</div>
+    <script>
+        // variable global
+        var map;
+        function initMap() {
+            // creacion del mapa
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 4,
+                center: { lat: -28, lng: 137 }
+            });
+
+            // caracteristica de los puntos
+            var goldStar = {
+                path: 'M 0,0 20,-40 -20,-40 0,0 z',
+                fillColor: 'red',
+                fillOpacity: 0.8,
+                scale: 1,
+                strokeColor: 'gold',
+                strokeWeight: 5
+            };
+            // carga del geoJson
+            map.data.addGeoJson(JSON.parse(hola));
+
+            // estilizacion del geojson cargado
+            map.data.setStyle(function (feature) {
+                var mi_variable = feature.getProperty('josue');
+                var hola = 'red';
+                // elementos tipo: geometria LineString
+                if (mi_variable == 'sedes') {
+                    hola = 'blue';
+                    return {
+                        strokeWeight: 5,
+                        strokeColor: feature.getProperty('color')
+                    };
+                }
+                else if (mi_variable == 'sitios') {
+                    return {
+                        strokeWeight: 1,
+                        title: 'equipo: Metro | ancho de banda total: 300Mbps'
+                    };
+                }
+                // elementos tipo: geometria Point
+                else if (mi_variable == 'punto') {
+                    return {
+                        icon: {
+                            path: 'M 0,0 20,-40 -20,-40 0,0 z',
+                            fillColor: feature.getProperty('color'),
+                            fillOpacity: 0.8,
+                            scale: 1,
+                            strokeColor: 'gold',
+                            strokeWeight: 5
+                        }
+                    };
+                }
+                else {
+                    return {
+                        strokeWeight: 5,
+                        strokeColor: 'black'
+                    };
+                }
+            });
+            // dinamica 
+            map.data.addListener("click", mapsMouseEvent => {
+                var infowindow = new google.maps.InfoWindow({ content: mapsMouseEvent.feature.getProperty("texto"), position: mapsMouseEvent.latLng });
+                infowindow.open(map);
+            });
+
+
+        }
+
+        `
+                        geometries
+        fillOpacity     polygon
+        fillColor       polygon
+        strokeWeight    line | polygon
+        strokeOpacity   line | polygon
+        strokeColor     line | polygon
+        title           point
+        shape           point
+        icon            point
+        cursor          point
+        `
+
+
+        var hola =
+        `
+            {
+                "type": "FeatureCollection",
+                "features": [
+                    {
+                        "type": "Feature",
+                        "properties": {
+                            "josue": "sedes",
+                            "color": "green",
+                            "texto": "<h3>conector</h3><li>cable: UTP electrico</li>"
+                        },
+                        "geometry": {
+                            "type": "LineString",
+                            "coordinates": [[119.307462, -20.945317], [121.16, -21.49]]
+                        }
+                    },
+                    {
+                        "type": "Feature",
+                        "properties": {
+                            "josue": "sedes",
+                            "color": "blue",
+                            "texto": "<h3>conector</h3><li>tipo: FO multimodo</li><li>dist max: 500 metros</li>"
+                        },
+                        "geometry": {
+                            "type": "LineString",
+                            "coordinates": [[121.16, -21.49], [122.18, -21.43]]
+                        }
+                    },
+                    {
+                        "type": "Feature",
+                        "properties": {
+                            "josue": "sedes",
+                            "color": "black",
+                            "texto": "<h3>conector</h3><li>enlace: FO monomodo</li><li>dist max: 3 kilometros</li>"
+                        },
+                        "geometry": {
+                            "type": "LineString",
+                            "coordinates": [[122.18, -21.43], [123.456359, -24.452350]]
+                        }
+                    },
+                    {
+                        "type": "Feature",
+                        "properties": {
+                            "josue": "sedes",
+                            "color": "red",
+                            "texto": "<h3>conector</h3><li>enlace: logico a traves de la metro</li>"
+                        },
+                        "geometry": {
+                            "type": "LineString",
+                            "coordinates": [[123.456359, -24.452350], [129.10, -23.70]]
+                        }
+                    },
+                    {
+                        "type": "Feature",
+                        "properties": {
+                            "josue": "punto",
+                            "color": "orange",
+                            "texto": "<h3>router CE</h3><li>WAN: 3.4.5.1</li><li>ip WAN: 3.4.5.1</li><li>VRF: VRF_CLIENTE</li>"
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [119.307462, -20.945317]
+                        }
+                    },
+                    {
+                        "type": "Feature",
+                        "properties": {
+                            "josue": "punto",
+                            "color": "orange",
+                            "texto": "<h3>router CE</h3><li>WAN: 3.4.5.1</li><li>ip WAN: 3.4.5.1</li><li>VRF: VRF_CLIENTE</li>"
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [119.307462, -20.745317]
+                        }
+                    },
+                    {
+                        "type": "Feature",
+                        "properties": {
+                            "josue": "punto",
+                            "color": "blue",
+                            "texto": "<h3>demarcador</h3><li>IP administrativa: 2.2.2.2/30</li><li>inner VLAN: 300 - servicio info</li><li>inner VLAN: 400 - servicio VPN</li>"
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [121.16, -21.49]
+                        }
+                    },
+                    {
+                        "type": "Feature",
+                        "properties": {
+                            "josue": "punto",
+                            "color": "green",
+                            "texto": "<h3>CTO</h3><li>hilo: 8</li><li>cantidad de hilos: 2</li><li>tipo: pasivo</li>"
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [122.18, -21.43]
+                        }
+                    },
+                    {
+                        "type": "Feature",
+                        "properties": {
+                            "josue": "punto",
+                            "color": "yellow",
+                            "texto": "<h3>equipo de acceso MPLSL2</h3><li>outer VLAN: 4444</li><li>puerto: fast 0/0/2</li><li>tipo: activo</li>"
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [123.456359, -24.452350]
+                        }
+                    },
+                    {
+                        "type": "Feature",
+                        "properties": {
+                            "josue": "punto",
+                            "color": "red",
+                            "texto": "<h3>PE acceso a la MPLS TdP</h3><li>ancho de banda: 30Mbps</li><li>caudal: default</li><li>subinterface: G0.0.200</li><li>tipo: activo</li>"
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [129.10, -23.70]
+                        }
+                    }
+
+                ]
+            }
+
+`;
+
+    </script>
+    <script defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfC8cdDHxvgi_sV_c9hoALRIuIesGW0Xo&callback=initMap">
+        </script>
+</body>
+
+</html>

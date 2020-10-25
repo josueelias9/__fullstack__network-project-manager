@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+
+{% block identificador %}
+TRABAJO
+{% endblock %}
+
+
+
+{% block bloque_1 %}
+
+<!-- Begin page content -->
+<main role="main" class="flex-shrink-0">
+    <div class="container">
+        <h1 class="mt-5">Sticky footer</h1>
+        <p class="lead">Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and
+            CSS.</p>
+        <p>Use <a href="../examples/sticky-footer-navbar/">the sticky footer with a fixed navbar</a> if need be,
+            too.</p>
+    </div>
+</main>
+
+<div class="container">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">macro</th>
+                <th scope="col">Informacion</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Responsable</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if servicio_tcp_ip.activo_capa_fisica is True %}
+            <tr>
+                <th scope="row">capa_fisica</th>
+                <td>{{ servicio_tcp_ip.datos_capa_fisica | linebreaks }}</td>
+                {% if servicio_tcp_ip.estado_capa_fisica is True %}
+                <td><span class="badge badge-success">Finalizado</span></td>
+                {% else %}
+                <td><span class="badge badge-danger">Pendiente</span></td>
+                {% endif %}
+                <td>{{ servicio_tcp_ip.responsable_capa_fisica }}</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock %}
