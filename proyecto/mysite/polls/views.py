@@ -75,7 +75,7 @@ class ProyectoView(generic.DetailView):
     template_name = 'polls/proyecto.html'
 
     def get_context_data(self, **kwargs):
-        # toma el avanve de la clase padre
+        # toma el avance de la clase padre
         context = super().get_context_data(**kwargs)
         # recibo todos los objetos de este proyecto en string - json
         data = serializers.serialize("json", self.get_object().sede_set.all(), fields=('coordenada_longitud', 'coordenada_latitud'))
@@ -90,9 +90,7 @@ class ProyectoView(generic.DetailView):
         # fin
         return context
 
-    '''
-    recibe dict en forma de string
-    '''
+    # recibe dict en forma de string
     def hola(self, a):
         # lo convierte en dictionario de python
         b = json.loads(a)

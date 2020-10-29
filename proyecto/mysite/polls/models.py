@@ -34,7 +34,6 @@ class Choice(models.Model):
 # =======================================================================
 
 class Persona(models.Model):
-
     nombre = models.CharField(max_length=100)
     puesto = models.CharField(max_length=100)
    
@@ -44,7 +43,6 @@ class Persona(models.Model):
 
 
 class Proyecto(models.Model):
-
     nombre = models.CharField(max_length=100, default='')
     cliente = models.CharField(max_length=100, default='')
     descripcion = models.CharField(max_length=100, default='')
@@ -78,6 +76,103 @@ class Sede(models.Model):
 
 
 class Servicio_tcp_ip(models.Model):
+    '''
+    =======================================
+    CAPA FISICA
+    =======================================
+    ---------
+    trabajo
+    ---------
+    1_acceso
+    1_fo_pext
+    1_fo_umg
+    1_fo_jumpeo_en_nodo
+    1_cobre
+    1_3_5_hgz
+    1_3g
+    1_4g
+    1_vsat
+    1_radioenlace
+    ---------
+    datos
+    ---------
+    potencia
+    trasmision
+    nodo_o_ura_cto
+    nodo_o_ura_gabinete
+    nodo_o_ura_bandeja_conectores
+    nodo_o_ura_hilo
+    =======================================
+    CAP ACCESO 
+    =======================================
+    ---------
+    trabajo
+    ---------
+    2_conf_de_backhoul
+    2_conf_de_red_empresarial
+    2_conf_de_red_metro_mpls_punto_a_punto
+    2_conf_de_red_metro_mpls_punto_a_multipunto
+    2_trasmisiones
+    ---------
+    datos
+    ---------
+    equipo_de_trasporte
+    equipo_demarcador
+    equipo_switch_lan
+    VLAN_outer
+    VLAN_inner
+    puerto_empresarial
+    puerto_metro
+    =======================================
+    CAPA RED
+    =======================================
+    ---------
+    trabajo
+    ---------
+    3_vpn_configuracion_de_comunidades
+    3_vpn_configuracion_de_caudales
+    3_vpn_mpls_l3_remota
+    3_vpn_mpls_l3_cabecera
+    3_vpn_hop_and_spoke
+    3_vpn_spoke_to_spoke
+    3_vpn_q_o_s_router_ce_y_pe
+    3_infointernet_cabecera
+    3_infointernet_remota
+    ---------
+    datos
+    ---------
+    modelo_equipos_pe
+    modelo_equipos_ce
+    modelo_demarcador
+    modelo_transeiver
+    modelo_modem_cobre
+    modelo_equipo_metro
+    modelo_equipo_backhoul
+    modelo_equipo_empresarial
+    ip_lan
+    ip_wan
+    caudales
+    velocidad_mbps
+    =======================================
+    CAPA TRASPORTE 
+    =======================================
+    =======================================
+    CAPA APLICACION 
+    =======================================
+    ---------
+    trabajo
+    ---------
+    5_solarwinds
+    5_snmp
+    5_sip_trunk
+    5_seguridad_gestionada
+    5_antiddos
+    ---------
+    datos
+    ---------
+    vrf_antiddos
+    rango_numerico
+    '''
     llave_forenea = models.ForeignKey(Sede, on_delete=models.CASCADE, default='0')
     nombre_servicio = models.CharField(max_length=100, default='')
     avance = models.FloatField(default=0)
@@ -105,106 +200,27 @@ class Servicio_tcp_ip(models.Model):
     def __str__(self):
         return self.nombre_servicio
 
-'''
-=======================================
-CAPA FISICA
-=======================================
----------
-trabajo
----------
-1_acceso
-1_fo_pext
-1_fo_umg
-1_fo_jumpeo_en_nodo
-1_cobre
-1_3_5_hgz
-1_3g
-1_4g
-1_vsat
-1_radioenlace
----------
-datos
----------
-potencia
-trasmision
-nodo_o_ura_cto
-nodo_o_ura_gabinete
-nodo_o_ura_bandeja_conectores
-nodo_o_ura_hilo
-=======================================
-CAP ACCESO 
-=======================================
----------
-trabajo
----------
-2_conf_de_backhoul
-2_conf_de_red_empresarial
-2_conf_de_red_metro_mpls_punto_a_punto
-2_conf_de_red_metro_mpls_punto_a_multipunto
-2_trasmisiones
----------
-datos
----------
-equipo_de_trasporte
-equipo_demarcador
-equipo_switch_lan
-VLAN_outer
-VLAN_inner
-puerto_empresarial
-puerto_metro
-=======================================
-CAPA RED
-=======================================
----------
-trabajo
----------
-3_vpn_configuracion_de_comunidades
-3_vpn_configuracion_de_caudales
-3_vpn_mpls_l3_remota
-3_vpn_mpls_l3_cabecera
-3_vpn_hop_and_spoke
-3_vpn_spoke_to_spoke
-3_vpn_q_o_s_router_ce_y_pe
-3_infointernet_cabecera
-3_infointernet_remota
----------
-datos
----------
-modelo_equipos_pe
-modelo_equipos_ce
-modelo_demarcador
-modelo_transeiver
-modelo_modem_cobre
-modelo_equipo_metro
-modelo_equipo_backhoul
-modelo_equipo_empresarial
-ip_lan
-ip_wan
-caudales
-velocidad_mbps
-=======================================
-CAPA TRASPORTE 
-=======================================
-=======================================
-CAPA APLICACION 
-=======================================
----------
-trabajo
----------
-5_solarwinds
-5_snmp
-5_sip_trunk
-5_seguridad_gestionada
-5_antiddos
----------
-datos
----------
-vrf_antiddos
-rango_numerico
-'''
 
 
-class Equipo(models.Model):
+
+class Equipo(models.Model):    
+    '''
+    ----------- activo
+    equipo_pe
+    equipo_ce
+    demarcador
+    recurso_empresarial
+    recurso_metro
+    transimision
+
+    ----------- pasivo
+    cto 
+    odf (condicional: FO)
+    gabinete
+    armario (condicional: cobre)
+    FO
+    cobre
+    '''
     equipo = models.CharField(
         max_length=2,
         choices=[
@@ -219,26 +235,32 @@ class Equipo(models.Model):
     coordenada_longitud = models.FloatField(default=0)
     coordenada_latitud = models.FloatField(default=0)
     datos_tecnicos = models.TextField(default='')
-    
 
 
+    class Enlace(models.Model):
+        ''''
+        esta clase es para albergar la informacion de
+        - puntos
+        - enlaces
+        P --- P --- P --- P --- P --- P
+        la pregunta es, que podemos mostrar en google map?
+        todo depende de los objetos GEOjson
+        link: https://es.wikipedia.org/wiki/GeoJSON
 
+        tipos de geojson
+        - Point                 sede, equipo metro, PE, CE
+        - MultiPoint
+        - LineString            enlace logico
+        - MultiLineString       enlace de FO
+        - Polygon               cobertura, zonificacion de contarta
+        - MultiPolygon
+        - GeometryCollection
 
-
-'''
------------ activo
-equipo_pe
-equipo_ce
-demarcador
-recurso_empresarial
-recurso_metro
-transimision
-
------------ pasivo
-cto 
-odf (condicional: FO)
-gabinete
-armario (condicional: cobre)
-FO
-cobre
-'''
+        todos los tipos de geojson tienen la siguiente estructura:
+        {
+            "type": "TIPO_DE_GEOJSON", 
+            "coordinates": "JUEGO_DE_ARREGLOS"
+        }
+        '''
+        SS = models.CharField(max_length=100, default='')
+        type_ = models.CharField(max_length=100, default='')

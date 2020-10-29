@@ -2,12 +2,25 @@ function initMap() {
 
     // creacion del mapa
     map = new google.maps.Map(document.getElementById('map'), {
+        // zoom para tener solo a Lima como vista
         zoom: 13,
-        // centar en lima - peru
+        // centro en lima - peru
         center: { lng: -77.054145, lat: -12.075076 }
     });
 
     // carga del geoJson
+    /* 
+    
+    -> apla 
+    definido: proyecto.html
+    tipo: variable de javascript
+    info: viene de la variable "prueba"
+    
+    -> prueba
+    definido: views.py
+    tipo: string de python
+    
+    */ 
     map.data.addGeoJson(JSON.parse(apla));
 
     // estilizacion del geojson cargado
@@ -18,7 +31,9 @@ function initMap() {
         if (mi_variable == 'sedes') {
             hola = 'blue';
             return {
+                // propiedades fijas
                 strokeWeight: 5,
+                // propiedades que sacamos del mismo geojson 
                 strokeColor: feature.getProperty('color')
             };
         }
@@ -26,12 +41,15 @@ function initMap() {
         else if (mi_variable == 'punto') {
             return {
                 icon: {
+                    // propiedades fijas
                     path: 'M 0,0 20,-40 -20,-40 0,0 z',
-                    fillColor: feature.getProperty('color'),
                     fillOpacity: 0.8,
                     scale: 1,
                     strokeColor: 'gold',
-                    strokeWeight: 5
+                    strokeWeight: 5,
+                    // propiedades que sacamos del mismo geojson
+                    fillColor: feature.getProperty('color')
+        
                 }
             };
         }
