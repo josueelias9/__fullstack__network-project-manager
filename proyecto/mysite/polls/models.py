@@ -249,7 +249,7 @@ class Equipo(models.Model):
 
         tipos de geojson
         - Point                 sede, equipo metro, PE, CE
-        - MultiPoint
+        - MultiPoint            grupo de sedes
         - LineString            enlace logico
         - MultiLineString       enlace de FO
         - Polygon               cobertura, zonificacion de contarta
@@ -258,9 +258,12 @@ class Equipo(models.Model):
 
         todos los tipos de geojson tienen la siguiente estructura:
         {
-            "type": "TIPO_DE_GEOJSON", 
-            "coordinates": "JUEGO_DE_ARREGLOS"
+            "type": "tipo_de_geojson", 
+            "coordinates": "juego_de_arrays"
         }
+
+        entonces se tendria que eliminar la clase Equipo, porque esta clase lo incluye
         '''
-        SS = models.CharField(max_length=100, default='')
-        type_ = models.CharField(max_length=100, default='')
+        tipo_de_geojson = models.CharField(max_length=100, default='')
+        juego_de_arrays = models.CharField(max_length=100, default='')
+        informacion = models.CharField(max_length=100, default='')
