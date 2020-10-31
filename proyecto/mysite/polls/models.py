@@ -1,8 +1,7 @@
-
 import datetime
-
 from django.db import models
 from django.utils import timezone
+from django.views.generic.edit import CreateView
 
 
 class Question(models.Model):
@@ -277,8 +276,17 @@ class Interface_geojson(models.Model):
             ('MG', 'MultiPolygon'),
             ('GC', 'GeometryCollection'),
         ],
-        default='CE',)
+        default='SP',)
     # tipo_de_geojson = models.CharField(max_length=100, default='')
-    informacion = models.CharField(max_length=100, default='')
+    informacion = models.TextField(default='')
     juego_de_arrays = models.TextField(default='')
+    color = models.CharField(
+        max_length=6,
+        choices=[
+            ('red', 'red'),
+            ('green', 'green'),
+            ('blue', 'blue'),
+            ('yellow', 'yellow'),
+        ],
+        default='RE',)
 

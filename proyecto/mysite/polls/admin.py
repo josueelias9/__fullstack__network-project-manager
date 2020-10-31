@@ -89,7 +89,8 @@ class Interface_geojsonAdmin(admin.ModelAdmin):
     list_display = (
         'tipo_de_geojson',
         'informacion',
-        'juego_de_arrays',)
+        'juego_de_arrays',
+        'color',)
 
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Proyecto, ProyectoAdmin)

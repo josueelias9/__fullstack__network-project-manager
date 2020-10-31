@@ -89,85 +89,33 @@ class ProyectoView(generic.DetailView):
         for e in Interface_geojson.objects.all():
             # este if es para iterar sobre todos los elementos menos el ultimo
             if auxil + 1 < nume:
-                # se agrega la informacion en el string aa
+                # estas son las variables del string...
                 informacion = e.informacion
                 juego_de_arrays = e.juego_de_arrays
+                color = e.color
+                # se agregan al string
                 aa = aa + '''
                     "type": "Feature", 
                     "properties": {
                         "josue": "punto", 
-                        "color": "orange", 
+                        "color": "%s", 
                         "texto": "%s"},
-                    %s }, {''' % (informacion, juego_de_arrays)
+                    %s }, {''' % (color, informacion, juego_de_arrays)
             # aumenta el valor de auxil
             auxil = auxil + 1
         # en este punto ya itere sobre todos los elementos, menos el ultimo. Eso es lo que tenemos que ver ahora
         informacion = Interface_geojson.objects.all().last().informacion
         juego_de_arrays = Interface_geojson.objects.all().last().juego_de_arrays
+        color = Interface_geojson.objects.all().last().color
         aa = aa + '''
             "type": "Feature", 
             "properties": {
                 "josue": "punto", 
-                "color": "orange", 
+                "color": "%s", 
                 "texto": "%s"},
-            %s }]}''' % (informacion, juego_de_arrays)
+            %s }]}''' % (color, informacion, juego_de_arrays)
         context['prueba'] = aa
         return context
-
-    # metodo antiguo. Proyecta puntos en un mapa de Google
-    '''
-    def get_context_data(self, **kwargs):
-        # toma el avance de la clase padre
-        context = super().get_context_data(**kwargs)
-        # recibo todos los objetos de este proyecto en string - json
-        data = serializers.serialize("json", self.get_object().sede_set.all(), fields=('coordenada_longitud', 'coordenada_latitud'))
-        # lo envio al context 'casa'
-        context['casa'] = data
-        # obtengo el json (en string) que tiene los enlaces de este proyecto
-        w = self.get_object().prueba
-        # obtenemos el string convertido en el formato adecuado con los datos de las coordinadas de los equipos
-        variable = self.hola(w) 
-        # lo pasamos al contexto
-        context['prueba'] = variable
-        # fin
-        return context
-
-    # recibe dict en forma de string
-    def hola(self, a):
-        # lo convierte en dictionario de python
-        b = json.loads(a)
-        # nos quedamos con el arreglo que tiene toda la ruta (mapeada por id de la clase Equipo)
-        c = b['conexiones']
-        # creamos el dict e (le damos la forma). Este sera el que enviaremos a Javascript
-        e = {"type": "FeatureCollection", "features": []}
-        # iteramos sobre la ruta (nuevamente)
-        for llovo in c:
-            # creamos un dict2 para agregarlo al diccionario principal
-            dict2 = dict()
-            # preparamos la informacion para ingresarla en el dict2 
-            longitud = Equipo.objects.get(id=llovo).coordenada_longitud
-            latitud = Equipo.objects.get(id=llovo).coordenada_latitud
-            texto = Equipo.objects.get(id=llovo).equipo
-            # este es el dicticionario que contrengra el objeto json (point / multipoint / linestring / multilinestring / etc)
-            dict2 = {
-                "type": "Feature",
-                "properties": {
-                    "josue": "punto",
-                    "color": "orange",
-                    "texto": texto
-                },
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [longitud, latitud]
-                }
-            }
-            e['features'].append(dict2)
-        # convertimos el list en json - string
-        e = json.dumps(e)
-        # retorna el string
-        return e
-
-    '''
 
 class SedeView(generic.DetailView):
     model = Sede
@@ -196,6 +144,7 @@ class TrabajoView(generic.DetailView):
         context['avance'] = a/5*100
         return context
 
-class PruebaView(TemplateView):
 
-    template_name="polls/prueba.html"
+class Interface_geojsonCreate(CreateView):
+    model = Interface_geojson
+    fields = ['name']

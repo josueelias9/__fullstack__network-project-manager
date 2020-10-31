@@ -14,5 +14,5 @@ urlpatterns = [
     path('<int:pk>/proyecto/', views.ProyectoView.as_view(), name='proyecto'),
     path('<int:pk>/sede/', views.SedeView.as_view(), name='sede'),
     path('<int:pk>/trabajo/', views.TrabajoView.as_view(), name='trabajo'),
-    path('prueba/', views.PruebaView.as_view(), name='prueba'),
+    # Interface_geojsonCreate
 ]
