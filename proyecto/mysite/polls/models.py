@@ -1,3 +1,4 @@
+
 import datetime
 
 from django.db import models
@@ -237,33 +238,47 @@ class Equipo(models.Model):
     datos_tecnicos = models.TextField(default='')
 
 
-    class Enlace(models.Model):
-        ''''
-        esta clase es para albergar la informacion de
-        - puntos
-        - enlaces
-        P --- P --- P --- P --- P --- P
-        la pregunta es, que podemos mostrar en google map?
-        todo depende de los objetos GEOjson
-        link: https://es.wikipedia.org/wiki/GeoJSON
+class Interface_geojson(models.Model):
+    ''''
+    esta clase es para albergar la informacion de
+    - puntos
+    - enlaces
+    P --- P --- P --- P --- P --- P
+    la pregunta es, que podemos mostrar en google map?
+    todo depende de los objetos GEOjson
+    link: https://es.wikipedia.org/wiki/GeoJSON
 
-        tipos de geojson
-        - Point                 sede, equipo metro, PE, CE
-        - MultiPoint            grupo de sedes
-        - LineString            enlace logico
-        - MultiLineString       enlace de FO
-        - Polygon               cobertura, zonificacion de contarta
-        - MultiPolygon
-        - GeometryCollection
+    tipos de geojson
+    - Point                 sede, equipo metro, PE, CE
+    - MultiPoint            grupo de sedes
+    - LineString            enlace logico
+    - MultiLineString       enlace de FO
+    - Polygon               cobertura, zonificacion de contarta
+    - MultiPolygon
+    - GeometryCollection
 
-        todos los tipos de geojson tienen la siguiente estructura:
-        {
-            "type": "tipo_de_geojson", 
-            "coordinates": "juego_de_arrays"
-        }
+    todos los tipos de geojson tienen la siguiente estructura:
+    {
+        "type": "tipo_de_geojson", 
+        "coordinates": "juego_de_arrays"
+    }
 
-        entonces se tendria que eliminar la clase Equipo, porque esta clase lo incluye
-        '''
-        tipo_de_geojson = models.CharField(max_length=100, default='')
-        juego_de_arrays = models.CharField(max_length=100, default='')
-        informacion = models.CharField(max_length=100, default='')
+    entonces se tendria que eliminar la clase Equipo, porque esta clase lo incluye
+    '''
+
+    tipo_de_geojson = models.CharField(
+        max_length=2,
+        choices=[
+            ('SP', 'Point'),
+            ('MP', 'MultiPoint'),
+            ('SL', 'LineString'),
+            ('ML', 'MultiLineString'),
+            ('SG', 'Polygon'),
+            ('MG', 'MultiPolygon'),
+            ('GC', 'GeometryCollection'),
+        ],
+        default='CE',)
+    # tipo_de_geojson = models.CharField(max_length=100, default='')
+    informacion = models.CharField(max_length=100, default='')
+    juego_de_arrays = models.TextField(default='')
+

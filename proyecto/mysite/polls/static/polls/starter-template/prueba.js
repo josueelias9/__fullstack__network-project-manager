@@ -49,7 +49,6 @@ function initMap() {
                     strokeWeight: 5,
                     // propiedades que sacamos del mismo geojson
                     fillColor: feature.getProperty('color')
-        
                 }
             };
         }

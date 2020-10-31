@@ -8,7 +8,7 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.base import TemplateView
 from django.core import serializers
-from .models import Choice, Question, Persona, Proyecto, Sede, Servicio_tcp_ip, Equipo 
+from .models import Choice, Question, Persona, Proyecto, Sede, Servicio_tcp_ip, Equipo, Interface_geojson
 import json
 
 class IndexView(generic.ListView):
@@ -73,7 +73,49 @@ class PortafolioListView(ListView):
 class ProyectoView(generic.DetailView):
     model = Proyecto
     template_name = 'polls/proyecto.html'
+    # este debe ser la funcion que integre todo
+    def get_context_data(self,**kwargs):
+        # el super() indica que esta obteniendo las caracteristicas de la super clase
+        context = super().get_context_data(**kwargs)
+        # primera parte del string
+        aa = '''{
+            "type": "FeatureCollection", 
+            "features": [{'''
+        # numero de elementos en el queryset de Interface_geojson (todos los elementos, sin filtro)
+        nume = Interface_geojson.objects.all().count()
+        # creamos un numero auxiliar que aumentara de uno en uno hasta llegar al valor de "nume"
+        auxil = 0
+        # itera sobre todos los objetos de la clase "Interface_geojson"
+        for e in Interface_geojson.objects.all():
+            # este if es para iterar sobre todos los elementos menos el ultimo
+            if auxil + 1 < nume:
+                # se agrega la informacion en el string aa
+                informacion = e.informacion
+                juego_de_arrays = e.juego_de_arrays
+                aa = aa + '''
+                    "type": "Feature", 
+                    "properties": {
+                        "josue": "punto", 
+                        "color": "orange", 
+                        "texto": "%s"},
+                    %s }, {''' % (informacion, juego_de_arrays)
+            # aumenta el valor de auxil
+            auxil = auxil + 1
+        # en este punto ya itere sobre todos los elementos, menos el ultimo. Eso es lo que tenemos que ver ahora
+        informacion = Interface_geojson.objects.all().last().informacion
+        juego_de_arrays = Interface_geojson.objects.all().last().juego_de_arrays
+        aa = aa + '''
+            "type": "Feature", 
+            "properties": {
+                "josue": "punto", 
+                "color": "orange", 
+                "texto": "%s"},
+            %s }]}''' % (informacion, juego_de_arrays)
+        context['prueba'] = aa
+        return context
 
+    # metodo antiguo. Proyecta puntos en un mapa de Google
+    '''
     def get_context_data(self, **kwargs):
         # toma el avance de la clase padre
         context = super().get_context_data(**kwargs)
@@ -125,7 +167,7 @@ class ProyectoView(generic.DetailView):
         # retorna el string
         return e
 
-
+    '''
 
 class SedeView(generic.DetailView):
     model = Sede
@@ -154,11 +196,6 @@ class TrabajoView(generic.DetailView):
         context['avance'] = a/5*100
         return context
 
-
-
-
 class PruebaView(TemplateView):
 
     template_name="polls/prueba.html"
-
-
