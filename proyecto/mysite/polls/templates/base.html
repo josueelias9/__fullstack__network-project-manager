@@ -40,7 +40,8 @@
     <!-- Custom styles for this template -->
     <link href="dashboard.css" rel="stylesheet">
 
-    {% block estilos_css %}{% endblock %}
+    {% block estilos_css %}
+    {% endblock %}
 </head>
 
 <body>
@@ -143,11 +144,14 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Library</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">{% block identificador %}{% endblock %}
+                        <li class="breadcrumb-item active" aria-current="page">
+                            {% block identificador %}
+                            {% endblock %}
                         </li>
                     </ol>
                 </nav>
-                {% block bloque_1 %}{% endblock %}
+                {% block bloque_1 %}
+                {% endblock %}
             </main>
         </div>
     </div>

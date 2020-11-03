@@ -1,4 +1,26 @@
-<form method="post">{% csrf_token %}
-    {{ form.as_p }}
+{% extends "base.html" %}
+
+
+{% load static %}
+
+
+{% block estilos_css %}
+{% endblock %}
+
+
+{% block identificador %}
+crear elemento geojson
+{% endblock %}
+
+
+{% block bloque_1 %}
+<form method="get" action="{% url 'polls:portafolio' %}">
+    {% csrf_token %}
+    {{ form.as_ul }}
     <input type="submit" value="Save">
 </form>
+{% endblock %}
+
+
+{% block javascript_ %}
+{% endblock %}
