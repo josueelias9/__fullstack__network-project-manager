@@ -3,13 +3,14 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.urls import reverse
 from django.utils import timezone
+from django.core import serializers
 from django.views import generic, View
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, FormView
 from django.views.generic.base import TemplateView
-from django.core import serializers
-from .models import Choice, Question, Persona, Proyecto, Sede, Servicio_tcp_ip, Equipo, Interface_geojson
 import json
+from .models import Choice, Question, Persona, Proyecto, Sede, Servicio_tcp_ip, Equipo, Interface_geojson
+from .forms import ContactForm
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
@@ -150,20 +151,13 @@ class Interface_geojsonCreate(CreateView):
     fields = '__all__'
 
 
+class ContactView(FormView):
+    template_name = 'polls/contact.html'
+    form_class = ContactForm
+    success_url = '/thanks/'
 
-class MyFormView(View):
-    form_class = MyForm
-    initial = {'key': 'value'}
-    template_name = 'form_template.html'
-
-    def get(self, request, *args, **kwargs):
-        form = self.form_class(initial=self.initial)
-        return render(request, self.template_name, {'form': form})
-
-    def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
-        if form.is_valid():
-            # <process form cleaned data>
-            return HttpResponseRedirect('/success/')
-
-        return render(request, self.template_name, {'form': form})
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        form.send_email()
+        return super().form_valid(form)

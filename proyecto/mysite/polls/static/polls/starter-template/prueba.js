@@ -8,9 +8,9 @@ function initMap() {
         center: { lng: -77.054145, lat: -12.075076 }
     });
 
-    // carga del geoJson
     /* 
-    
+    carga del geoJson
+
     -> apla 
     definido: proyecto.html
     tipo: variable de javascript
@@ -19,25 +19,22 @@ function initMap() {
     -> prueba
     definido: views.py
     tipo: string de python
-    
-    */ 
+    */
     map.data.addGeoJson(JSON.parse(apla));
 
     // estilizacion del geojson cargado
     map.data.setStyle(function (feature) {
         var mi_variable = feature.getProperty('josue');
-        var hola = 'red';
         // elementos tipo: geometria LineString
         if (mi_variable == 'sedes') {
-            hola = 'blue';
             return {
                 // propiedades fijas
-                strokeWeight: 5,
+                strokeWeight: 1,
                 // propiedades que sacamos del mismo geojson 
                 strokeColor: feature.getProperty('color')
             };
         }
-        // elementos tipo: geometria Point
+        // elementos tipo: geometria Point (todos se estan yendo aqui)
         else if (mi_variable == 'punto') {
             return {
                 icon: {
@@ -59,70 +56,33 @@ function initMap() {
             };
         }
     });
-    // dinamica 
+
+    // este es para poner el texto a los elementos 
     map.data.addListener("click", mapsMouseEvent => {
         var infowindow = new google.maps.InfoWindow({ content: mapsMouseEvent.feature.getProperty("texto"), position: mapsMouseEvent.latLng });
         infowindow.open(map);
     });
 
+    // todo lo de abajo es para ...
+    // array de prueba
+    var wws = [];
+    // cuando hay un click obtengo informacion de este
 
-
-    /*
-    var map = new google.maps.Map(
-
-               
-        document.getElementById('map'),
-        {
-            zoom: 13,
-            center: {
-                lat: -12.056460,
-                lng: -77.061432
-            }
-        }
-    );
-    var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    var markers = casa_1().map(
-        function (location, i) {
-            return new google.maps.Marker({
-                position: location,
-                label: labels[i % labels.length]
-            });
-        }
-    );
-    var markerCluster = new MarkerClusterer(
-        map,
-        markers,
-        {
-            imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+    map.addListener("click", (e) => {
+        // dd
+        alert(wws);
+        // abla
+        wws.push([e.latLng.lng(), e.latLng.lat()]);
+        // logica para obtener datos por click
+        new google.maps.Marker({
+            position: e.latLng,
+            map: map,
         });
-
-
-
+        map.panTo(e.latLng);
+    });
     
- 
-   const flightPlanCoordinates = casa_1();
-   const flightPath = new google.maps.Polyline({
-       path: flightPlanCoordinates,
-       geodesic: true,
-       strokeColor: "#FF0000",
-       strokeOpacity: 1.0,
-       strokeWeight: 2
-   });
-   flightPath.setMap(map);
-*/
 };
 
-function casa_1() {
-    var casa = JSON.parse(apla);
-    alert(casa.type);
-    arreglo = [];
-    for (var i = 0; i < casa.length; i++) {
-        arreglo.push({
-            lat: casa[i].fields.coordenada_latitud,
-            lng: casa[i].fields.coordenada_longitud
-        });
-    }
-    return arreglo;
-};
+
 
 
