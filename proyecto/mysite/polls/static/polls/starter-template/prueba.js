@@ -63,15 +63,14 @@ function initMap() {
         infowindow.open(map);
     });
 
-    // todo lo de abajo es para ...
+    // todo lo de abajo es para interactuar con google
     // array de prueba
     var wws = [];
-    // cuando hay un click obtengo informacion de este
-
+    // cuando hay un click obtengo informacion de las coordenadas del punto
     map.addListener("click", (e) => {
-        // dd
-        alert(wws);
-        // abla
+        // para pilotear
+        alert(e.latLng);
+        // aregando informacion al arreglo wws
         wws.push([e.latLng.lng(), e.latLng.lat()]);
         // logica para obtener datos por click
         new google.maps.Marker({

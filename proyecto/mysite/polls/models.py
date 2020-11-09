@@ -248,7 +248,7 @@ class Interface_geojson(models.Model):
     link: https://es.wikipedia.org/wiki/GeoJSON
 
     tipos de geojson
-    - Point                 sede, equipo metro, PE, CE
+    - Point                 sede, equipo metro, PE, CE, CTO
     - MultiPoint            grupo de sedes
     - LineString            enlace logico
     - MultiLineString       enlace de FO

@@ -1,17 +1,19 @@
 from django.template import loader
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.urls import reverse
 from django.utils import timezone
 from django.core import serializers
 from django.views import generic, View
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView, UpdateView, FormView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.views.generic.base import TemplateView
+from django.urls import reverse_lazy, reverse
 import json
 from .models import Choice, Question, Persona, Proyecto, Sede, Servicio_tcp_ip, Equipo, Interface_geojson
 from .forms import ContactForm
-
+'''
+CRUD
+'''
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
@@ -62,9 +64,9 @@ def vote(request, question_id):
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
 
-# =======================================================================
-
-
+'''
+todas las vistas
+'''
 class PortafolioListView(ListView):
     model = Proyecto
     paginate_by = 100  # if pagination is desired
@@ -118,6 +120,10 @@ class ProyectoView(generic.DetailView):
         context['prueba'] = aa
         return context
 
+
+    def post(self, request, *args, **kwargs):
+        return render(request, 'polls/portafolio.html')
+
 class SedeView(generic.DetailView):
     model = Sede
     template_name = 'polls/sede.html'
@@ -144,14 +150,54 @@ class TrabajoView(generic.DetailView):
         ww.save()
         context['avance'] = a/5*100
         return context
-
-
+'''
+CRUD
+'''
+# CRUD de Interface_geojson
 class Interface_geojsonCreate(CreateView):
     model = Interface_geojson
     fields = '__all__'
 
+class Interface_geojsonUpdate(UpdateView):
+    model = Interface_geojson
+    fields = '__all__' # ['name']
+    template_name_suffix = '_update_form'
 
-class ContactView(FormView):
+class Interface_geojsonDelete(DeleteView):
+    model = Interface_geojson
+    success_url = reverse_lazy('polls:Interface_geojsonCreate')
+
+# CRUD de Proyecto
+class ProyectoCreate(CreateView):
+    model = Proyecto
+    fields = '__all__'
+
+class ProyectoUpdate(UpdateView):
+    model = Proyecto
+    fields = '__all__' # ['name']
+    template_name_suffix = '_update_form'
+
+class ProyectoDelete(DeleteView):
+    model = Proyecto
+    success_url = reverse_lazy('polls:ProyectoCreate')
+
+# CRUD de Sede
+class SedeCreate(CreateView):
+    model = Sede
+    fields = '__all__'
+
+class SedeUpdate(UpdateView):
+    model = Sede
+    fields = '__all__' # ['name']
+    template_name_suffix = '_update_form'
+
+class SedeDelete(DeleteView):
+    model = Sede
+    success_url = reverse_lazy('polls:ProyectoCreate')
+'''
+ver que cosa
+'''
+class ContactView(View):
     template_name = 'polls/contact.html'
     form_class = ContactForm
     success_url = '/thanks/'
@@ -161,3 +207,14 @@ class ContactView(FormView):
         # It should return an HttpResponse.
         form.send_email()
         return super().form_valid(form)
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            # <process form cleaned data>
+            return HttpResponseRedirect('/success/')
+
+        return render(request, self.template_name, {'form': form})
+
+
+

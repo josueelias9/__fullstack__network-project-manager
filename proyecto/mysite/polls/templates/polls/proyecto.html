@@ -1,14 +1,16 @@
 {% extends "base.html" %}
-
-
+<!-- carga archivos estatics. Ver si se puede eliminar porque esto mismo esta en el html base -->
 {% load static %}
-
+<!-- ------------------------------------------------------------------------------------------------------------
+    encabezado
+------------------------------------------------------------------------------------------------------------ -->
 
 {% block identificador %}
 PROYECTO
 {% endblock %}
-
-
+<!-- ------------------------------------------------------------------------------------------------------------
+esto va para el CSS  
+------------------------------------------------------------------------------------------------------------ -->
 {% block estilos_css %}
 <link rel="canonical" href="{% static 'polls/starter-template/starter-template.css' %}">
 
@@ -46,7 +48,9 @@ PROYECTO
 </style>
 {% endblock %}
 
-
+<!-- ------------------------------------------------------------------------------------------------------------
+bloque mas importante 
+------------------------------------------------------------------------------------------------------------ -->
 {% block bloque_1 %}
 <main role="main" class="container">
     <div class="starter-template">
@@ -59,8 +63,9 @@ PROYECTO
 <div class="text-center">
     <img src="{% static 'polls/images/proyecto.jpg' %}" class="rounded" alt="Responsive image">
 </div>
-<div class="container">
-    <table class="table table-bordered">
+<!-- aqui comienza la tabla -->
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
         <thead>
             <tr>
                 <th scope="col" rowspan="2">id</th>
@@ -68,7 +73,6 @@ PROYECTO
                 <th scope="col" colspan="6">descripcion del trabajo</th>
             </tr>
             <tr>
-
                 <th scope="col">llave_forenea</th>
                 <th scope="col">nombre</th>
                 <th scope="col">coordenada_longitud</th>
@@ -78,7 +82,6 @@ PROYECTO
                 <th scope="col">contrata_acceso</th>
                 <th scope="col">finalizado</th>
                 <th scope="col">enlace</th>
-
             </tr>
         </thead>
         <tbody>
@@ -93,29 +96,49 @@ PROYECTO
                 <td>{{ aa.contrata_equipo }}</td>
                 <td>{{ aa.contrata_acceso }}</td>
                 <td>{{ aa.finalizado }}</td>
-                <td><a href="{% url 'polls:sede' aa.id %}">enlace</a></td>
-
+                <!-- READ UPDATE DELETE -->
+                <td><a href="{% url 'polls:sede' aa.id %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">read</a></td>
+                <td><a href="{% url 'polls:SedeUpdate' aa.id %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">update</a></td>
+                <td><a href="{% url 'polls:SedeDelete' aa.id %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">delete</a></td>                
             </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
+<!-- fin de la tabla -->
+<!-- CREATE -->
+<a href="{% url 'polls:SedeCreate' %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">create</a>
 
+<!-- esto es para ver el string preparado -->
 {{ casa }}<br><br>
 {{ prueba }}
-
+<!-- aqui va el mapa -->
 <div class="container" id="map"></div>
+<!-- aqui vamos a poner el form como prueba -->
+<form action="{% url 'polls:portafolio' %}" method="post">
+    {% csrf_token %}
+    <label for="fname">First name:</label><br>
+    <input type="text" id="fname" name="fname" value="John"><br>
+    <label for="lname">Last name:</label><br>
+    <input type="text" id="lname" name="lname" value="Doe"><br><br>
+    <input type="submit" value="Submit">
+</form>
+<!-- fin del bloque -->
 {% endblock %}
-
-
+<!-- ------------------------------------------------------------------------------------------------------------ 
+parte de javascript
+------------------------------------------------------------------------------------------------------------ -->
 {% block javascript_ %}
 <script type="text/javascript">
     var apla = "{{ prueba | escapejs }}";
 </script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
 <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
 <script src="{% static 'polls/starter-template/prueba.js' %}"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGgSj0uh5_yPn4ZcLpxaK5H-llGvmvxEI&callback=initMap"></script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGgSj0uh5_yPn4ZcLpxaK5H-llGvmvxEI&callback=initMap"></script>
 {% endblock %}

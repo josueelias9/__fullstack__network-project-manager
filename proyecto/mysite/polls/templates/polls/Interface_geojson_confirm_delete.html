@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+{% load static %}
+
+
+{% block estilos_css %}
+{% endblock %}
+
+
+{% block identificador %}
+crear elemento geojson
+{% endblock %}
+
+
+{% block bloque_1 %}
+<form method="post">{% csrf_token %}
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+    <input type="submit" value="Confirm">
+</form>
+{% endblock %}
+
+
+{% block javascript_ %}
+{% endblock %}
