@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Choice, Question, Proyecto, Sede, Servicio_tcp_ip, Equipo, Interface_geojson
+from .models import Choice, Question, Proyecto, Sede, Trabajo, Equipo, Interface_geojson
 
 
 
@@ -51,7 +51,7 @@ class SedeAdmin(admin.ModelAdmin):
         'finalizado',)
 
 
-class Servicio_tcp_ipAdmin(admin.ModelAdmin):
+class TrabajoAdmin(admin.ModelAdmin):
     list_display = (
         'llave_forenea',
         'nombre_servicio',
@@ -95,6 +95,6 @@ class Interface_geojsonAdmin(admin.ModelAdmin):
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Proyecto, ProyectoAdmin)
 admin.site.register(Sede, SedeAdmin)
-admin.site.register(Servicio_tcp_ip, Servicio_tcp_ipAdmin)
+admin.site.register(Trabajo, TrabajoAdmin)
 admin.site.register(Equipo, EquipoAdmin)
 admin.site.register(Interface_geojson, Interface_geojsonAdmin)

@@ -1,53 +1,163 @@
 {% extends "base.html" %}
 {% load static %}
 
-
+<!-- ------------------------------------------------------------------------------------------------------------
+bloque titulo 
+------------------------------------------------------------------------------------------------------------ -->
+{% block titulo %}
+Trabajo
+{% endblock %}
+<!-- ------------------------------------------------------------------------------------------------------------
+bloque identificador 
+------------------------------------------------------------------------------------------------------------ -->
 
 {% block identificador %}
-TRABAJO
+Trabajo
 {% endblock %}
 
-
+<!-- ------------------------------------------------------------------------------------------------------------
+bloque bloque 1 
+------------------------------------------------------------------------------------------------------------ -->
 
 {% block bloque_1 %}
-
-<!-- Begin page content -->
-<main role="main" class="flex-shrink-0">
-    <div class="container">
-        <h1 class="mt-5">Sticky footer</h1>
-        <p class="lead">Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and
-            CSS.</p>
-        <p>Use <a href="../examples/sticky-footer-navbar/">the sticky footer with a fixed navbar</a> if need be,
-            too.</p>
+<div class="p-5">
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+        <h3>sssssssssss</h3>
     </div>
-</main>
-
-<div class="container">
-    <table class="table table-bordered">
+    <table class="table table-sm">
         <thead>
             <tr>
-                <th scope="col">macro</th>
-                <th scope="col">Informacion</th>
-                <th scope="col">Estado</th>
-                <th scope="col">Responsable</th>
+                <th scope="col">listo</th>
+                <th scope="col">datos</th>
             </tr>
         </thead>
         <tbody>
-            {% if servicio_tcp_ip.activo_capa_fisica is True %}
             <tr>
-                <th scope="row">capa_fisica</th>
-                <td>{{ servicio_tcp_ip.datos_capa_fisica | linebreaks }}</td>
-                {% if servicio_tcp_ip.estado_capa_fisica is True %}
-                <td><span class="badge badge-success">Finalizado</span></td>
-                {% else %}
-                <td><span class="badge badge-danger">Pendiente</span></td>
-                {% endif %}
-                <td>{{ servicio_tcp_ip.responsable_capa_fisica }}</td>
+                <th scope="row">llave_forenea</th>
+                <td>{{ trabajo.llave_forenea }}</td>
             </tr>
-            {% endif %}
+            <tr>
+                <th scope="row">nombre_servicio</th>
+                <td>{{ trabajo.nombre_servicio }}</td>
+            </tr>
+            <tr>
+                <th scope="row">avance</th>
+                <td>{{ trabajo.avance }}</td>
+            </tr>
+            <tr>
+                <th scope="row">activo_capa_fisica</th>
+                <td>{{ trabajo.activo_capa_fisica }}</td>
+            </tr>
+            <tr>
+                <th scope="row">activo_capa_acceso</th>
+                <td>{{ trabajo.activo_capa_acceso }}</td>
+            </tr>
+            <tr>
+                <th scope="row">activo_capa_red</th>
+                <td>{{ trabajo.activo_capa_red }}</td>
+            </tr>
+            <tr>
+                <th scope="row">activo_capa_trasporte</th>
+                <td>{{ trabajo.activo_capa_trasporte }}</td>
+            </tr>
+            <tr>
+                <th scope="row">activo_capa_aplicacion</th>
+                <td>{{ trabajo.activo_capa_aplicacion }}</td>
+            </tr>
+            <tr>
+                <th scope="row">estado_capa_fisica</th>
+                <td>{{ trabajo.estado_capa_fisica }}</td>
+            </tr>
+            <tr>
+                <th scope="row">estado_capa_acceso</th>
+                <td>{{ trabajo.estado_capa_acceso }}</td>
+            </tr>
+            <tr>
+                <th scope="row">estado_capa_red</th>
+                <td>{{ trabajo.estado_capa_red }}</td>
+            </tr>
+            <tr>
+                <th scope="row">estado_capa_trasporte</th>
+                <td>{{ trabajo.estado_capa_trasporte }}</td>
+            </tr>
+            <tr>
+                <th scope="row">estado_capa_aplicacion</th>
+                <td>{{ trabajo.estado_capa_aplicacion }}</td>
+            </tr>
+            <tr>
+                <th scope="row">datos_capa_fisica</th>
+                <td>{{ trabajo.datos_capa_fisica }}</td>
+            </tr>
+            <tr>
+                <th scope="row">datos_capa_acceso</th>
+                <td>{{ trabajo.datos_capa_acceso }}</td>
+            </tr>
+            <tr>
+                <th scope="row">datos_capa_red</th>
+                <td>{{ trabajo.datos_capa_red }}</td>
+            </tr>
+            <tr>
+                <th scope="row">datos_capa_trasporte</th>
+                <td>{{ trabajo.datos_capa_trasporte }}</td>
+            </tr>
+            <tr>
+                <th scope="row">datos_capa_aplicacion</th>
+                <td>{{ trabajo.datos_capa_aplicacion }}</td>
+            </tr>
+            <tr>
+                <th scope="row">responsable_capa_fisica</th>
+                <td>{{ trabajo.responsable_capa_fisica }}</td>
+            </tr>
+            <tr>
+                <th scope="row">responsable_capa_acceso</th>
+                <td>{{ trabajo.responsable_capa_acceso }}</td>
+            </tr>
+            <tr>
+                <th scope="row">responsable_capa_red</th>
+                <td>{{ trabajo.responsable_capa_red }}</td>
+            </tr>
+            <tr>
+                <th scope="row">responsable_capa_trasporte</th>
+                <td>{{ trabajo.responsable_capa_trasporte }}</td>
+            </tr>
+            <tr>
+                <th scope="row">responsable_capa_aplicacion</th>
+                <td>{{ trabajo.responsable_capa_aplicacion }}</td>
+            </tr>
         </tbody>
     </table>
 </div>
 
+<div class="p-5">
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+        <h3>sssssssssss</h3>
+    </div>
+    <div class="container">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">macro</th>
+                    <th scope="col">Informacion</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Responsable</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if servicio_tcp_ip.activo_capa_fisica is True %}
+                <tr>
+                    <th scope="row">capa_fisica</th>
+                    <td>{{ servicio_tcp_ip.datos_capa_fisica | linebreaks }}</td>
+                    {% if servicio_tcp_ip.estado_capa_fisica is True %}
+                    <td><span class="badge badge-success">Finalizado</span></td>
+                    {% else %}
+                    <td><span class="badge badge-danger">Pendiente</span></td>
+                    {% endif %}
+                    <td>{{ servicio_tcp_ip.responsable_capa_fisica }}</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
 
 {% endblock %}

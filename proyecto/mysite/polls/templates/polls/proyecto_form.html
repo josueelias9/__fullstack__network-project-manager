@@ -14,11 +14,16 @@ crear elemento geojson
 
 
 {% block bloque_1 %}
-<form method="get" action="{% url 'polls:portafolio' %}">
-    {% csrf_token %}
-    {{ form.as_ul }}
-    <input type="submit" value="Save">
-</form>
+<div class="p-5">
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+        <h3>Larger shadow</h3>
+    </div>
+    <form method="get" action="{% url 'polls:portafolio' %}">
+        {% csrf_token %}
+        {{ form.as_ul }}
+        <input type="submit" value="Save">
+    </form>
+</div>
 {% endblock %}
 
 

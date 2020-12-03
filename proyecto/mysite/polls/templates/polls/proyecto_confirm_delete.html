@@ -14,10 +14,15 @@ crear elemento geojson
 
 
 {% block bloque_1 %}
-<form method="post">{% csrf_token %}
-    <p>Are you sure you want to delete "{{ object }}"?</p>
-    <input type="submit" value="Confirm">
-</form>
+<div class="p-5">
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+        <h3>Larger shadow</h3>
+    </div>
+    <form method="post">{% csrf_token %}
+        <p>Are you sure you want to delete "{{ object }}"?</p>
+        <input type="submit" value="Confirm">
+    </form>
+</div>
 {% endblock %}
 
 

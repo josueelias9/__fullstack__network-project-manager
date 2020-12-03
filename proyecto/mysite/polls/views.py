@@ -9,7 +9,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormVi
 from django.views.generic.base import TemplateView
 from django.urls import reverse_lazy, reverse
 import json
-from .models import Choice, Question, Persona, Proyecto, Sede, Servicio_tcp_ip, Equipo, Interface_geojson
+from .models import Choice, Question, Persona, Proyecto, Sede, Trabajo, Equipo, Interface_geojson
 from .forms import ContactForm
 '''
 CRUD
@@ -129,7 +129,7 @@ class SedeView(generic.DetailView):
     template_name = 'polls/sede.html'
 
 class TrabajoView(generic.DetailView):
-    model = Servicio_tcp_ip
+    model = Trabajo
     template_name = 'polls/trabajo.html'
 
     def get_context_data(self, **kwargs):
@@ -190,10 +190,30 @@ class SedeUpdate(UpdateView):
     model = Sede
     fields = '__all__' # ['name']
     template_name_suffix = '_update_form'
+    # success_url = reverse_lazy('polls:proyecto', args=[1])
+
+    # def get_absolute_url(self):
+    #     return reverse_lazy('polls:proyecto', args=[1])
 
 class SedeDelete(DeleteView):
     model = Sede
     success_url = reverse_lazy('polls:ProyectoCreate')
+
+
+# CRUD de Trabajo
+class TrabajoCreate(CreateView):
+    model = Trabajo
+    fields = '__all__'
+
+class TrabajoUpdate(UpdateView):
+    model = Trabajo
+    fields = '__all__' # ['name']
+    template_name_suffix = '_update_form'
+
+class TrabajoDelete(DeleteView):
+    model = Trabajo
+    success_url = reverse_lazy('polls:ProyectoCreate')
+    
 '''
 ver que cosa
 '''
@@ -215,6 +235,3 @@ class ContactView(View):
             return HttpResponseRedirect('/success/')
 
         return render(request, self.template_name, {'form': form})
-
-
-

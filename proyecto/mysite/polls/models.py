@@ -2,6 +2,7 @@ import datetime
 from django.db import models
 from django.utils import timezone
 from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy, reverse
 
 
 class Question(models.Model):
@@ -73,9 +74,12 @@ class Sede(models.Model):
     
     def __str__(self):
         return self.nombre
+    
+    def get_absolute_url(self):
+        return reverse('polls:sede', kwargs={'pk': self.pk})
 
 
-class Servicio_tcp_ip(models.Model):
+class Trabajo(models.Model):
     '''
     =======================================
     CAPA FISICA

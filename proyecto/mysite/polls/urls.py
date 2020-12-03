@@ -22,10 +22,14 @@ urlpatterns = [
     path('SedeCreate/', views.SedeCreate.as_view(), name='SedeCreate'), 
     path('<int:pk>/SedeUpdate/', views.SedeUpdate.as_view(), name='SedeUpdate'), 
     path('<int:pk>/SedeDelete/', views.SedeDelete.as_view(), name='SedeDelete'), 
-    # CRUD Interface_geojso
+    # CRUD Interface_geojson
     path('Interface_geojsonCreate/', views.Interface_geojsonCreate.as_view(), name='Interface_geojsonCreate'), 
     path('<int:pk>/Interface_geojsonUpdate/', views.Interface_geojsonUpdate.as_view(), name='Interface_geojsonUpdate'), 
     path('<int:pk>/Interface_geojsonDelete/', views.Interface_geojsonDelete.as_view(), name='Interface_geojsonDelete'), 
+    # CRUD Trabajo
+    path('TrabajoCreate/', views.TrabajoCreate.as_view(), name='TrabajoCreate'), 
+    path('<int:pk>/TrabajoUpdate/', views.TrabajoUpdate.as_view(), name='TrabajoUpdate'), 
+    path('<int:pk>/TrabajoDelete/', views.TrabajoDelete.as_view(), name='TrabajoDelete'), 
     # que es?
     path('hola/', views.ContactView.as_view(), name='xaaa'), 
 ]
