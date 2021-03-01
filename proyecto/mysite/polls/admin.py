@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Choice, Question, Proyecto, Sede, Trabajo, Equipo, Interface_geojson
+from .models import Choice, Question, Proyecto, Sede, Trabajo, Equipo, InterfaceGeojson
 
 
 
@@ -85,7 +85,7 @@ class EquipoAdmin(admin.ModelAdmin):
         'coordenada_latitud',
         'datos_tecnicos',)
     
-class Interface_geojsonAdmin(admin.ModelAdmin):
+class InterfaceGeojsonAdmin(admin.ModelAdmin):
     list_display = (
         'tipo_de_geojson',
         'informacion',
@@ -97,4 +97,4 @@ admin.site.register(Proyecto, ProyectoAdmin)
 admin.site.register(Sede, SedeAdmin)
 admin.site.register(Trabajo, TrabajoAdmin)
 admin.site.register(Equipo, EquipoAdmin)
-admin.site.register(Interface_geojson, Interface_geojsonAdmin)
+admin.site.register(InterfaceGeojson, InterfaceGeojsonAdmin)

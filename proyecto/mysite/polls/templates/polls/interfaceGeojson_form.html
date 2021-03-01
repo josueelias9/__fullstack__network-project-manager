@@ -14,7 +14,8 @@ crear elemento geojson
 
 
 {% block bloque_1 %}
-<form method="get" action="{% url 'polls:portafolio' %}">
+
+<form action="" method="post">
     {% csrf_token %}
     {{ form.as_ul }}
     <input type="submit" value="Save">

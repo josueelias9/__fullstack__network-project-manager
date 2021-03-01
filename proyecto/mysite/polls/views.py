@@ -9,7 +9,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormVi
 from django.views.generic.base import TemplateView
 from django.urls import reverse_lazy, reverse
 import json
-from .models import Choice, Question, Persona, Proyecto, Sede, Trabajo, Equipo, Interface_geojson
+from .models import Choice, Question, Persona, Proyecto, Sede, Trabajo, Equipo, InterfaceGeojson
 from .forms import ContactForm
 '''
 CRUD
@@ -84,12 +84,12 @@ class ProyectoView(generic.DetailView):
         aa = '''{
             "type": "FeatureCollection", 
             "features": [{'''
-        # numero de elementos en el queryset de Interface_geojson (todos los elementos, sin filtro)
-        nume = Interface_geojson.objects.all().count()
+        # numero de elementos en el queryset de InterfaceGeojson (todos los elementos, sin filtro)
+        nume = InterfaceGeojson.objects.all().count()
         # creamos un numero auxiliar que aumentara de uno en uno hasta llegar al valor de "nume"
         auxil = 0
-        # itera sobre todos los objetos de la clase "Interface_geojson"
-        for e in Interface_geojson.objects.all():
+        # itera sobre todos los objetos de la clase "InterfaceGeojson"
+        for e in InterfaceGeojson.objects.all():
             # este if es para iterar sobre todos los elementos menos el ultimo
             if auxil + 1 < nume:
                 # estas son las variables del string...
@@ -107,9 +107,9 @@ class ProyectoView(generic.DetailView):
             # aumenta el valor de auxil
             auxil = auxil + 1
         # en este punto ya itere sobre todos los elementos, menos el ultimo. Eso es lo que tenemos que ver ahora
-        informacion = Interface_geojson.objects.all().last().informacion
-        juego_de_arrays = Interface_geojson.objects.all().last().juego_de_arrays
-        color = Interface_geojson.objects.all().last().color
+        informacion = InterfaceGeojson.objects.all().last().informacion
+        juego_de_arrays = InterfaceGeojson.objects.all().last().juego_de_arrays
+        color = InterfaceGeojson.objects.all().last().color
         aa = aa + '''
             "type": "Feature", 
             "properties": {
@@ -150,22 +150,28 @@ class TrabajoView(generic.DetailView):
         ww.save()
         context['avance'] = a/5*100
         return context
+
+class InterfaceGeojsonListView(ListView):
+    model = InterfaceGeojson
+    paginate_by = 100  # if pagination is desired
+    template_name = 'polls/interfaceGeojson.html'
+
 '''
 CRUD
 '''
-# CRUD de Interface_geojson
-class Interface_geojsonCreate(CreateView):
-    model = Interface_geojson
+# CRUD de InterfaceGeojson
+class InterfaceGeojsonCreate(CreateView):
+    model = InterfaceGeojson
     fields = '__all__'
 
-class Interface_geojsonUpdate(UpdateView):
-    model = Interface_geojson
+class InterfaceGeojsonUpdate(UpdateView):
+    model = InterfaceGeojson
     fields = '__all__' # ['name']
     template_name_suffix = '_update_form'
 
-class Interface_geojsonDelete(DeleteView):
-    model = Interface_geojson
-    success_url = reverse_lazy('polls:Interface_geojsonCreate')
+class InterfaceGeojsonDelete(DeleteView):
+    model = InterfaceGeojson
+    success_url = reverse_lazy('polls:InterfaceGeojsonCreate')
 
 # CRUD de Proyecto
 class ProyectoCreate(CreateView):

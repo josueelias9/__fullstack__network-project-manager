@@ -241,7 +241,7 @@ class Equipo(models.Model):
     datos_tecnicos = models.TextField(default='')
 
 
-class Interface_geojson(models.Model):
+class InterfaceGeojson(models.Model):
     ''''
     esta clase es para albergar la informacion de
     - puntos
@@ -266,7 +266,7 @@ class Interface_geojson(models.Model):
         "coordinates": "juego_de_arrays"
     }
 
-    entonces se tendria que eliminar la clase Equipo, porque esta clase lo incluye
+    entonces se tendria que eliminar la clase Equipo (dentro de models.py), porque esta clase lo incluye
     '''
 
     tipo_de_geojson = models.CharField(
