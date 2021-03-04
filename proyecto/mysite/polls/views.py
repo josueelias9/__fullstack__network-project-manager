@@ -92,18 +92,38 @@ class ProyectoView(generic.DetailView):
         for e in InterfaceGeojson.objects.all():
             # este if es para iterar sobre todos los elementos menos el ultimo
             if auxil + 1 < nume:
+                '''
+                parentesis a lo que viene!!!
+                tengo que agregar la variable tipo_de_geojson (que toma los valores SP, MP, SL, ML, etc)
+                ('SP', 'Point'),
+                ('MP', 'MultiPoint'),
+                ('SL', 'LineString'),
+                ('ML', 'MultiLineString'),
+                ('SG', 'Polygon'),
+                ('MG', 'MultiPolygon'),
+                ('GC', 'GeometryCollection'),
+                tipo_de_geojson = e.tipo_de_geojson
+
+                entenderia que si esto sale bien, podriamos eliminar del archivo prueba.js la logica de:
+                var mi_variable = feature.getProperty('josue');
+                porque si vemos abajo, josue siempre toma el valor de "punto"
+
+                todo esto para dotar de propiedades a todos los tipos de geojson (no solo a los puntos)
+                '''
                 # estas son las variables del string...
                 informacion = e.informacion
                 juego_de_arrays = e.juego_de_arrays
                 color = e.color
+                # del parentesis: lo agrego
+                tipo_de_geojson = e.tipo_de_geojson
                 # se agregan al string
                 aa = aa + '''
                     "type": "Feature", 
                     "properties": {
-                        "josue": "punto", 
+                        "josue": "%s", 
                         "color": "%s", 
                         "texto": "%s"},
-                    %s }, {''' % (color, informacion, juego_de_arrays)
+                    %s }, {''' % (tipo_de_geojson, color, informacion, juego_de_arrays)
             # aumenta el valor de auxil
             auxil = auxil + 1
         # en este punto ya itere sobre todos los elementos, menos el ultimo. Eso es lo que tenemos que ver ahora

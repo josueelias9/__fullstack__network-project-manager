@@ -24,18 +24,31 @@ function initMap() {
 
     // estilizacion del geojson cargado
     map.data.setStyle(function (feature) {
+        
         var mi_variable = feature.getProperty('josue');
         // elementos tipo: geometria LineString
-        if (mi_variable == 'sedes') {
+        if (mi_variable == 'SL') {
+           
             return {
                 // propiedades fijas
-                strokeWeight: 1,
+                strokeWeight: 2,
+                // propiedades que sacamos del mismo geojson 
+                strokeColor: feature.getProperty('color')
+            };
+        }
+        // elementos tipo: geometria LineString
+        else if (mi_variable == 'ML') {
+           
+            return {
+                // propiedades fijas
+                strokeWeight: 2,
                 // propiedades que sacamos del mismo geojson 
                 strokeColor: feature.getProperty('color')
             };
         }
         // elementos tipo: geometria Point (todos se estan yendo aqui)
-        else if (mi_variable == 'punto') {
+        else if (mi_variable == 'SP') {
+            
             return {
                 icon: {
                     // propiedades fijas
@@ -50,6 +63,7 @@ function initMap() {
             };
         }
         else {
+        
             return {
                 strokeWeight: 5,
                 strokeColor: 'black'

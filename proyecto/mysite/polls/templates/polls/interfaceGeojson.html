@@ -5,7 +5,7 @@
 bloque titulo 
 ------------------------------------------------------------------------------------------------------------ -->
 {% block titulo %}
-Portafolio
+InterfaceGeojsonListView
 {% endblock %}
 
 
@@ -39,7 +39,7 @@ parte de css
 parte de identificador
 ------------------------------------------------------------------------------------------------------------ -->
 {% block identificador %}
-Portafolio
+InterfaceGeojsonListView
 {% endblock %}
 
 
@@ -50,7 +50,7 @@ parte de bloque_1
 <!-- primera parte -->
 <div class="p-5">
     <div class="shadow-lg p-3 mb-5 bg-white rounded">
-        <h3>Larger shadow</h3>
+        <h3>InterfaceGeojsonListView</h3>
     </div>
     <!-- aqui comienza la tabla -->
     <div class="table-responsive">
@@ -79,7 +79,7 @@ parte de bloque_1
                     <td>{{ article.juego_de_arrays }}</td>
                     <td>{{ article.color }}</td>
                     <td>there is nothing to read</td>
-                    <td><a href="{% url 'polls:interfaceGeojsonUpdate' article.id %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">update</a></td>
+                    <td><a href="{% url 'polls:interfaceGeojson' %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">update</a></td>
                     <td><a href="{% url 'polls:interfaceGeojsonDelete' article.id %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">delete</a></td>
                     {% empty %}
                     <li>Aun no se ha registrado algun proyecto.</li>
