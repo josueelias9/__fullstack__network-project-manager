@@ -10,6 +10,7 @@ urlpatterns = [
     path('<int:pk>/results/', views.ResultsView.as_view(), name='results'),
     path('<int:question_id>/vote/', views.vote, name='vote'),
     # vistas primera fase
+    path('principal/', views.PrincipalListView.as_view(), name='principal'),
     path('interfaceGeojson/', views.InterfaceGeojsonListView.as_view(), name='interfaceGeojson'),
     path('portafolio/', views.PortafolioListView.as_view(), name='portafolio'),
     path('<int:pk>/proyecto/', views.ProyectoView.as_view(), name='proyecto'),

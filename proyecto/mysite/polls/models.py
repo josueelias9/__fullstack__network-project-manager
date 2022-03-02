@@ -60,6 +60,10 @@ class Proyecto(models.Model):
     def __str__(self):
         return self.nombre
 
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('polls:principal')
+
 
 
 class Sede(models.Model):
@@ -76,7 +80,7 @@ class Sede(models.Model):
         return self.nombre
     
     def get_absolute_url(self):
-        return reverse('polls:sede', kwargs={'pk': self.pk})
+        return reverse('polls:principal')
 
 
 class Trabajo(models.Model):
@@ -204,7 +208,8 @@ class Trabajo(models.Model):
     def __str__(self):
         return self.nombre_servicio
 
-
+    def get_absolute_url(self):
+        return reverse('polls:principal')
 
 
 class Equipo(models.Model):    

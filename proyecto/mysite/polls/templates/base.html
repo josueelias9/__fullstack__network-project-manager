@@ -13,8 +13,7 @@ tienes 4 partes (listados en el orden en que aparecen):
 <html lang="en">
 
 <head>
-    <!--    <link rel="stylesheet" type="text/css" href="{% static 'polls/bootstrap/bootstrap.css' %}">-->
-
+ 
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -29,7 +28,7 @@ tienes 4 partes (listados en el orden en que aparecen):
     </title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
-    <link rel="stylesheet" type="text/css" href="{% static 'polls/dashboard/dashboard.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/base/dashboard.css' %}">
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -93,15 +92,15 @@ tienes 4 partes (listados en el orden en que aparecen):
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'polls:interfaceGeojson' %}">
+                            <a class="nav-link" href="{% url 'polls:principal' %}">
                                 <span data-feather="file"></span>
-                                interfaceGeojson
+                                principal
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'polls:portafolio' %}">
+                            <a class="nav-link" href="{% url 'polls:principal' %}">
                                 <span data-feather="shopping-cart"></span>
-                                portafolio
+                                principal
                             </a>
                         </li>
                     </ul>

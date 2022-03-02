@@ -67,6 +67,12 @@ def vote(request, question_id):
 #########################################################
 # LIST VIEWs
 #########################################################
+
+class PrincipalListView(generic.ListView):
+    model = Persona
+    template_name = 'polls/principal.html'
+
+
 class PortafolioListView(ListView):
     model = Proyecto
     paginate_by = 100  # if pagination is desired
@@ -188,6 +194,8 @@ class TrabajoView(generic.DetailView):
 class InterfaceGeojsonCreate(CreateView):
     model = InterfaceGeojson
     fields = '__all__'
+    success_url = '/polls/principal'
+    
 
 class InterfaceGeojsonUpdate(UpdateView):
     model = InterfaceGeojson
@@ -202,11 +210,14 @@ class InterfaceGeojsonDelete(DeleteView):
 class ProyectoCreate(CreateView):
     model = Proyecto
     fields = '__all__'
+    success_url = '/polls/principal'
+    
 
 class ProyectoUpdate(UpdateView):
     model = Proyecto
     fields = '__all__' # ['name']
     template_name_suffix = '_update_form'
+
 
 class ProyectoDelete(DeleteView):
     model = Proyecto
@@ -216,6 +227,8 @@ class ProyectoDelete(DeleteView):
 class SedeCreate(CreateView):
     model = Sede
     fields = '__all__'
+    success_url = '/polls/principal'
+    
 
 class SedeUpdate(UpdateView):
     model = Sede
@@ -228,13 +241,15 @@ class SedeUpdate(UpdateView):
 
 class SedeDelete(DeleteView):
     model = Sede
-    success_url = reverse_lazy('polls:ProyectoCreate')
+    success_url = '/polls/principal'#reverse_lazy('polls:ProyectoCreate')
 
 
 # CRUD de Trabajo
 class TrabajoCreate(CreateView):
     model = Trabajo
     fields = '__all__'
+    success_url = '/polls/principal'
+    
 
 class TrabajoUpdate(UpdateView):
     model = Trabajo
