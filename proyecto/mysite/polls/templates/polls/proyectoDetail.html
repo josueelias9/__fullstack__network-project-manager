@@ -5,7 +5,7 @@
 titulo
 ------------------------------------------------------------------------------------------------------------ -->
 {% block titulo %}
-ProyectoView
+ProyectoDetailView
 {% endblock %}
 
 
@@ -53,7 +53,7 @@ esto va para el CSS
 encabezado
 ------------------------------------------------------------------------------------------------------------ -->
 {% block identificador %}
-ProyectoView
+ProyectoDetailView
 {% endblock %}
 
 <!-- ------------------------------------------------------------------------------------------------------------
@@ -170,7 +170,7 @@ bloque mas importante
                     <td>{{ aa.contrata_acceso }}</td>
                     <td>{{ aa.finalizado }}</td>
                     <!-- READ UPDATE DELETE -->
-                    <td><a href="{% url 'polls:sede' aa.id %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">read</a></td>
+                    <td><a href="{% url 'polls:sedeDetail' aa.id %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">read</a></td>
                     <td><a href="{% url 'polls:sedeUpdate' aa.id %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">update</a></td>
                     <td><a href="{% url 'polls:sedeDelete' aa.id %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">delete</a></td>
                 </tr>
@@ -208,7 +208,7 @@ bloque mas importante
     <div class="shadow-lg p-3 mb-5 bg-white rounded">
         <h3>Larger shadow</h3>
     </div>
-    <form action="{% url 'polls:portafolio' %}" method="post">
+    <form action="{% url 'polls:proyectoList' %}" method="post">
         {% csrf_token %}
         <label for="fname">First name:</label><br>
         <input type="text" id="fname" name="fname" value="John"><br>

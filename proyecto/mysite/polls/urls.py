@@ -10,12 +10,12 @@ urlpatterns = [
     path('<int:pk>/results/', views.ResultsView.as_view(), name='results'),
     path('<int:question_id>/vote/', views.vote, name='vote'),
     # vistas primera fase
-    path('principal/', views.PrincipalListView.as_view(), name='principal'),
-    path('interfaceGeojson/', views.InterfaceGeojsonListView.as_view(), name='interfaceGeojson'),
-    path('portafolio/', views.PortafolioListView.as_view(), name='portafolio'),
-    path('<int:pk>/proyecto/', views.ProyectoView.as_view(), name='proyecto'),
-    path('<int:pk>/sede/', views.SedeView.as_view(), name='sede'),
-    path('<int:pk>/trabajo/', views.TrabajoView.as_view(), name='trabajo'),
+    path('personaDetail/', views.PersonaDetailView.as_view(), name='personaDetail'),
+    path('interfaceGeojsonList/', views.InterfaceGeojsonListView.as_view(), name='interfaceGeojsonList'),
+    path('proyectoList/', views.ProyectoListView.as_view(), name='proyectoList'),
+    path('<int:pk>/proyectoDetail/', views.ProyectoDetailView.as_view(), name='proyectoDetail'),
+    path('<int:pk>/sedeDetail/', views.SedeDetailView.as_view(), name='sedeDetail'),
+    path('<int:pk>/trabajoDetail/', views.TrabajoDetailView.as_view(), name='trabajoDetail'),
     # CRUD Proyecto
     path('proyectoCreate/', views.ProyectoCreate.as_view(), name='proyectoCreate'), 
     path('<int:pk>/proyectoUpdate/', views.ProyectoUpdate.as_view(), name='proyectoUpdate'), 

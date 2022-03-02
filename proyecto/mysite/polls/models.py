@@ -62,7 +62,7 @@ class Proyecto(models.Model):
 
     def get_absolute_url(self):
         from django.urls import reverse
-        return reverse('polls:principal')
+        return reverse('polls:personaDetail')
 
 
 
@@ -80,7 +80,7 @@ class Sede(models.Model):
         return self.nombre
     
     def get_absolute_url(self):
-        return reverse('polls:principal')
+        return reverse('polls:personaDetail')
 
 
 class Trabajo(models.Model):
@@ -209,7 +209,7 @@ class Trabajo(models.Model):
         return self.nombre_servicio
 
     def get_absolute_url(self):
-        return reverse('polls:principal')
+        return reverse('polls:personaDetail')
 
 
 class Equipo(models.Model):    
@@ -299,3 +299,6 @@ class InterfaceGeojson(models.Model):
         ],
         default='RE',)
 
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('polls:personaDetail')

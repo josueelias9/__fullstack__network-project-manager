@@ -112,7 +112,7 @@ parte de bloque_1
                     <td>{{ article.foto_alcance }}</td>
                     <td>{{ article.prueba }}</td>
                     <!-- READ UPDATE DELETE -->
-                    <td><a href="{% url 'polls:proyecto' article.id %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">read</a></td>
+                    <td><a href="{% url 'polls:proyectoDetail' article.id %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">read</a></td>
                     <td><a href="{% url 'polls:proyectoUpdate' article.id %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">update</a></td>
                     <td><a href="{% url 'polls:proyectoDelete' article.id %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">delete</a></td>
                     <!-- <li>{{ article.pub_date|date }} - {{ article.headline }}</li> -->

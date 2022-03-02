@@ -68,29 +68,29 @@ def vote(request, question_id):
 # LIST VIEWs
 #########################################################
 
-class PrincipalListView(generic.ListView):
+class PersonaDetailView(generic.ListView):#por mientras como list, pero tenemos que cambiarlo a detail
     model = Persona
-    template_name = 'polls/principal.html'
+    template_name = 'polls/personaDetail.html'
 
 
-class PortafolioListView(ListView):
+class ProyectoListView(ListView):
     model = Proyecto
     paginate_by = 100  # if pagination is desired
-    template_name = 'polls/portafolio.html'
+    template_name = 'polls/proyectoList.html'
 
 class InterfaceGeojsonListView(ListView):
     model = InterfaceGeojson
     paginate_by = 100  # if pagination is desired
-    template_name = 'polls/interfaceGeojson.html'
+    template_name = 'polls/interfaceGeojsonList.html'
 
 
 #########################################################
 # DETAIL VIEWS
 #########################################################
 
-class ProyectoView(generic.DetailView):
+class ProyectoDetailView(generic.DetailView):
     model = Proyecto
-    template_name = 'polls/proyecto.html'
+    template_name = 'polls/proyectoDetail.html'
     # este debe ser la funcion que integre todo
     def get_context_data(self,**kwargs):
         # el super() indica que esta obteniendo las caracteristicas de la super clase
@@ -157,15 +157,15 @@ class ProyectoView(generic.DetailView):
 
 
     def post(self, request, *args, **kwargs):
-        return render(request, 'polls/portafolio.html')
+        return render(request, 'polls/proyectoDetail.html')
 
-class SedeView(generic.DetailView):
+class SedeDetailView(generic.DetailView):
     model = Sede
-    template_name = 'polls/sede.html'
+    template_name = 'polls/sedeDetail.html'
 
-class TrabajoView(generic.DetailView):
+class TrabajoDetailView(generic.DetailView):
     model = Trabajo
-    template_name = 'polls/trabajo.html'
+    template_name = 'polls/trabajoDetail.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
