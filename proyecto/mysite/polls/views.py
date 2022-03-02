@@ -64,14 +64,23 @@ def vote(request, question_id):
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
 
-'''
-todas las vistas
-'''
+#########################################################
+# LIST VIEWs
+#########################################################
 class PortafolioListView(ListView):
     model = Proyecto
     paginate_by = 100  # if pagination is desired
     template_name = 'polls/portafolio.html'
 
+class InterfaceGeojsonListView(ListView):
+    model = InterfaceGeojson
+    paginate_by = 100  # if pagination is desired
+    template_name = 'polls/interfaceGeojson.html'
+
+
+#########################################################
+# DETAIL VIEWS
+#########################################################
 
 class ProyectoView(generic.DetailView):
     model = Proyecto
@@ -171,14 +180,10 @@ class TrabajoView(generic.DetailView):
         context['avance'] = a/5*100
         return context
 
-class InterfaceGeojsonListView(ListView):
-    model = InterfaceGeojson
-    paginate_by = 100  # if pagination is desired
-    template_name = 'polls/interfaceGeojson.html'
+#########################################################
+# CRUD
+#########################################################
 
-'''
-CRUD
-'''
 # CRUD de InterfaceGeojson
 class InterfaceGeojsonCreate(CreateView):
     model = InterfaceGeojson
