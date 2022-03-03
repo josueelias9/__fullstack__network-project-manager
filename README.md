@@ -107,21 +107,16 @@ SedeDetail.html: contiene logica para template
 
 # para hacer líneas más largas
 how to change VS Code line auto wrap column when formatting dart files?
+
 # para hacer más rápido la revisión del sqlite3
 SQLite, Introducción Práctica a SQLite3
+
 # algunos comandos de SQLite
 Practical SQLite Commands That You Don't Want To Miss
+
 # a veces JavaScript se traba. No estoy seguro si esto funcione. Validar.
 Force-refreshing only JavaScript files in Firefox and Chrome F5
-# para hacer trazos
-aquí los pasos:
-Cómo Abrir un Archivo con Extensión KMZ en Google Maps (Ejemplo)
-este es el enlace para “MyMaps”:
-Mapa sin nombre
-y esto me ayuda a pasar el KMZ a JSON porque necesito el formato JSON de los puntos:
-Kml to Json Online | Tools & Utils
-# bootstrap
-https://getbootstrap.com/
+
 # documentacion
 ## Documentacion macro
 La documentacion viene por varios frentes. Hay 3 archivos que definen clarmaente la documentacion de este proyecto:
@@ -150,13 +145,13 @@ y los archivos HTML usan el siguinete
 ```html
 <!-- –->
 ```
-## templates
+# templates
 Hablando de templates, hay tres carpetas:
 - CUD: para vistas crear, update y delete
 - list: para vistas list
 - boostrap: para vistas detail
 - principal: la vista principal del proyecto
-### infomracion acerca de los html
+## infomracion acerca de los html
 cada HTML tiene una relacion uno a uno con las vistas. La convencion que se uso (nos guiamos de la guia oficial de django) es poner el nombre del modelo en el nombre del HTML
 
 - “modelo”_confirm_delete.html
@@ -183,6 +178,7 @@ con ello creamos el siguiente codigo HTML
 <!-- todo el contenido que queramos -->
 </div>
 ```
+
 # modelos
 en el archivo excel hay que poner la relacion de estos modelos
 - Proyecto
@@ -190,10 +186,12 @@ en el archivo excel hay que poner la relacion de estos modelos
 - Trabajo
 - Sede
 - InterfaceGeojson
+
 # imagenes
 se usa la siguiente convencion para nombrar las imagenes:
 - capa “nombre de capa”.”extension”: no estan relacionadas a ningun modelo
 - trabajo “nombre del trabajo”.”extension”: estan relacionadas al modelo Trabajo 
+
 # geojson
 Geojson https://es.wikipedia.org/wiki/GeoJSON define los siguientes tipos:
 
@@ -232,3 +230,7 @@ Aquí un geojson que la api de google puede entender. Se ve la definicion de los
 ]
 }
 ```
+## ¿como generar coordenadas? 
+- En el vide https://www.youtube.com/watch?v=PrxRJp-MZxk se explica como es que se puede hacer trazos en google maps y como exportarlos a KMZ. 
+- En este link https://mygeodata.cloud/converter/kmz-to-json encontraras una herramienta para convertir un archivo KMZ a JSON.
+- finalmente, una vez con el archivo descargado, copiamos las coordenas que ya se encuentran en formato json y lo enviamos a nuestro programa.
