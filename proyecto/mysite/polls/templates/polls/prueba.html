@@ -84,7 +84,7 @@
             });
             // dinamica 
             map.data.addListener("click", mapsMouseEvent => {
-                var infowindow = new google.maps.InfoWindow({ content: mapsMouseEvent.feature.getProperty("texto"), position: mapsMouseEvent.latLng });
+                var infowindow = new google.maps.InfoWindow({ content: mapsMouseEvent.feature.getProperty("informacion"), position: mapsMouseEvent.latLng });
                 infowindow.open(map);
             });
 
@@ -115,7 +115,7 @@
                         "properties": {
                             "josue": "sedes",
                             "color": "green",
-                            "texto": "<h3>conector</h3><li>cable: UTP electrico</li>"
+                            "informacion": "<h3>conector</h3><li>cable: UTP electrico</li>"
                         },
                         "geometry": {
                             "type": "LineString",
@@ -127,7 +127,7 @@
                         "properties": {
                             "josue": "sedes",
                             "color": "blue",
-                            "texto": "<h3>conector</h3><li>tipo: FO multimodo</li><li>dist max: 500 metros</li>"
+                            "informacion": "<h3>conector</h3><li>tipo: FO multimodo</li><li>dist max: 500 metros</li>"
                         },
                         "geometry": {
                             "type": "LineString",
@@ -139,7 +139,7 @@
                         "properties": {
                             "josue": "sedes",
                             "color": "black",
-                            "texto": "<h3>conector</h3><li>enlace: FO monomodo</li><li>dist max: 3 kilometros</li>"
+                            "informacion": "<h3>conector</h3><li>enlace: FO monomodo</li><li>dist max: 3 kilometros</li>"
                         },
                         "geometry": {
                             "type": "LineString",
@@ -151,7 +151,7 @@
                         "properties": {
                             "josue": "sedes",
                             "color": "red",
-                            "texto": "<h3>conector</h3><li>enlace: logico a traves de la metro</li>"
+                            "informacion": "<h3>conector</h3><li>enlace: logico a traves de la metro</li>"
                         },
                         "geometry": {
                             "type": "LineString",
@@ -163,7 +163,7 @@
                         "properties": {
                             "josue": "punto",
                             "color": "orange",
-                            "texto": "<h3>router CE</h3><li>WAN: 3.4.5.1</li><li>ip WAN: 3.4.5.1</li><li>VRF: VRF_CLIENTE</li>"
+                            "informacion": "<h3>router CE</h3><li>WAN: 3.4.5.1</li><li>ip WAN: 3.4.5.1</li><li>VRF: VRF_CLIENTE</li>"
                         },
                         "geometry": {
                             "type": "Point",
@@ -175,7 +175,7 @@
                         "properties": {
                             "josue": "punto",
                             "color": "orange",
-                            "texto": "<h3>router CE</h3><li>WAN: 3.4.5.1</li><li>ip WAN: 3.4.5.1</li><li>VRF: VRF_CLIENTE</li>"
+                            "informacion": "<h3>router CE</h3><li>WAN: 3.4.5.1</li><li>ip WAN: 3.4.5.1</li><li>VRF: VRF_CLIENTE</li>"
                         },
                         "geometry": {
                             "type": "Point",
@@ -187,7 +187,7 @@
                         "properties": {
                             "josue": "punto",
                             "color": "blue",
-                            "texto": "<h3>demarcador</h3><li>IP administrativa: 2.2.2.2/30</li><li>inner VLAN: 300 - servicio info</li><li>inner VLAN: 400 - servicio VPN</li>"
+                            "informacion": "<h3>demarcador</h3><li>IP administrativa: 2.2.2.2/30</li><li>inner VLAN: 300 - servicio info</li><li>inner VLAN: 400 - servicio VPN</li>"
                         },
                         "geometry": {
                             "type": "Point",
@@ -199,7 +199,7 @@
                         "properties": {
                             "josue": "punto",
                             "color": "green",
-                            "texto": "<h3>CTO</h3><li>hilo: 8</li><li>cantidad de hilos: 2</li><li>tipo: pasivo</li>"
+                            "informacion": "<h3>CTO</h3><li>hilo: 8</li><li>cantidad de hilos: 2</li><li>tipo: pasivo</li>"
                         },
                         "geometry": {
                             "type": "Point",
@@ -211,7 +211,7 @@
                         "properties": {
                             "josue": "punto",
                             "color": "yellow",
-                            "texto": "<h3>equipo de acceso MPLSL2</h3><li>outer VLAN: 4444</li><li>puerto: fast 0/0/2</li><li>tipo: activo</li>"
+                            "informacion": "<h3>equipo de acceso MPLSL2</h3><li>outer VLAN: 4444</li><li>puerto: fast 0/0/2</li><li>tipo: activo</li>"
                         },
                         "geometry": {
                             "type": "Point",
@@ -223,7 +223,7 @@
                         "properties": {
                             "josue": "punto",
                             "color": "red",
-                            "texto": "<h3>PE acceso a la MPLS TdP</h3><li>ancho de banda: 30Mbps</li><li>caudal: default</li><li>subinterface: G0.0.200</li><li>tipo: activo</li>"
+                            "informacion": "<h3>PE acceso a la MPLS TdP</h3><li>ancho de banda: 30Mbps</li><li>caudal: default</li><li>subinterface: G0.0.200</li><li>tipo: activo</li>"
                         },
                         "geometry": {
                             "type": "Point",

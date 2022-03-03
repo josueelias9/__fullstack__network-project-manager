@@ -24,21 +24,23 @@ function initMap() {
 
     // estilizacion del geojson cargado
     map.data.setStyle(function (feature) {
-        
-        var mi_variable = feature.getProperty('josue');
+
+        var mi_variable = feature.getProperty('tipo_de_geojson');
+        //alert(mi_variable);
         // elementos tipo: geometria LineString
+        //alert(feature.getProperty('informacion'));
         if (mi_variable == 'SL') {
-           
+
             return {
                 // propiedades fijas
-                strokeWeight: 2,
+                strokeWeight: 5,
                 // propiedades que sacamos del mismo geojson 
                 strokeColor: feature.getProperty('color')
             };
         }
         // elementos tipo: geometria LineString
         else if (mi_variable == 'ML') {
-           
+
             return {
                 // propiedades fijas
                 strokeWeight: 2,
@@ -48,13 +50,13 @@ function initMap() {
         }
         // elementos tipo: geometria Point (todos se estan yendo aqui)
         else if (mi_variable == 'SP') {
-            
+
             return {
                 icon: {
                     // propiedades fijas
                     path: 'M 0,0 20,-40 -20,-40 0,0 z',
                     fillOpacity: 0.8,
-                    scale: 1,
+                    scale: .7,
                     strokeColor: 'gold',
                     strokeWeight: 5,
                     // propiedades que sacamos del mismo geojson
@@ -62,8 +64,16 @@ function initMap() {
                 }
             };
         }
+        else if (mi_variable == 'SG') {
+            return {
+                fillColor: feature.getProperty('color'),
+                strokeWeight: 1,
+            }
+
+
+        }
         else {
-        
+
             return {
                 strokeWeight: 5,
                 strokeColor: 'black'
@@ -73,7 +83,7 @@ function initMap() {
 
     // este es para poner el texto a los elementos 
     map.data.addListener("click", mapsMouseEvent => {
-        var infowindow = new google.maps.InfoWindow({ content: mapsMouseEvent.feature.getProperty("texto"), position: mapsMouseEvent.latLng });
+        var infowindow = new google.maps.InfoWindow({ content: mapsMouseEvent.feature.getProperty("informacion"), position: mapsMouseEvent.latLng });
         infowindow.open(map);
     });
 
@@ -93,7 +103,7 @@ function initMap() {
         });
         map.panTo(e.latLng);
     });
-    
+
 };
 
 

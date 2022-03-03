@@ -135,9 +135,9 @@ class ProyectoDetailView(generic.DetailView):
                 aa = aa + '''
                     "type": "Feature", 
                     "properties": {
-                        "josue": "%s", 
+                        "tipo_de_geojson": "%s", 
                         "color": "%s", 
-                        "texto": "%s"},
+                        "informacion": "%s"},
                     %s }, {''' % (tipo_de_geojson, color, informacion, juego_de_arrays)
             # aumenta el valor de auxil
             auxil = auxil + 1
@@ -145,13 +145,17 @@ class ProyectoDetailView(generic.DetailView):
         informacion = InterfaceGeojson.objects.all().last().informacion
         juego_de_arrays = InterfaceGeojson.objects.all().last().juego_de_arrays
         color = InterfaceGeojson.objects.all().last().color
+        tipo_de_geojson = InterfaceGeojson.objects.all().last().tipo_de_geojson
         aa = aa + '''
             "type": "Feature", 
             "properties": {
-                "josue": "punto", 
+                "tipo_de_geojson": "%s", 
                 "color": "%s", 
-                "texto": "%s"},
-            %s }]}''' % (color, informacion, juego_de_arrays)
+                "informacion": "%s"},
+            %s }]}''' % (tipo_de_geojson, color, informacion, juego_de_arrays)
+        print(informacion)
+        print (juego_de_arrays)
+        print(color)
         context['prueba'] = aa
         return context
 
@@ -194,8 +198,7 @@ class TrabajoDetailView(generic.DetailView):
 class InterfaceGeojsonCreate(CreateView):
     model = InterfaceGeojson
     fields = '__all__'
-    success_url = '/polls/principal'
-    
+    success_url = '/polls/personaDetail'
 
 class InterfaceGeojsonUpdate(UpdateView):
     model = InterfaceGeojson
@@ -210,7 +213,7 @@ class InterfaceGeojsonDelete(DeleteView):
 class ProyectoCreate(CreateView):
     model = Proyecto
     fields = '__all__'
-    success_url = '/polls/principal'
+    success_url = '/polls/personaDetail'
     
 
 class ProyectoUpdate(UpdateView):
@@ -227,7 +230,7 @@ class ProyectoDelete(DeleteView):
 class SedeCreate(CreateView):
     model = Sede
     fields = '__all__'
-    success_url = '/polls/principal'
+    success_url = '/polls/personaDetail'
     
 
 class SedeUpdate(UpdateView):
@@ -241,14 +244,14 @@ class SedeUpdate(UpdateView):
 
 class SedeDelete(DeleteView):
     model = Sede
-    success_url = '/polls/principal'#reverse_lazy('polls:ProyectoCreate')
+    success_url = '/polls/personaDetail'#reverse_lazy('polls:ProyectoCreate')
 
 
 # CRUD de Trabajo
 class TrabajoCreate(CreateView):
     model = Trabajo
     fields = '__all__'
-    success_url = '/polls/principal'
+    success_url = '/polls/personaDetail'
     
 
 class TrabajoUpdate(UpdateView):

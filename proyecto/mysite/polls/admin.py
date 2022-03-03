@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Choice, Question, Proyecto, Sede, Trabajo, Equipo, InterfaceGeojson
+from .models import Choice, Question, Proyecto, Sede, Trabajo, Equipo, InterfaceGeojson, Persona
 
 
 
@@ -92,9 +92,15 @@ class InterfaceGeojsonAdmin(admin.ModelAdmin):
         'juego_de_arrays',
         'color',)
 
+class PersonaAdmin(admin.ModelAdmin):
+    list_display = (
+        'nombre',
+        'puesto')
+
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Proyecto, ProyectoAdmin)
 admin.site.register(Sede, SedeAdmin)
 admin.site.register(Trabajo, TrabajoAdmin)
 admin.site.register(Equipo, EquipoAdmin)
 admin.site.register(InterfaceGeojson, InterfaceGeojsonAdmin)
+admin.site.register(Persona, PersonaAdmin)

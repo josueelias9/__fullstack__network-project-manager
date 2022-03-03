@@ -63,12 +63,31 @@ bloque mas importante
 
 
 <!-- division - encabezado -->
-<div class="p-5">
-    <div class="shadow-lg p-3 mb-5 bg-white rounded">
-        <h3>
-            {{ proyecto.nombre }}
-        </h3>
+<div class="m-5">
+    <div class="shadow-lg p-3 mb-5 bg-secondary rounded">
+        <h3 class="text-white">INFORMACION</h3>
     </div>
+</div>
+<div class="m-5">
+    Los mensajes son generados por una terminal de envío. A continuación, se transmiten a través de la red de enlaces y
+    nodos hasta que llegan a la terminal de destino. Es trabajo de los nodos intermedios gestionar los mensajes y enviar
+    el enlace correcto hacia su destino final.
+
+    Estos mensajes constan de secciones de control (o señalización) y secciones portadoras que pueden ser enviadas
+    juntas o por separado. La parte portadora es el contenido real que el usuario desea transmitir (por ejemplo, algún
+    discurso codificado, o un correo electrónico), mientras que la parte de control instruye a los nodos acerca de dónde
+    y, posiblemente, de qué forma tiene que ser enviado a través de la red. Se han desarrollado un gran número de
+    protocolos a lo largo de los años para especificar cómo cada tipo de red de telecomunicaciones debe manejar los
+    mensajes de control y los mensajes portadores para lograr esto de manera eficiente.
+
+</div>
+<div class="m-5">
+    <div class="shadow-lg p-3 mb-5 bg-warning rounded">
+        <h3 class="text-white">DETALLE</h3>
+    </div>
+</div>
+
+<div class="m-5">
     <table class="table table-sm">
         <thead>
             <tr>
@@ -132,11 +151,15 @@ bloque mas importante
     </div>
 </div>
 
+
+<div class="p-5">
+    <div class="shadow-lg p-3 mb-1 bg-info rounded">
+        <h3 class="text-white">ANALISIS DEL PROYECTO {{ proyecto.nombre }}</h3>
+    </div>
+</div>
+
 <!-- division - tabla -->
 <div class="p-5">
-    <div class="shadow-lg p-3 mb-5 bg-white rounded">
-        <h3>Larger shadow</h3>
-    </div>
     <div class="table-responsive">
         <table class="table table-striped table-sm">
             <thead>
@@ -170,9 +193,11 @@ bloque mas importante
                     <td>{{ aa.contrata_acceso }}</td>
                     <td>{{ aa.finalizado }}</td>
                     <!-- READ UPDATE DELETE -->
-                    <td><a href="{% url 'polls:sedeDetail' aa.id %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">read</a></td>
-                    <td><a href="{% url 'polls:sedeUpdate' aa.id %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">update</a></td>
-                    <td><a href="{% url 'polls:sedeDelete' aa.id %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">delete</a></td>
+                   
+                            <td><a class="btn btn-success" href="{% url 'polls:sedeDetail' aa.id %}" role="button">Read</a></td>
+                            <td><a class="btn btn-info" href="{% url 'polls:sedeUpdate' aa.id %}" role="button">Update</a></td>
+                            <td><a class="btn btn-danger" href="{% url 'polls:sedeDelete' aa.id %}" role="button">Delete</a></td>
+        
                 </tr>
                 {% endfor %}
             </tbody>
@@ -180,43 +205,23 @@ bloque mas importante
     </div>
     <!-- fin de la tabla -->
     <!-- CREATE -->
-    <div class="row justify-content-start">
-        <a href="{% url 'polls:sedeCreate' %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">create</a>
-    </div>
+    <td><a class="btn btn-primary" href="{% url 'polls:sedeCreate' %}" role="button">Create</a></td>
+                            
 </div>
-
-
 <!-- division - datos json -->
-<div class="p-5">
-    <div class="shadow-lg p-3 mb-5 bg-white rounded">
-        <h3>Larger shadow</h3>
-    </div>
-    {{ casa }}
-    <br>
-    <br>
-    {{ prueba }}
-</div>
+
 <!-- le quite el "class="p-5"" porque si no, no se ve el mapa -->
-<div class="shadow-lg p-3 mb-5 bg-white rounded">
-    <h3>Larger shadow</h3>
-</div>
-<div class="container" id="map">
+
+<div class="m-5">
+    <div class="shadow-lg p-3 mb-5 bg-success rounded">
+        <h3 class="text-white">VISTA DE SEDES Y TRABAJOS</h3>
+    </div>
 </div>
 
-<!-- division - form -->
-<div class="p-5">
-    <div class="shadow-lg p-3 mb-5 bg-white rounded">
-        <h3>Larger shadow</h3>
-    </div>
-    <form action="{% url 'polls:proyectoList' %}" method="post">
-        {% csrf_token %}
-        <label for="fname">First name:</label><br>
-        <input type="text" id="fname" name="fname" value="John"><br>
-        <label for="lname">Last name:</label><br>
-        <input type="text" id="lname" name="lname" value="Doe"><br><br>
-        <input type="submit" value="Submit">
-    </form>
+
+<div class="container m-5 mx-auto" id="map">
 </div>
+
 <!-- fin del bloque -->
 {% endblock %}
 <!-- ------------------------------------------------------------------------------------------------------------ 
@@ -226,10 +231,13 @@ parte de javascript
 <script type="text/javascript">
     var apla = "{{ prueba | escapejs }}";
 </script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
 <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
 <script src="{% static 'polls/starter-template/prueba.js' %}"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGgSj0uh5_yPn4ZcLpxaK5H-llGvmvxEI&callback=initMap"></script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGgSj0uh5_yPn4ZcLpxaK5H-llGvmvxEI&callback=initMap"></script>
 {% endblock %}

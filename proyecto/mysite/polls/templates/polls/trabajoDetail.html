@@ -22,13 +22,13 @@ bloque bloque 1
 {% block bloque_1 %}
 <div class="p-5">
     <div class="shadow-lg p-3 mb-5 bg-white rounded">
-        <h3>sssssssssss</h3>
+        <h3>{{ trabajo.nombre_servicio }}</h3>
     </div>
     <table class="table table-sm">
         <thead>
             <tr>
-                <th scope="col">listo</th>
-                <th scope="col">datos</th>
+                <th scope="col">TIPO</th>
+                <th scope="col">INFORMACION</th>
             </tr>
         </thead>
         <tbody>
@@ -128,36 +128,6 @@ bloque bloque 1
     </table>
 </div>
 
-<div class="p-5">
-    <div class="shadow-lg p-3 mb-5 bg-white rounded">
-        <h3>sssssssssss</h3>
-    </div>
-    <div class="container">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">macro</th>
-                    <th scope="col">Informacion</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Responsable</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% if servicio_tcp_ip.activo_capa_fisica is True %}
-                <tr>
-                    <th scope="row">capa_fisica</th>
-                    <td>{{ servicio_tcp_ip.datos_capa_fisica | linebreaks }}</td>
-                    {% if servicio_tcp_ip.estado_capa_fisica is True %}
-                    <td><span class="badge badge-success">Finalizado</span></td>
-                    {% else %}
-                    <td><span class="badge badge-danger">Pendiente</span></td>
-                    {% endif %}
-                    <td>{{ servicio_tcp_ip.responsable_capa_fisica }}</td>
-                </tr>
-                {% endif %}
-            </tbody>
-        </table>
-    </div>
-</div>
+
 
 {% endblock %}

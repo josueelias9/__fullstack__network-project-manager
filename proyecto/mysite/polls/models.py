@@ -182,7 +182,19 @@ class Trabajo(models.Model):
     rango_numerico
     '''
     llave_forenea = models.ForeignKey(Sede, on_delete=models.CASCADE, default='0')
-    nombre_servicio = models.CharField(max_length=100, default='')
+    nombre_servicio = models.CharField(
+        max_length=2,
+        choices=[
+            ('T0', 'no se hara'),
+            ('T1', 'configuracion IP LAN'),
+            ('T2', 'doble operador'),
+            ('T3', 'firewall local'),
+            ('T4', 'infointernet'),
+            ('T5', 'QoS'),
+            ('T6', 'redundancia capa 3')
+        ],
+        default='SP',)
+
     avance = models.FloatField(default=0)
     activo_capa_fisica = models.BooleanField(default=False)
     activo_capa_acceso = models.BooleanField(default=False)
@@ -194,16 +206,16 @@ class Trabajo(models.Model):
     estado_capa_red = models.BooleanField(default=False)
     estado_capa_trasporte = models.BooleanField(default=False)
     estado_capa_aplicacion = models.BooleanField(default=False)
-    datos_capa_fisica = models.TextField(default='')
-    datos_capa_acceso = models.TextField(default='')
-    datos_capa_red = models.TextField(default='')
-    datos_capa_trasporte = models.TextField(default='')
-    datos_capa_aplicacion = models.TextField(default='')
-    responsable_capa_fisica = models.CharField(max_length=100, default='')
-    responsable_capa_acceso = models.CharField(max_length=100, default='')
-    responsable_capa_red = models.CharField(max_length=100, default='')
-    responsable_capa_trasporte = models.CharField(max_length=100, default='')
-    responsable_capa_aplicacion = models.CharField(max_length=100, default='')
+    datos_capa_fisica = models.TextField(default='no hay datos')
+    datos_capa_acceso = models.TextField(default='no hay datos')
+    datos_capa_red = models.TextField(default='no hay datos')
+    datos_capa_trasporte = models.TextField(default='no hay datos')
+    datos_capa_aplicacion = models.TextField(default='no hay datos')
+    responsable_capa_fisica = models.CharField(max_length=100, default='no hay responsable')
+    responsable_capa_acceso = models.CharField(max_length=100, default='no hay responsable')
+    responsable_capa_red = models.CharField(max_length=100, default='no hay responsable')
+    responsable_capa_trasporte = models.CharField(max_length=100, default='no hay responsable')
+    responsable_capa_aplicacion = models.CharField(max_length=100, default='no hay responsable')
     
     def __str__(self):
         return self.nombre_servicio
@@ -297,7 +309,7 @@ class InterfaceGeojson(models.Model):
             ('blue', 'blue'),
             ('yellow', 'yellow'),
         ],
-        default='RE',)
+        default='RE',)              
 
     def get_absolute_url(self):
         from django.urls import reverse

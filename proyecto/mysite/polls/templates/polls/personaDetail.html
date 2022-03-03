@@ -41,12 +41,12 @@
 </head>
 
 <body class="d-flex h-100 text-center text-white bg-dark">
-      
+
 
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
         <header class="mb-auto">
             <div>
-                <h3 class="float-md-start mb-0">Bienvenido usuario</h3>
+                <h3 class="float-md-start mb-0">Bienvenido {{ persona.nombre }}</h3>
                 <nav class="nav nav-masthead justify-content-center float-md-end">
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                     <a class="nav-link" href="#">Features</a>
@@ -56,17 +56,22 @@
         </header>
 
         <main class="px-3">
-            <img class="d-block mx-auto mb-4" src="{% static 'polls/base_2/aabb.png' %}" alt="" width="150" height="100">
+            <img class="d-block mx-auto mb-4" src="{% static 'polls/base_2/aabb.png' %}" alt="" width="150"
+                height="100">
             <h1>Plataforma para la Gestion de Proyectos de Red.</h1>
-            <p class="lead">La idea es poner aqui la informacion del usuario. Obviamente hay que interactuar con la base de datos.</p>
+            <p class="lead">La idea es poner aqui la informacion del usuario. Obviamente hay que interactuar con la base
+                de datos.</p>
             <p class="lead">
-                <a href="{% url 'polls:proyectoList' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Lista de proyectos</a>
+                <a href="{% url 'polls:proyectoList' %}"
+                    class="btn btn-lg btn-secondary fw-bold border-white bg-success">Lista de proyectos</a>
             </p>
             <p class="lead">
-                <a href="{% url 'polls:interfaceGeojsonList' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Ir a interfaceGeojson</a>
+                <a href="{% url 'polls:interfaceGeojsonList' %}"
+                    class="btn btn-lg btn-secondary fw-bold border-white bg-warning">Ir a interfaceGeojson</a>
             </p>
             <p class="lead">
-                <a href="{% url 'polls:proyectoList' %}" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Ir a javascript</a>
+                <a href="{% url 'polls:proyectoList' %}"
+                    class="btn btn-lg btn-secondary fw-bold border-white bg-danger">Ir a javascript</a>
             </p>
         </main>
 

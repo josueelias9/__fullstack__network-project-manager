@@ -21,7 +21,7 @@ ProyectoCreate
     <div class="shadow-lg p-3 mb-5 bg-white rounded">
         <h3>Larger shadow</h3>
     </div>
-    <form method="get" action="{% url 'polls:portafolio' %}">
+    <form method="get" action="{% url 'polls:proyectoDetail' %}">
         {% csrf_token %}
         {{ form.as_ul }}
         <input type="submit" value="Save">
