@@ -1,50 +1,79 @@
-# Alcance del proyecto
-El proyecto consiste en desarrollar una plataforma web para la gestion de proyectos de network (ISO layer 3) con el framework django. 
+# __Alcance del proyecto__
+El proyecto consiste en desarrollar una plataforma web para la gestion de proyectos de red (ISO layer 1,2 y 3) con el framework django. 
 
-El nombre del proyecto es: Plataforma para la Gestion de Proyectos de Red.
+El nombre del proyecto es: _Plataforma para la Gestion de Proyectos de Red._
 
-# definiciones
+# __Entregable__
+- Software funcional subido en Github: Este es el link https://github.com/josueelias9/network-project-manager-for-Telefonica
+- Guía bien detallada del funcionamiento: En la seccion **Documentos** se explica como esta organizada toda la doucmentaicon.
+
+# __¿Como hacer funcionar el programa?__
+- descargar repo con Github desktop
+- ejecutar el siguiente comando para activar el venv del proyecto
+
+```bash
+source /home/josue/Documentos/GitHub/network-project-manager-for-Telefonica/proyecto/venv/Scripts/activate
+```
+
+- ejecute los requirements dentro del venv activado para que se instalen las dependencias
+
+```bash
+cd /home/josue/Documentos/GitHub/network-project-manager-for-Telefonica/proyecto
+
+pip3 install requirements.txt
+```
+- inicie el servidor
+```bash
+cd /home/josue/Documentos/GitHub/network-project-manager-for-Telefonica/proyecto/mysite
+
+python3 manage.py runserver
+```
+- vaya a la siguiente direccion. Aqui es donde se encuentra la pagina principal del proyecto.
+
+```url
+http://127.0.0.1:8000/polls/personaDetail/
+```
+
+listo
+
+# __Definiciones__
 - Etapa de desarrollo: todo lo que hace el desarrollador
 - etapa de produccion: evaluacion del usuario
 
-# stakeholder
-- desarrollador: trabaja el proyecto
-- usuario: es quien usara el proyecto
+# __Stakeholder__
+- __desarrollador__: trabaja el proyecto
+- __usuario__: es quien usara el proyecto
 
-# Entregable
-- Software funcional subido en Github.
-- Guía bien detallada del funcionamiento.
-
-# Herramientas
+# __Herramientas__
 Lenguajes de programación: 
 - Python
 - JavaScript
 
-Framework
+Frameworks:
 - Django
-- Bootstrap (no se si es framework)
+- Bootstrap (no estoy seguro si es un framework)
 
-Base de datos
+Base de datos:
 - SQLite (viene por defecto con Django, pero esperamos cambiarla por una mejor)
 
-## versiones
+## versiones del entorno
 - pip 20.0.2 
 - python 3.8.10
 - Ubuntu 20.04.3 LTS 64 bits
 - GNOME 3.36.8
 
-# Anotaciones diario
+# __Anotaciones diarias__
 
 ## 2022-02-28
 - Decidí integrar toda la información en un solo sitio. Este sitio es GitHub.
 - tenemos un problema claro: las librerías, lenguajes de programación, frameworks, etc. cambian constantemente. Tenemos que buscar la forma iniciar la edición del proyecto con cosas estáticas, no cambiantes. Ejemplo claro: ¿el proyecto está hecho con Python 2 o 3?
 
-### Desde 0
+### *Desde 0*
 Estoy volviendo a ver este proyecto después de mucho tiempo (casi dos años). Comenzare por ver como se crea un proyecto con Django.
 
-https://www.djangoproject.com/
-“DOCUMENTATION”
-“Tutorials”
+- https://www.djangoproject.com/
+- “DOCUMENTATION”
+- “Tutorials”
 
 El siguiente link te explica como ver la versión de Python en Windows (py -V).
 
@@ -79,11 +108,11 @@ para instalar pip y venv, no me guie de la guia anterior, sino que use la misma 
 - sudo apt install python3-pip
 
 agregar que, estoy viendo en varias paginas que tanto pip como venv vienen instalados con la ultima version de python. Lo que podemos hacer es formatear la PC e instalar la ultima version de python y probar. Asi nos ahorramos todos estos pasos. 
-### se hizo…
+### *se hizo…*
 - se me ordenaron archivos excel. Se mejoro documentacion
 - se agrego archivo startUML para mejor entendimiento
 - se relaciono correctamente template con view para mejor seguimiento
-### pendientes identificiados el dia de hoy
+### *pendientes identificiados el dia de hoy*
 - los update no funcionan
 - los create no funcionan
 - los delete no funcionan
@@ -97,32 +126,28 @@ agregar que, estoy viendo en varias paginas que tanto pip como venv vienen insta
 - se creo template base para create delete y update
 - se creo portada
 - CRUD de geojson operativo
-### tareas mapeadas pendientes
+### *tareas mapeadas pendientes*
 - sedeDetail poner CRUD
 - hacer logica if con sedeDetail para que muestre imagen solo si es que hay tareas
 - hacer mas documentacion. Documentar logica de javascript.
 - revisar base.html. Hacer block “documentacion” para todas las vistas. Se enviara la documentacion a esta seccion. OJO: La fuente de la documentacion esta bien definida por la seecion “entregable” de este proyecto
-### documentacion
-SedeDetail.html: contiene logica para template
+## 2022-03-03
+a veces JavaScript se traba. Hay que dar crl + F5 para forzar que cargue nuevamente.
 
-# para hacer líneas más largas
-how to change VS Code line auto wrap column when formatting dart files?
+Se genera requirements.txt. Se da por finalizado el proyecto.
 
-# para hacer más rápido la revisión del sqlite3
-SQLite, Introducción Práctica a SQLite3
-
-# algunos comandos de SQLite
-Practical SQLite Commands That You Don't Want To Miss
-
-# a veces JavaScript se traba. No estoy seguro si esto funcione. Validar.
-Force-refreshing only JavaScript files in Firefox and Chrome F5
-
-# documentacion
+# __Documentación__
+Organizacion de los archivos:
+- __network-project-manager-for-Telefonica__: nombre del proyecto
+  - __README.md__: informacion macro
+  - __documentacion__: contiene informacion acerca del proyecto
+  - __idea en desarrollo.txt__: en desarrollo
+  - __packet tracert__: carpeta con archivos PKP
+  - __proyecto__: contiene todos los archivos de django y bootstrap
 ## Documentacion macro
-La documentacion viene por varios frentes. Hay 3 archivos que definen clarmaente la documentacion de este proyecto:
+La documentacion viene por varios frentes. Hay 2 archivos que definen claramente la documentacion de este proyecto:
 
 - diagrama de flujo del proyecto.mdj
-- informacion general del proyecto.docx
 - varios.xlsx
 ## documentacion tecnica
 Dentro del codigo tambien encontraremos documentacion, pero esta se diferencia de la anterior ya que es mas detallada y tecnica
@@ -145,21 +170,23 @@ y los archivos HTML usan el siguinete
 ```html
 <!-- –->
 ```
-# templates
+# __templates__
 Hablando de templates, hay tres carpetas:
 - CUD: para vistas crear, update y delete
 - list: para vistas list
 - boostrap: para vistas detail
 - principal: la vista principal del proyecto
-## infomracion acerca de los html
+## informacion acerca de los html
 cada HTML tiene una relacion uno a uno con las vistas. La convencion que se uso (nos guiamos de la guia oficial de django) es poner el nombre del modelo en el nombre del HTML
 
-- “modelo”_confirm_delete.html
-- “modelo”_form.html
-- “modelo”_update_form.html
-- “modelo”Detail.html
+|nombre template| view |
+| - | -| 
+| “modelo”_confirm_delete.html | DeleteView |
+| “modelo”_form.html           | CreateView |
+| “modelo”_update_form.html    | UpdateView |
+| “modelo”Detail.html          | DetailView |
 
-el HTML se traba de secciones. Definimos la siguiente forma de dividir esas secciones. Nos guiamos de la siguiente referencia oficial: 
+HTML se trata de secciones. Definimos la siguiente forma de dividir esas secciones. Nos guiamos de la siguiente referencia oficial: 
 
 - https://getbootstrap.com/
 - dar click a “Docs”
@@ -179,7 +206,7 @@ con ello creamos el siguiente codigo HTML
 </div>
 ```
 
-# modelos
+# __modelos__
 en el archivo excel hay que poner la relacion de estos modelos
 - Proyecto
 - Persona
@@ -187,12 +214,12 @@ en el archivo excel hay que poner la relacion de estos modelos
 - Sede
 - InterfaceGeojson
 
-# imagenes
+# __imagenes__
 se usa la siguiente convencion para nombrar las imagenes:
 - capa “nombre de capa”.”extension”: no estan relacionadas a ningun modelo
 - trabajo “nombre del trabajo”.”extension”: estan relacionadas al modelo Trabajo 
 
-# geojson
+# __geojson__
 Geojson https://es.wikipedia.org/wiki/GeoJSON define los siguientes tipos:
 
 - Point
@@ -215,7 +242,7 @@ Google tiene una herramienta que permite que interactues con sus APIs. A continu
 Sus herramientas entiende formato gejson. Por ello tenemos que entender bien ello. A continuacion un geojson que se entrega directamente a la API de google.
 
 Aquí un geojson que la api de google puede entender. Se ve la definicion de los tipos Point, LineString, MultiLineString y Polygon.
-```geojson
+```json
 { "type": "FeatureCollection", "features": 
 [
 
@@ -229,6 +256,12 @@ Aquí un geojson que la api de google puede entender. Se ve la definicion de los
 
 ]
 }
+```
+## dato
+Tener claro que a la hora de crear un objeto geojson, lo unico que pasamos es el "geometry". Del objeto linestring anterior,  en el atributo __juego_de_arrays__ del modelo __InterfaceGeojson__  se ingreso lo siguiente:
+
+```json
+	"geometry": { "type": "LineString", "coordinates": [ [-77.0460123,-12.275521], [-76.996733, -12.100521], [-77.016231, -12.112729] ] }
 ```
 ## ¿como generar coordenadas? 
 - En el vide https://www.youtube.com/watch?v=PrxRJp-MZxk se explica como es que se puede hacer trazos en google maps y como exportarlos a KMZ. 
