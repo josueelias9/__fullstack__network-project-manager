@@ -194,7 +194,9 @@ class TrabajoDetailView(generic.DetailView):
 # CRUD
 #########################################################
 
+# -----------------------------
 # CRUD de InterfaceGeojson
+# -----------------------------
 class InterfaceGeojsonCreate(CreateView):
     model = InterfaceGeojson
     fields = '__all__'
@@ -209,7 +211,9 @@ class InterfaceGeojsonDelete(DeleteView):
     model = InterfaceGeojson
     success_url = reverse_lazy('polls:InterfaceGeojsonCreate')
 
+# -----------------------------
 # CRUD de Proyecto
+# -----------------------------
 class ProyectoCreate(CreateView):
     model = Proyecto
     fields = '__all__'
@@ -226,7 +230,9 @@ class ProyectoDelete(DeleteView):
     model = Proyecto
     success_url = reverse_lazy('polls:ProyectoCreate')
 
+# -----------------------------
 # CRUD de Sede
+# -----------------------------
 class SedeCreate(CreateView):
     model = Sede
     fields = '__all__'
