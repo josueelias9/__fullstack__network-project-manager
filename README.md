@@ -81,10 +81,10 @@ El siguiente link te explica como ver la versión de Python en Windows (py -V).
 Para acotar el alcance del proyecto, todo el desarrollo se hara en ubuntu
 
 ### instalando github-desktop para ubuntu
-- Me guie de este tutorial para instalar github desktop pero tuve problemas a la hora de loguearme. 
-- en esta pagina encontre la solución. Seguí las pautas indicadas por el usuario PaoloRanzi81 realizadas el 22 de febrero del 2021. 
+- Me guie de [este](https://www.youtube.com/watch?v=OwekbYMGi-0) tutorial para instalar github desktop pero tuve problemas a la hora de loguearme. 
+- en [esta](https://gist.github.com/berkorbay/6feda478a00b0432d13f1fc0a50467f1) pagina encontre la solución. Seguí las pautas indicadas por el usuario PaoloRanzi81 realizadas el 22 de febrero del 2021. 
 - No pude concretar porque la versión que instalé previamente estaba todavía en la máquina. Así que tuve que desinstalar la versión de github destop que instalé previamente. 
-- me guie de este tutorial y aplique el siguiente comando: sudo apt --purge remove github-desktop.
+- me guie de [este](https://www.youtube.com/watch?v=nQh9ujZGO78) tutorial y aplique el siguiente comando: sudo apt --purge remove github-desktop.
 
 Con esto pidimos satisfatoriamente instalar github desktop para ubuntu.
 ### avanzando con django
