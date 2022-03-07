@@ -1,26 +1,41 @@
 # __Alcance del proyecto__
-El proyecto consiste en desarrollar una plataforma web para la gestion de proyectos de red (ISO layer 1,2 y 3) con el framework django. 
+El proyecto consiste en desarrollar una plataforma web para la gestion de proyectos de red (ISO layer 1,2 y 3) con el framework django. El nombre del proyecto es: _Plataforma para la Gestion de Proyectos de Red._
 
-El nombre del proyecto es: _Plataforma para la Gestion de Proyectos de Red._
+![](./proyecto.png)
 
 # __Entregable__
 - Software funcional subido en Github: Este es el link https://github.com/josueelias9/network-project-manager-for-Telefonica
 - Guía bien detallada del funcionamiento: En la seccion **Documentos** se explica como esta organizada toda la doucmentaicon.
-
+# estructura de folder
+```
+|-- network-project-manager-for-Telefonica (repositorio)
+    |-- documentacion (documentacion)
+    |-- README.md (documentacion)
+    |-- proyecto.png (imagen referencial del proyecto)
+    |-- idea en desarrollo.txt (obviar)
+    |-- packet tracert redes (diseños de red)
+    |-- proyecto (codigo)
+        |-- requirements.txt (instalar)
+        |-- mysite (codigo)
+```
 # __¿Como hacer funcionar el programa?__
-- descargar repo con Github desktop
+- descargar repositorio
+- Crear entorno virtual llamado _env_
+```bash
+cd (ruta)/network-project-manager-for-Telefonica/proyecto
+mkdir venv
+python3 -m venv env
+```
 - ejecutar el siguiente comando para activar el venv del proyecto
 
 ```bash
-source /home/josue/Documentos/GitHub/network-project-manager-for-Telefonica/proyecto/venv/Scripts/activate
+source (ruta)/network-project-manager-for-Telefonica/proyecto/venv/bin/activate
 ```
-
 - ejecute los requirements dentro del venv activado para que se instalen las dependencias
 
 ```bash
-cd /home/josue/Documentos/GitHub/network-project-manager-for-Telefonica/proyecto
-
-pip3 install requirements.txt
+cd (ruta)/network-project-manager-for-Telefonica/proyecto
+pip3 install -r requirements.txt
 ```
 - inicie el servidor
 ```bash
@@ -51,7 +66,7 @@ Lenguajes de programación:
 
 Frameworks:
 - Django
-- Bootstrap (no estoy seguro si es un framework)
+- Bootstrap 
 
 Base de datos:
 - SQLite (viene por defecto con Django, pero esperamos cambiarla por una mejor)
@@ -135,7 +150,11 @@ agregar que, estoy viendo en varias paginas que tanto pip como venv vienen insta
 a veces JavaScript se traba. Hay que dar crl + F5 para forzar que cargue nuevamente.
 
 Se genera requirements.txt. Se da por finalizado el proyecto.
-
+## 2022-03-07
+- hacer que javascript interactue con tabla.
+- que la web sea cargada por un archivo excel
+- hacer que sea independiente las vistas javascript por proyecto
+- agregar zona de cobertura tdp
 # __Documentación__
 Organizacion de los archivos:
 - __network-project-manager-for-Telefonica__: nombre del proyecto
@@ -258,7 +277,7 @@ Aquí un geojson que la api de google puede entender. Se ve la definicion de los
 }
 ```
 ## dato
-Tener claro que a la hora de crear un objeto geojson, lo unico que pasamos es el "geometry". Del objeto linestring anterior,  en el atributo __juego_de_arrays__ del modelo __InterfaceGeojson__  se ingreso lo siguiente:
+Tener claro que  del objeto linestring anterior, lo unico que pasamos es el "geometry". Del objeto linestring anterior,  en el atributo __juego_de_arrays__ del modelo __InterfaceGeojson__  se ingreso lo siguiente:
 
 ```json
 	"geometry": { "type": "LineString", "coordinates": [ [-77.0460123,-12.275521], [-76.996733, -12.100521], [-77.016231, -12.112729] ] }
@@ -267,3 +286,9 @@ Tener claro que a la hora de crear un objeto geojson, lo unico que pasamos es el
 - En el vide https://www.youtube.com/watch?v=PrxRJp-MZxk se explica como es que se puede hacer trazos en google maps y como exportarlos a KMZ. 
 - En este link https://mygeodata.cloud/converter/kmz-to-json encontraras una herramienta para convertir un archivo KMZ a JSON.
 - finalmente, una vez con el archivo descargado, copiamos las coordenas que ya se encuentran en formato json y lo enviamos a nuestro programa.
+
+
+---------------
+# __titulo 1__
+## titulo 2
+### *titulo 3*
