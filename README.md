@@ -15,6 +15,7 @@ El proyecto consiste en desarrollar una plataforma web para la gestion de proyec
     |-- idea en desarrollo.txt (obviar)
     |-- packet tracert redes (diseños de red)
     |-- proyecto (codigo)
+        |-- query.sql (para llenar base de datos)
         |-- requirements.txt (instalar)
         |-- mysite (codigo)
             |-- mysite (codigo)
@@ -54,7 +55,10 @@ http://127.0.0.1:8000/polls/personaDetail/
 
 listo
 ## Base de datos
-tener en cuenta que en setting, tendras que poner los datos que correspondan segun su base dae datos:
+### *Crea tu base de datos*
+crea tu base de datos con _MySQL Workbench_
+### *Enlaza tu base de datos con el protecto*
+tener en cuenta que en _setting.py_, tendras que poner los datos que correspondan segun tu base de datos:
 - _django_db_: es el nombre de la base de datos que tu creas
 - _root_: cuando entras a mysql workbench tienes que entrar con un usuario y contraseña. Aqui se pone el nombre del usuario
 - _123456_: contraseña para entrar a workbench
@@ -73,7 +77,14 @@ DATABASES = {
     }
 }
 ```
-cuandro creass
+### *crea tablas en tu base de datos*
+
+```bash
+python3 manage.py makemigrations
+python3 manage.py migrate
+```
+### *llena tu base de datos con infomracion*
+ejecutar los comandos sql que estan descritos en el archivo _query.sql_
 # __Definiciones__
 - Etapa de desarrollo: todo lo que hace el desarrollador
 - etapa de produccion: evaluacion del usuario
