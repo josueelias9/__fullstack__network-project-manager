@@ -1,0 +1,10 @@
+id,cliente,descripcion,tipo,fecha_inicio,fecha_fin,ie,jp,sedes_pendientes,sedes_total,foto_alcance,prueba,nombre
+1,Labotec,"Instalacion de varios router",2,"2020-07-06 03:44:52","2020-07-06 03:44:53","Luisandra Ramirez","Jose Miranda",3,9,proyecto.jpg,"{
+	""conexiones"": [ 1, 2, 3, 4]
+}","Alta de 50 enlaces malos"
+2,DayLight,"Baja remota de varias sedes",21,"2020-07-06 03:45:32","2020-07-06 03:45:34","Josue Huaman","Marco Soto",11,20,proyecto.jpg,"{
+	""conexiones"": [ 1]
+}","Baja de 10 switch malos"
+3,IBK,"Conexion internacional a Brasil",31,"2020-07-09 20:45:36","2020-07-09 20:45:38","Josue Huaman","Julio Ponce",5,1,cars/35M-order-for-Electronic-Warfare-Systems-from-Harris-Corporation.png,"{
+	""conexiones"": [ 1, 2, 3, 4]
+}","Proyecto internacional"

@@ -1,0 +1,13 @@
+id,nombre,contrata_acceso,llave_forenea_id,coordenada_latitud,coordenada_longitud,contrata_equipo,finalizado,situacion
+1,Canada,"un cliente a nodo",2,-12.068488,-77.017464,lari,0,"Pendiente de UMG"
+2,Principal,lari,2,-11.062763,-77.067555,egp,1,"en PEXT"
+3,"Las Torrres",egp,2,-12.060319,-77.008093,cobra,1,"pendiente de homologacion"
+4,Arequipa,roseta,2,-12.054184,-77.061684,Biseinsa,1,"pendiente de homologacion"
+5,Lambayeque,Lari,1,-12.035595,-77.040437,Biseinsa,0,"pendiente de homologacion"
+6,Puno,Cobra,1,-12.05646,-77.061432,Biseinsa,0,pendiente
+7,Brasil,telefonica,3,-76.949264,-12.034416,telefonica,0,"pendiente de agenda"
+9,f,ree,1,0.0,0.0,wer,0,wer
+10,f,ree,1,0.0,0.0,wer,0,wer
+11,f,ree,1,0.0,0.0,wer,0,wer
+12,"La Libertad",Biseinsa,1,0.0,0.0,Lari,0,pendiente
+15,dddd,Telemarketing,2,0.0,0.0,Telemarketing,0,"pendiente de agenda"

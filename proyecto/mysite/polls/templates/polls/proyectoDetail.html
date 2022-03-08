@@ -1,0 +1,243 @@
+{% extends "base.html" %}
+<!-- carga archivos estatics. Ver si se puede eliminar porque esto mismo esta en el html base -->
+{% load static %}
+<!-- ------------------------------------------------------------------------------------------------------------
+titulo
+------------------------------------------------------------------------------------------------------------ -->
+{% block titulo %}
+ProyectoDetailView
+{% endblock %}
+
+
+<!-- ------------------------------------------------------------------------------------------------------------
+esto va para el CSS  
+------------------------------------------------------------------------------------------------------------ -->
+{% block estilos_css %}
+<link rel="canonical" href="{% static 'polls/starter-template/starter-template.css' %}">
+
+<style>
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+    }
+</style>
+
+<style>
+    /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+    #map {
+        height: 20%;
+    }
+
+    /* Optional: Makes the sample page fill the window. */
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+</style>
+{% endblock %}
+
+<!-- ------------------------------------------------------------------------------------------------------------
+encabezado
+------------------------------------------------------------------------------------------------------------ -->
+{% block identificador %}
+ProyectoDetailView
+{% endblock %}
+
+<!-- ------------------------------------------------------------------------------------------------------------
+bloque mas importante 
+------------------------------------------------------------------------------------------------------------ -->
+{% block bloque_1 %}
+
+
+<!-- division - encabezado -->
+<div class="m-5">
+    <div class="shadow-lg p-3 mb-5 bg-secondary rounded">
+        <h3 class="text-white">INFORMACION</h3>
+    </div>
+</div>
+<div class="m-5">
+    Los mensajes son generados por una terminal de envío. A continuación, se transmiten a través de la red de enlaces y
+    nodos hasta que llegan a la terminal de destino. Es trabajo de los nodos intermedios gestionar los mensajes y enviar
+    el enlace correcto hacia su destino final.
+
+    Estos mensajes constan de secciones de control (o señalización) y secciones portadoras que pueden ser enviadas
+    juntas o por separado. La parte portadora es el contenido real que el usuario desea transmitir (por ejemplo, algún
+    discurso codificado, o un correo electrónico), mientras que la parte de control instruye a los nodos acerca de dónde
+    y, posiblemente, de qué forma tiene que ser enviado a través de la red. Se han desarrollado un gran número de
+    protocolos a lo largo de los años para especificar cómo cada tipo de red de telecomunicaciones debe manejar los
+    mensajes de control y los mensajes portadores para lograr esto de manera eficiente.
+
+</div>
+<div class="m-5">
+    <div class="shadow-lg p-3 mb-5 bg-warning rounded">
+        <h3 class="text-white">DETALLE</h3>
+    </div>
+</div>
+
+<div class="m-5">
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th scope="col">listo</th>
+                <th scope="col">datos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">nombre</th>
+                <td>{{ proyecto.nombre }}</td>
+            </tr>
+            <tr>
+                <th scope="row">cliente</th>
+                <td>{{ proyecto.cliente }}</td>
+            </tr>
+            <tr>
+                <th scope="row">descripcion</th>
+                <td>{{ proyecto.descripcion }}</td>
+            </tr>
+            <tr>
+                <th scope="row">tipo</th>
+                <td>{{ proyecto.tipo }}</td>
+            </tr>
+            <tr>
+                <th scope="row">fecha_inicio</th>
+                <td>{{ proyecto.fecha_inicio }}</td>
+            </tr>
+            <tr>
+                <th scope="row">fecha_fin</th>
+                <td>{{ proyecto.fecha_fin }}</td>
+            </tr>
+            <tr>
+                <th scope="row">jp</th>
+                <td>{{ proyecto.jp }}</td>
+            </tr>
+            <tr>
+                <th scope="row">ie</th>
+                <td>{{ proyecto.ie }}</td>
+            </tr>
+            <tr>
+                <th scope="row">sedes_total</th>
+                <td>{{ proyecto.sedes_total }}</td>
+            </tr>
+            <tr>
+                <th scope="row">sedes_pendientes</th>
+                <td>{{ proyecto.sedes_pendientes }}</td>
+            </tr>
+            <tr>
+                <th scope="row">foto_alcance</th>
+                <td>{{ proyecto.foto_alcance }}</td>
+            </tr>
+            <tr>
+                <th scope="row">prueba</th>
+                <td>{{ proyecto.prueba }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-center">
+        <img src="{% static 'polls/images/proyecto.jpg' %}" class="rounded" alt="Responsive image">
+    </div>
+</div>
+
+
+<div class="p-5">
+    <div class="shadow-lg p-3 mb-1 bg-info rounded">
+        <h3 class="text-white">ANALISIS DEL PROYECTO {{ proyecto.nombre }}</h3>
+    </div>
+</div>
+
+<!-- division - tabla -->
+<div class="p-5">
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th scope="col" rowspan="2">id</th>
+                    <th scope="col" colspan="5">nombre</th>
+                    <th scope="col" colspan="6">descripcion del trabajo</th>
+                </tr>
+                <tr>
+                    <th scope="col">llave_forenea</th>
+                    <th scope="col">nombre</th>
+                    <th scope="col">coordenada_longitud</th>
+                    <th scope="col">coordenada_latitud</th>
+                    <th scope="col">situacion</th>
+                    <th scope="col">contrata_equipo</th>
+                    <th scope="col">contrata_acceso</th>
+                    <th scope="col">finalizado</th>
+                    <th scope="col">enlace</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for aa in proyecto.sede_set.all %}
+                <tr>
+                    <th scope="row">{{ aa.id }}</th>
+                    <td>{{ aa.llave_forenea }}</td>
+                    <td>{{ aa.nombre }}</td>
+                    <td>{{ aa.coordenada_longitud }}</td>
+                    <td>{{ aa.coordenada_latitud }}</td>
+                    <td>{{ aa.situacion }}</td>
+                    <td>{{ aa.contrata_equipo }}</td>
+                    <td>{{ aa.contrata_acceso }}</td>
+                    <td>{{ aa.finalizado }}</td>
+                    <!-- READ UPDATE DELETE -->
+                   
+                            <td><a class="btn btn-success" href="{% url 'polls:sedeDetail' aa.id %}" role="button">Read</a></td>
+                            <td><a class="btn btn-info" href="{% url 'polls:sedeUpdate' aa.id %}" role="button">Update</a></td>
+                            <td><a class="btn btn-danger" href="{% url 'polls:sedeDelete' aa.id %}" role="button">Delete</a></td>
+        
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- fin de la tabla -->
+    <!-- CREATE -->
+    <td><a class="btn btn-primary" href="{% url 'polls:sedeCreate' %}" role="button">Create</a></td>
+                            
+</div>
+<!-- division - datos json -->
+
+<!-- le quite el "class="p-5"" porque si no, no se ve el mapa -->
+
+<div class="m-5">
+    <div class="shadow-lg p-3 mb-5 bg-success rounded">
+        <h3 class="text-white">VISTA DE SEDES Y TRABAJOS</h3>
+    </div>
+</div>
+
+
+<div class="container m-5 mx-auto" id="map">
+</div>
+
+<!-- fin del bloque -->
+{% endblock %}
+<!-- ------------------------------------------------------------------------------------------------------------ 
+parte de javascript
+------------------------------------------------------------------------------------------------------------ -->
+{% block javascript_ %}
+<script type="text/javascript">
+    var apla = "{{ prueba | escapejs }}";
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+<script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
+<script src="{% static 'polls/starter-template/prueba.js' %}"></script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGgSj0uh5_yPn4ZcLpxaK5H-llGvmvxEI&callback=initMap"></script>
+{% endblock %}

@@ -1,3 +1,4 @@
 venv
 proyecto/mysite/mysite/__pycache__/
-proyecto/mysite/polls/migrations/__pycache__/
+proyecto/mysite/polls/migrations/
+proyecto/mysite/polls/__pycache__/

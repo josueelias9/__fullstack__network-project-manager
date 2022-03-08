@@ -1,0 +1,28 @@
+{% extends "CUD.html" %}
+
+
+{% load static %}
+
+
+{% block estilos_css %}
+{% endblock %}
+
+{% block titulo %}
+TrabajoUpdate
+{% endblock %}
+
+{% block identificador %}
+TrabajoUpdate
+{% endblock %}
+
+
+{% block bloque_1 %}
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Update">
+</form>
+{% endblock %}
+
+
+{% block javascript_ %}
+{% endblock %}

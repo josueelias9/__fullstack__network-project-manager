@@ -1,0 +1,29 @@
+{% extends "CUD.html" %}
+
+
+{% load static %}
+
+
+{% block estilos_css %}
+{% endblock %}
+
+{% block titulo %}
+SedeCreate
+{% endblock %}
+
+{% block identificador %}
+SedeCreate
+{% endblock %}
+
+
+{% block bloque_1 %}
+<form method="POST" action='.'>
+    {% csrf_token %}
+    {{ form.as_ul }}
+    <input type="submit" value="Save">
+</form>
+{% endblock %}
+
+
+{% block javascript_ %}
+{% endblock %}
