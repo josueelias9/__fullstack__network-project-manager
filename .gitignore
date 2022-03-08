@@ -1,0 +1,3 @@
+venv
+proyecto/mysite/mysite/__pycache__/
+proyecto/mysite/polls/migrations/__pycache__/
