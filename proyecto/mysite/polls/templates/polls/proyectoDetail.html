@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "detail.html" %}
 <!-- carga archivos estatics. Ver si se puede eliminar porque esto mismo esta en el html base -->
 {% load static %}
 <!-- ------------------------------------------------------------------------------------------------------------
@@ -13,7 +13,7 @@ ProyectoDetailView
 esto va para el CSS  
 ------------------------------------------------------------------------------------------------------------ -->
 {% block estilos_css %}
-<link rel="canonical" href="{% static 'polls/base/starter-template.css' %}">
+<link rel="canonical" href="{% static 'polls/detail/starter-template.css' %}">
 
 <style>
     .bd-placeholder-img {
@@ -237,7 +237,7 @@ parte de javascript
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
 <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
-<script src="{% static 'polls/base/prueba.js' %}"></script>
+<script src="{% static 'polls/detail/proyectoDetail.js' %}"></script>
 <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGgSj0uh5_yPn4ZcLpxaK5H-llGvmvxEI&callback=initMap"></script>
 {% endblock %}
