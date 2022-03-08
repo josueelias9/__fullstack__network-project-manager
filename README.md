@@ -7,6 +7,7 @@ El proyecto consiste en desarrollar una plataforma web para la gestion de proyec
 - Software funcional subido en Github: Este es el link https://github.com/josueelias9/network-project-manager-for-Telefonica
 - Guía bien detallada del funcionamiento: En la seccion **Documentos** se explica como esta organizada toda la doucmentaicon.
 # __estructura de folder__
+Estructura del proyecto:
 ```
 |-- network-project-manager-for-Telefonica (repositorio)
     |-- documentacion (documentacion)
