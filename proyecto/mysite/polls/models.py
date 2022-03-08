@@ -304,7 +304,6 @@ class InterfaceGeojson(models.Model):
     # tipo_de_geojson = models.CharField(max_length=100, default='')
     informacion = models.TextField(default='')
     juego_de_arrays = models.TextField(default='')
-    llave_forenea = models.ForeignKey(Proyecto, on_delete=models.CASCADE, default='1')
     color = models.CharField(
         max_length=6,
         choices=[

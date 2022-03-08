@@ -86,6 +86,12 @@ python3 manage.py migrate
 ```
 ### *llena tu base de datos con infomracion*
 ejecutar los comandos sql que estan descritos en el archivo _query.sql_
+### *troubleshooting*
+en caso tengas problemas con la base de datos, ir a carpeta _migrations_ y eliminarla. Luego ejecutar
+```bash
+python3 manage.py makemigrations
+python3 manage.py migrate
+```
 # __Definiciones__
 - Etapa de desarrollo: todo lo que hace el desarrollador
 - etapa de produccion: evaluacion del usuario
@@ -189,6 +195,10 @@ Se genera requirements.txt. Se da por finalizado el proyecto.
 - que la web sea cargada por un archivo excel
 - hacer que sea independiente las vistas javascript por proyecto
 - agregar zona de cobertura tdp
+## 2022-03-08
+- Se logro integrar MySQL al proyecto. 
+- Documentacion actualizada para poner en produccion la base de datos.
+- crear key en jeojson para enlazarlo con proyecto
 # __Documentación__
 Organizacion de los archivos:
 - __network-project-manager-for-Telefonica__: nombre del proyecto
@@ -221,7 +231,7 @@ y como segundo nivel:
 
 y los archivos HTML usan el siguinete
 ```html
-<!-- –->
+<!-- -->
 ```
 # __templates__
 Hablando de templates, hay tres carpetas:
