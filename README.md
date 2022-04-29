@@ -34,7 +34,7 @@ python3 -m venv env
 - ejecutar el siguiente comando para activar el venv del proyecto
 
 ```bash
-source (ruta)/network-project-manager-for-Telefonica/proyecto/venv/bin/activate
+source (ruta)/network-project-manager-for-Telefonica/proyecto/env/bin/activate
 ```
 - ejecute los requirements dentro del venv activado para que se instalen las dependencias
 
@@ -200,6 +200,26 @@ Se genera requirements.txt. Se da por finalizado el proyecto.
 - Documentacion actualizada para poner en produccion la base de datos.
 - crear key en jeojson para enlazarlo con proyecto
 # __Documentación__
+
+
+```
+|-- network-project-manager-for-Telefonica (nombre del proyecto)
+    |-- README.md (informacion macro)
+    |-- idea en desarrollo.txt (en desarrollo)
+    |-- packet tracert redes (carpeta con archivos PKP)
+    |-- documentacion (contiene informacion acerca del proyecto)
+        |-- varios.xlsx
+        |-- flujos.mdj
+    |-- proyecto (contiene todos los archivos de django y bootstrap)
+        |-- env (esta carpeta se tiene que crear)
+        |-- query.sql
+        |-- requirements.txt
+        |-- mysite
+            |-- polls (mi aplicacion)
+            |-- manage.py (archivo que levanta el servidor)
+ 
+```
+
 Organizacion de los archivos:
 - __network-project-manager-for-Telefonica__: nombre del proyecto
   - __README.md__: informacion macro
