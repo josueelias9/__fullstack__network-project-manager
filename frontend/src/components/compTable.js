@@ -1,7 +1,8 @@
 import Table from 'react-bootstrap/Table';
 
 function CompTable(props) {
-    const trabajos = props.data;
+
+    const trabajos = JSON.parse(localStorage.getItem('storage1'));
 
     const hola = trabajos.map(
         (trabajo) => (<tr key={trabajo.id}>
