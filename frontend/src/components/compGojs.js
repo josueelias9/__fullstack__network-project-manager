@@ -1,5 +1,9 @@
 import * as go from 'gojs';
 import { ReactDiagram } from 'gojs-react';
+import Container from 'react-bootstrap/Container'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+
 
 // ...
 
@@ -159,13 +163,13 @@ function CompGojs(props) {
     retrieveDataBaseInformation();
     modifyFramework();
 
-    return <ReactDiagram
+    return <Container><h2>Flujo</h2><ReactDiagram
         initDiagram={initDiagram}
         divClassName='diagram-component'
         nodeDataArray={flujo}
         linkDataArray={conexion}
         onModelChange={handleModelChange}
-    />
+    /></Container>
         ;
 }
 export default CompGojs;

@@ -1,9 +1,11 @@
 import Table from 'react-bootstrap/Table';
+import Container from 'react-bootstrap/Container'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
 
 function CompTable(props) {
-
+    
     const trabajos = props.data;
-
     const hola = trabajos.map(
         (trabajo) => (<tr key={trabajo.id}>
             <td>{trabajo.sede}</td>
@@ -16,7 +18,7 @@ function CompTable(props) {
         </tr>)
     );
 
-    return <div><Table striped bordered hover>
+    return <Container><Row><Col><h2>Trabajo por sede</h2><Table striped bordered hover>
 
         <thead>
             <tr>
@@ -33,7 +35,7 @@ function CompTable(props) {
         <tbody>
             {hola}
         </tbody>
-    </Table></div>
+    </Table></Col><Col></Col></Row></Container>
 }
 
 export default CompTable;
