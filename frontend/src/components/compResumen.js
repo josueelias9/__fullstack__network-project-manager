@@ -1,8 +1,7 @@
 
 import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container'
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
+
 
 function CompResumen(props) {
 
@@ -29,7 +28,7 @@ function CompResumen(props) {
     console.log(datosP);
 
     const c = datosP.map((datoP) => (<tr key={datoP.id}><td>{datoP.nombre}</td><td>{datoP.backlog}</td></tr>));
-    return <Container><Row><Col><h2>Backlog</h2><Table striped bordered hover variant="dark">
+    return <Container><h2>Backlog</h2><Table striped bordered hover variant="dark">
         <thead>
             <tr>
                 <th>Persona</th>
@@ -39,7 +38,7 @@ function CompResumen(props) {
         <tbody>
             {c}
         </tbody>
-    </Table></Col><Col></Col><Col></Col><Col></Col></Row></Container>;
+    </Table></Container>;
 }
 
 export default CompResumen;
