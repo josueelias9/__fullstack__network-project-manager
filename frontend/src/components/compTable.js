@@ -2,17 +2,17 @@ import Table from 'react-bootstrap/Table';
 
 function CompTable(props) {
 
-    const trabajos = JSON.parse(localStorage.getItem('storage1'));
+    const trabajos = props.data;
 
     const hola = trabajos.map(
         (trabajo) => (<tr key={trabajo.id}>
+            <td>{trabajo.sede}</td>
             <td>{trabajo.trabajo}</td>
             <td>{trabajo.responsable}</td>
             <td>{trabajo.estado_requiere}</td>
             <td>{trabajo.estado_activo}</td>
             <td>{trabajo.estado_finalizado}</td>
             <td>{trabajo.informacion}</td>
-
         </tr>)
     );
 
@@ -20,6 +20,7 @@ function CompTable(props) {
 
         <thead>
             <tr>
+                <th>sede</th>
                 <th>trabajo</th>
                 <th>responsable</th>
                 <th>requiere</th>

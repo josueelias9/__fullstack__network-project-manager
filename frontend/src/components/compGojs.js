@@ -51,8 +51,7 @@ function handleModelChange(changes) {
 
 
 
-function CompGojs() {
-
+function CompGojs(props) {
 
     let data;
     let inicio;
@@ -65,11 +64,10 @@ function CompGojs() {
 
     function framework() {
 
-        const trabajos = 1;
         inicio = {
             nombre: 'inicio',
             id: 0,
-            color: 'gray'
+            color: 'lightblue'
         }
         tarea1 = {
             nombre: 'tarea 1',
@@ -108,104 +106,53 @@ function CompGojs() {
             { key: -6, from: tarea2.id, to: tarea1.id },
             { key: -4, from: tarea3.id, to: fin.id },
         ];
-
-
-
     }
 
-
     function retrieveDataBaseInformation() {
-        data = [
-            {
-                trabajo: 'tarea 1',
-                responsable: 'Hector',
-                estado_requiere: 1,
-                estado_activo: 0,
-                estado_finalizado: 1,
-                id: 1,
-                informacion: 'esta tarea consiste en tal y tal cosas'
-            },
-            {
-                trabajo: 'tarea 2',
-                responsable: 'Juan',
-                estado_requiere: 1,
-                estado_activo: 1,
-                estado_finalizado: 0,
-                id: 2,
-                informacion: 'esta tarea consiste en tal y tal cosas'
-        
-            },
-            {
-                trabajo: 'tarea 3',
-                responsable: 'Marco',
-                estado_requiere: 1,
-                estado_activo: 1,
-                estado_finalizado: 1,
-                id: 3,
-                informacion: 'esta tarea consiste en tal y tal cosas'
-        
-            }
-        
-        ];    }
+        data = props.data;
+    }
 
     function modifyFramework() {
         // tarea 1
         tarea1.nombre = data[0].trabajo + " / " + data[0].responsable;
-        if (data[0].estado_finalizado == 1)
-            tarea1.color = 'orange';
+        if (data[0].estado_requiere == 0)
+            tarea1.color = 'grey';
+        else if (data[0].estado_activo == 0)
+            tarea1.color = 'blue';
+        else if (data[0].estado_finalizado == 0)
+            tarea1.color = 'red';
         else
-            tarea1.color = 'pink';
+            tarea1.color = 'green';
 
         // tarea 2
         tarea2.nombre = data[1].trabajo + " / " + data[1].responsable;
-        if (data[1].estado_finalizado == 1)
-            tarea2.color = 'orange';
+        if (data[1].estado_requiere == 0)
+            tarea2.color = 'grey';
+        else if (data[1].estado_activo == 0)
+            tarea2.color = 'blue';
+        else if (data[1].estado_finalizado == 0)
+            tarea2.color = 'red';
         else
-            tarea2.color = 'pink';
+            tarea2.color = 'green';
 
         // tarea 3
         tarea3.nombre = data[2].trabajo + " / " + data[2].responsable;
-        if (data[2].estado_finalizado == 1)
-            tarea3.color = 'orange';
+        if (data[2].estado_requiere == 0)
+            tarea3.color = 'grey';
+        else if (data[2].estado_activo == 0)
+            tarea3.color = 'blue';
+        else if (data[2].estado_finalizado == 0)
+            tarea3.color = 'red';
         else
-            tarea3.color = 'pink';
+            tarea3.color = 'green';
 
-
-        if (data[1].estado_requiere == 0) {
-            flujo = [
-                { key: inicio.id, text: inicio.nombre, color: inicio.color, loc: '0 150' },
-                { key: tarea2.id, text: tarea2.nombre, color: tarea2.color, loc: '150 0' },
-                { key: tarea3.id, text: tarea3.nombre, color: tarea3.color, loc: '150 300' },
-                { key: tarea1.id, text: tarea1.nombre, color: tarea1.color, loc: '300 0' },
-                { key: fin.id, text: fin.nombre, color: fin.color, loc: '450 150' }
-            ];
-    
-            conexion = [
-                { key: -1, from: inicio.id, to: tarea2.id },
-                { key: -2, from: inicio.id, to: tarea3.id },
-                { key: -5, from: inicio.id, to: fin.id },
-                { key: -7, from: tarea1.id, to: fin.id },
-                { key: -6, from: tarea2.id, to: tarea1.id },
-                { key: -4, from: tarea3.id, to: fin.id },
-            ];
-        }
-        else {
-            flujo = [
-                { key: inicio.id, text: inicio.nombre, color: inicio.color, loc: '0 150' },
-                { key: tarea3.id, text: tarea3.nombre, color: tarea3.color, loc: '150 300' },
-                { key: tarea1.id, text: tarea1.nombre, color: tarea1.color, loc: '300 0' },
-                { key: fin.id, text: fin.nombre, color: fin.color, loc: '450 150' }
-            ];
-                conexion = [
-                { key: -1, from: inicio.id, to: tarea1.id },
-                { key: -2, from: inicio.id, to: tarea3.id },
-                { key: -5, from: inicio.id, to: fin.id },
-                { key: -7, from: tarea1.id, to: fin.id },
-                { key: -6, from: tarea2.id, to: tarea1.id },
-                { key: -4, from: tarea3.id, to: fin.id },
-            ];
-        }
-
+        flujo = [
+            { key: inicio.id, text: inicio.nombre, color: inicio.color, loc: '0 150' },
+            { key: tarea2.id, text: tarea2.nombre, color: tarea2.color, loc: '150 0' },
+            { key: tarea3.id, text: tarea3.nombre, color: tarea3.color, loc: '150 300' },
+            { key: tarea1.id, text: tarea1.nombre, color: tarea1.color, loc: '300 0' },
+            { key: fin.id, text: fin.nombre, color: fin.color, loc: '450 150' }
+        ];
     }
 
     framework();
