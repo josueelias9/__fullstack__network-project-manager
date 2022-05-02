@@ -5,6 +5,7 @@ import CompUpdate from './components/compUpdate';
 import CompResumen from './components/compResumen';
 import CompProyecto from './components/compProyecto';
 import CompFlujo from './components/compFlujo';
+import CompNav from './components/compNav';
 
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -16,16 +17,24 @@ import React from 'react';
 
 let dataPersona = [
   {
+    id: 1,
     nombre: 'Hector',
-    id: 1
+    cargo: 'ingeniero de red',
   },
   {
+    id: 2,
     nombre: 'Juan',
-    id: 2
+    cargo: 'gestor PEXT',
   },
   {
+    id: 3,
     nombre: 'Marco',
-    id: 3
+    cargo: 'gestor UMG',
+  },
+  {
+    id: 4,
+    nombre: 'Maria',
+    cargo: 'asistente',
   }
 ]
 
@@ -110,29 +119,47 @@ let dataFlujo = [
     id: 1,
     fkProyecto: 1,
     inicio: { nombre: 'inicio', id: 0, color: 'lightblue' },
-    tarea1: { nombre: 'tarea 1', id: 1, color: 'pink' },
-    tarea2: { nombre: 'tarea 2', id: 2, color: 'pink' },
-    tarea3: { nombre: 'tarea 3', id: 3, color: 'pink' },
-    fin: { nombre: 'fin', id: 4, color: 'lightblue' },
+    fin: { nombre: 'fin', id: 1, color: 'lightblue' },
+    tarea1: { nombre: 'tarea 1', id: 2, color: 'pink' },
+    tarea2: { nombre: 'tarea 2', id: 3, color: 'pink' },
+    tarea3: { nombre: 'tarea 3', id: 4, color: 'pink' },
     flujo: [
       { key: 0, text: 'inicio', color: 'lightblue', loc: '0 150' },
-      { key: 1, text: 'tarea 1', color: 'pink', loc: '300 0' },
-      { key: 2, text: 'tarea 2', color: 'pink', loc: '150 0' },
-      { key: 3, text: 'tarea 3', color: 'pink', loc: '150 300' },
-      { key: 4, text: 'fin', color: 'lightblue', loc: '450 150' }
+      { key: 1, text: 'fin', color: 'lightblue', loc: '450 150' },
+      { key: 2, text: 'tarea 1', color: 'pink', loc: '300 0' },
+      { key: 3, text: 'tarea 2', color: 'pink', loc: '150 0' },
+      { key: 4, text: 'tarea 3', color: 'pink', loc: '150 300' },
+    ],
+    conexion: [
+      { key: -2, from: 0, to: 3 },
+      { key: -3, from: 0, to: 4 },
+      { key: -4, from: 4, to: 1 },
+      { key: -5, from: 2, to: 1 },
+      { key: -6, from: 3, to: 4 },
+    ],
+  },
+  {
+    id: 2,
+    fkProyecto: 1,
+    inicio: { nombre: 'inicio', id: 0, color: 'lightblue' },
+    fin: { nombre: 'fin', id: 1, color: 'lightblue' },
+    tarea1: { nombre: 'tarea 1', id: 2, color: 'pink' },
+    tarea2: { nombre: 'tarea 2', id: 3, color: 'pink' },
+    tarea3: { nombre: 'tarea 3', id: 4, color: 'pink' },
+    flujo: [
+      { key: 0, text: 'inicio', color: 'lightblue', loc: '0 150' },
+      { key: 1, text: 'fin', color: 'lightblue', loc: '450 150' },
+      { key: 2, text: 'tarea 1', color: 'pink', loc: '300 0' },
+      { key: 3, text: 'tarea 2', color: 'pink', loc: '150 0' },
+      { key: 4, text: 'tarea 3', color: 'pink', loc: '150 300' },
     ],
     conexion: [
       { key: -1, from: 0, to: 2 },
       { key: -2, from: 0, to: 3 },
       { key: -3, from: 0, to: 4 },
-      { key: -4, from: 1, to: 4 },
       { key: -5, from: 2, to: 1 },
-      { key: -6, from: 3, to: 0 },
+      { key: -6, from: 3, to: 4 },
     ],
-  },
-  {
-    id: 2,
-    fkProyecto: 1
   },
   {
     id: 3,
@@ -150,36 +177,48 @@ let dataProyecto = [
     cliente: 'Universidad de Lima',
     JP: 'Marco',
     IE: 'Luisandra',
-    descripcion: ''
+    descripcion: 'Migracion de la cabecera'
   },
   {
     id: 2,
     cliente: 'Rockys',
-    JP: 'Marco',
-    IE: 'Luisandra',
-    descripcion: ''
+    JP: 'Julio Ponce',
+    IE: 'Melvin',
+    descripcion: 'baja de enlaces'
   },
   {
     id: 3,
     cliente: 'Petroperu',
-    JP: 'Marco',
-    IE: 'Luisandra',
-    descripcion: ''
+    JP: 'Katherine',
+    IE: 'Armando',
+    descripcion: 'SDWAN'
+  },
+  {
+    id: 4,
+    cliente: 'Llamagas',
+    JP: 'Karin Mendoza',
+    IE: 'Josue',
+    descripcion: 'cambio de medio'
+  },
+  {
+    id: 5,
+    cliente: 'Chinalco',
+    JP: 'Denisse',
+    IE: 'Josue',
+    descripcion: 'metrolan'
   }
 ];
 
 function App() {
-
   return (
     <div>
+      <CompNav />
       <Container>
         <Row>
-          <Col><CompFlujo dataTrabajo={dataTrabajo} dataFlujo={dataFlujo} /></Col>
-        </Row>
-        <Row>
-          <Col><CompResumen dataTrabajo={dataTrabajo} dataPersona={dataPersona} /></Col>
           <Col><CompProyecto dataProyecto={dataProyecto} /></Col>
         </Row>
+        <CompFlujo dataTrabajo={dataTrabajo} dataFlujo={dataFlujo} />
+        <CompResumen dataTrabajo={dataTrabajo} dataPersona={dataPersona} />
       </Container>
       <Routes>
         <Route path="update" element={<CompUpdate />} />

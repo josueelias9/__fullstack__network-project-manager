@@ -15,18 +15,22 @@ function CompFlujo(props) {
     const dataTrabajo = props.dataTrabajo;
     const dataFlujo = props.dataFlujo;
 
-    const [dataTrabajoFiltrado, setDataAux] = useState(dataTrabajo.filter((d) => { if (d.fkFlujo == 1) return d; }));
+    const [dataTrabajoFiltrado, setDataTrabajoFiltrado] = useState(dataTrabajo.filter((d) => { if (d.fkFlujo == 1) return d; }));
+    const [dataFlujoFiltrado, setDataFlujoFiltrado]     = useState(dataFlujo.filter(  (d) => { if (d.id == 1) return d; }));
 
-    function apla(event){
+
+
+    function apla(event) {
         event.preventDefault();
         const num = parseInt(event.target[0].value);
-        setDataAux(dataTrabajo.filter((d) => { if (d.fkFlujo == num) return d; }));
+        setDataTrabajoFiltrado(dataTrabajo.filter((d) => { if (d.fkFlujo == num) return d; }));
+        setDataFlujoFiltrado(dataFlujo.filter((d) => { if (d.id == num) return d; }));
     }
+
+    console.log(dataFlujoFiltrado);
 
     return <Row>
         <h2>Vista por Flujo</h2>
-        <Col><CompTable data={dataTrabajoFiltrado} /></Col>
-        <Col><CompGojs dataTrabajoFiltrado={dataTrabajoFiltrado} dataFlujo={dataFlujo} /></Col>
         <Col>
             <Form onSubmit={apla}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -41,6 +45,8 @@ function CompFlujo(props) {
                 </Button>
             </Form>
         </Col>
+        <Col><CompTable data={dataTrabajoFiltrado} /></Col>
+        <Col><CompGojs dataTrabajoFiltrado={dataTrabajoFiltrado} dataFlujo={dataFlujoFiltrado} /></Col>
     </Row>;
 }
 

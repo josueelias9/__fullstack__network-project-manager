@@ -1,6 +1,8 @@
 
 import Table from 'react-bootstrap/Table';
-import Container from 'react-bootstrap/Container'
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Card from 'react-bootstrap/Card'
 
 
 function CompResumen(props) {
@@ -25,18 +27,28 @@ function CompResumen(props) {
         }
     });
 
-    const c = datosP.map((datoP) => (<tr key={datoP.id}><td>{datoP.nombre}</td><td>{datoP.backlog}</td></tr>));
-    return <Container><h2>Backlog</h2><Table striped bordered hover variant="dark">
-        <thead>
-            <tr>
-                <th>Persona</th>
-                <th>Backlog</th>
-            </tr>
-        </thead>
-        <tbody>
-            {c}
-        </tbody>
-    </Table></Container>;
+    const c = datosP.map((datoP) => (<tr key={datoP.id}><td>{datoP.nombre}</td><td>{datoP.backlog}</td><td>{datoP.cargo}</td></tr>));
+    return <Row>
+        <h2>Backlog</h2>
+        <Col>
+            <Table striped bordered hover variant="dark">
+                <thead>
+                    <tr>
+                        <th>Persona</th>
+                        <th>Backlog</th>
+                        <th>Cargo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {c}
+                </tbody>
+            </Table>
+        </Col>
+        <Col>
+        ¿Como es que se calcula en backlog?
+            <Card.Img variant="top" src="backlog.png" />
+        </Col>
+    </Row>;
 }
 
 export default CompResumen;

@@ -66,6 +66,7 @@ function CompGojs(props) {
     let flujo = dataFlujo[0].flujo;
     let conexion = dataFlujo[0].conexion;
 
+
     // tarea 1
     tarea1.nombre = dataTrabajoFiltrado[0].trabajo + " / " + dataTrabajoFiltrado[0].responsable;
     if (dataTrabajoFiltrado[0].estado_requiere == 0)
