@@ -1,8 +1,11 @@
-proyecto/env
+proyecto/env/
 proyecto/mysite/mysite/__pycache__/
 proyecto/mysite/polls/migrations/
 proyecto/mysite/polls/__pycache__/
 
-backend/env
+backend/env/
 backend/tdp/__pycache__/
 backend/tdp/migrations/__pycache__/
+
+frontend/node_modules/
+backend/env/
