@@ -1,5 +1,5 @@
 import Table from 'react-bootstrap/Table';
-import Container from 'react-bootstrap/Container'
+import Container from 'react-bootstrap/Container';
 
 
 function CompTable(props) {
@@ -17,7 +17,7 @@ function CompTable(props) {
         </tr>)
     );
 
-    return <Container><h2>Trabajo por sede</h2><Table striped bordered hover>
+    return <Container><Table striped bordered hover>
 
         <thead>
             <tr>

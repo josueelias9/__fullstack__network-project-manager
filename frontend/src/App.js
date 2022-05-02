@@ -1,19 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
 
-import CompTable from './components/compTable';
-import CompGojs from './components/compGojs';
 import CompUpdate from './components/compUpdate';
 import CompResumen from './components/compResumen';
 import CompProyecto from './components/compProyecto';
+import CompFlujo from './components/compFlujo';
 
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
-import Button from 'react-bootstrap/Button'
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 import { Routes, Route } from "react-router-dom";
 
-import React, { useState } from 'react';
+import React from 'react';
 import Container from 'react-bootstrap/esm/Container';
 
 let dataPersona = [
@@ -35,7 +33,7 @@ let dataPersona = [
 let dataTrabajo = [
   {
     id: 1,
-    fkProyecto: 1,
+    fkFlujo: 1,
     fkPersona: 1,
     trabajo: 'tarea 1',
     responsable: 'Hector',
@@ -47,7 +45,7 @@ let dataTrabajo = [
   },
   {
     id: 2,
-    fkProyecto: 1,
+    fkFlujo: 1,
     fkPersona: 2,
     trabajo: 'tarea 2',
     responsable: 'Juan',
@@ -59,7 +57,7 @@ let dataTrabajo = [
   },
   {
     id: 3,
-    fkProyecto: 1,
+    fkFlujo: 1,
     fkPersona: 3,
     trabajo: 'tarea 3',
     responsable: 'Marco',
@@ -71,7 +69,7 @@ let dataTrabajo = [
   },
   {
     id: 4,
-    fkProyecto: 2,
+    fkFlujo: 2,
     fkPersona: 1,
     trabajo: 'tarea 1',
     responsable: 'Hector',
@@ -83,7 +81,7 @@ let dataTrabajo = [
   },
   {
     id: 5,
-    fkProyecto: 2,
+    fkFlujo: 2,
     fkPersona: 2,
     trabajo: 'tarea 2',
     responsable: 'Juan',
@@ -95,7 +93,7 @@ let dataTrabajo = [
   },
   {
     id: 6,
-    fkProyecto: 2,
+    fkFlujo: 2,
     fkPersona: 3,
     trabajo: 'tarea 3',
     responsable: 'Marco',
@@ -107,11 +105,23 @@ let dataTrabajo = [
   }
 ];
 
-let flujo = [
-  {id:1},
-  {id:2},
-  {id:3},
-  {id:4},
+let dataFlujo = [
+  {
+    id: 1,
+    fkProyecto: 1
+  },
+  {
+    id: 2,
+    fkProyecto: 1
+  },
+  {
+    id: 3,
+    fkProyecto: 2
+  },
+  {
+    id: 4,
+    fkProyecto: 2
+  },
 ];
 
 let dataProyecto = [
@@ -140,36 +150,17 @@ let dataProyecto = [
 
 function App() {
 
-  const [aux, setAux] = useState(true);
-  const [dataAux, setDataAux] = useState(dataTrabajo.filter((d) => { if (d.fkProyecto == 1) return d; }));
-  function casa() {
-    if (aux) {
-      setDataAux(dataTrabajo.filter((d) => { if (d.fkProyecto == 1) return d; }));
-      setAux(!aux);
-    }
-    else {
-      setDataAux(dataTrabajo.filter((d) => { if (d.fkProyecto == 2) return d; }));
-      setAux(!aux);
-    }
-  }
-
   return (
     <div>
-
       <Container>
-
         <Row>
-          <Col><CompTable data={dataAux} /></Col>
-          <Col><CompResumen dataTrabajo={dataTrabajo} dataPersona={dataPersona} /></Col>
+          <Col><CompFlujo dataTrabajo={dataTrabajo} /></Col>
         </Row>
         <Row>
-          <Col><CompGojs data={dataAux} /></Col>
+          <Col><CompResumen dataTrabajo={dataTrabajo} dataPersona={dataPersona} /></Col>
           <Col><CompProyecto dataProyecto={dataProyecto} /></Col>
         </Row>
       </Container>
-      <Button variant="primary" onClick={casa}>Primary</Button>{' '}
-      {/*componentes de tabla filtrada */}
-      {/*componentes de tabla */}
       <Routes>
         <Route path="update" element={<CompUpdate />} />
         <Route path="" element={<div></div>} />

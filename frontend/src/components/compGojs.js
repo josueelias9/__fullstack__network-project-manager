@@ -94,7 +94,12 @@ function CompGojs(props) {
         }
 
         flujo = [
-            { key: inicio.id, text: inicio.nombre, color: inicio.color, loc: '0 150' },
+            {
+                key: inicio.id,
+                text: inicio.nombre,
+                color: inicio.color,
+                loc: '0 150'
+            },
             { key: tarea2.id, text: tarea2.nombre, color: tarea2.color, loc: '150 0' },
             { key: tarea3.id, text: tarea3.nombre, color: tarea3.color, loc: '150 300' },
             { key: tarea1.id, text: tarea1.nombre, color: tarea1.color, loc: '300 0' },
@@ -162,7 +167,7 @@ function CompGojs(props) {
     retrieveDataBaseInformation();
     modifyFramework();
 
-    return <Container><h2>Flujo</h2><ReactDiagram
+    return <Container><ReactDiagram
         initDiagram={initDiagram}
         divClassName='diagram-component'
         nodeDataArray={flujo}
