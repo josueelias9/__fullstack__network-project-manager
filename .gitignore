@@ -6,6 +6,4 @@ proyecto/mysite/polls/__pycache__/
 backend/env/
 backend/tdp/__pycache__/
 backend/tdp/migrations/__pycache__/
-
-frontend/node_modules/
-backend/env/
+backend/backend/__pycache__/
