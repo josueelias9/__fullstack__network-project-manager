@@ -27,7 +27,15 @@ function CompResumen(props) {
         }
     });
 
-    const c = datosP.map((datoP) => (<tr key={datoP.id}><td>{datoP.nombre}</td><td>{datoP.backlog}</td><td>{datoP.cargo}</td></tr>));
+    const c = datosP.map((datoP) => {
+        if (datoP.tipo == 'especialista') {
+            return <tr key={datoP.id}>
+                <td>{datoP.nombre}</td>
+                <td>{datoP.backlog}</td>
+                <td>{datoP.cargo}</td>
+            </tr>
+        }
+    });
     return <Row>
         <Col>
             <Table striped bordered hover variant="dark">
@@ -44,7 +52,7 @@ function CompResumen(props) {
             </Table>
         </Col>
         <Col>
-        ¿Como es que se calcula en backlog?
+            ¿Como es que se calcula en backlog?
             <Card.Img variant="top" src="backlog.png" />
         </Col>
     </Row>;

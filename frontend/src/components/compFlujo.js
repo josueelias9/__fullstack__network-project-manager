@@ -16,18 +16,22 @@ function CompFlujo(props) {
     const dataFlujo = props.dataFlujo;
 
     const [dataTrabajoFiltrado, setDataTrabajoFiltrado] = useState(dataTrabajo.filter((d) => { if (d.fkFlujo == 1) return d; }));
-    const [dataFlujoFiltrado, setDataFlujoFiltrado]     = useState(dataFlujo.filter(  (d) => { if (d.id == 1) return d; }));
+    const [dataFlujoFiltrado, setDataFlujoFiltrado] = useState(dataFlujo.filter((d) => { if (d.id == 1) return d; }));
 
 
 
     function apla(event) {
         event.preventDefault();
         const num = parseInt(event.target[0].value);
-        setDataTrabajoFiltrado(dataTrabajo.filter((d) => { if (d.fkFlujo == num) return d; }));
-        setDataFlujoFiltrado(dataFlujo.filter((d) => { if (d.id == num) return d; }));
+        if (isNaN(num) || num <= 0) {
+
+        }
+        else {
+            setDataTrabajoFiltrado(dataTrabajo.filter((d) => { if (d.fkFlujo == num) return d; }));
+            setDataFlujoFiltrado(dataFlujo.filter((d) => { if (d.id == num) return d; }));
+        }
     }
 
-    console.log(dataFlujoFiltrado);
 
     return <Row>
         <Col>

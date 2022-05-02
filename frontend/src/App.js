@@ -3,13 +3,11 @@ import './App.css';
 
 import CompUpdate from './components/compUpdate';
 import CompResumen from './components/compResumen';
-import CompProyectos from './components/compProyectos';
 import CompProyecto from './components/compProyecto';
 import CompFlujo from './components/compFlujo';
 import CompNav from './components/compNav';
+import CompListaProyectos from './components/compListaProyectos';
 
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/esm/Container';
 
 import { Routes, Route } from "react-router-dom";
@@ -21,21 +19,49 @@ let dataPersona = [
     id: 1,
     nombre: 'Hector',
     cargo: 'ingeniero de red',
+    tipo: 'especialista',
   },
   {
     id: 2,
     nombre: 'Juan',
     cargo: 'gestor PEXT',
+    tipo: 'especialista',
   },
   {
     id: 3,
     nombre: 'Marco',
     cargo: 'gestor UMG',
+    tipo: 'especialista',
   },
   {
     id: 4,
     nombre: 'Maria',
     cargo: 'asistente',
+    tipo: 'especialista',
+  },
+  {
+    id: 5,
+    nombre: 'Armando',
+    cargo: 'IE',
+    tipo: 'lider',
+  },
+  {
+    id: 6,
+    nombre: 'Luisandra',
+    cargo: 'supervisor',
+    tipo: 'lider',
+  },
+  {
+    id: 7,
+    nombre: 'Melvin',
+    cargo: 'IE',
+    tipo: 'lider',
+  },
+  {
+    id: 8,
+    nombre: 'Josue',
+    cargo: 'IE',
+    tipo: 'lider',
   }
 ]
 
@@ -119,6 +145,7 @@ let dataFlujo = [
   {
     id: 1,
     fkProyecto: 1,
+    descripcion: 'instalacion de equipos mas FO',
     inicio: { nombre: 'inicio', id: 0, color: 'lightblue' },
     fin: { nombre: 'fin', id: 1, color: 'lightblue' },
     tarea1: { nombre: 'tarea 1', id: 2, color: 'pink' },
@@ -133,7 +160,6 @@ let dataFlujo = [
     ],
     conexion: [
       { key: -2, from: 0, to: 3 },
-      { key: -3, from: 0, to: 4 },
       { key: -4, from: 4, to: 1 },
       { key: -5, from: 2, to: 1 },
       { key: -6, from: 3, to: 4 },
@@ -142,6 +168,7 @@ let dataFlujo = [
   {
     id: 2,
     fkProyecto: 1,
+    descripcion: 'instalacion de equipos mas FO',
     inicio: { nombre: 'inicio', id: 0, color: 'lightblue' },
     fin: { nombre: 'fin', id: 1, color: 'lightblue' },
     tarea1: { nombre: 'tarea 1', id: 2, color: 'pink' },
@@ -156,7 +183,6 @@ let dataFlujo = [
     ],
     conexion: [
       { key: -1, from: 0, to: 2 },
-      { key: -2, from: 0, to: 3 },
       { key: -3, from: 0, to: 4 },
       { key: -5, from: 2, to: 1 },
       { key: -6, from: 3, to: 4 },
@@ -164,20 +190,22 @@ let dataFlujo = [
   },
   {
     id: 3,
-    fkProyecto: 2
+    fkProyecto: 2,
+    descripcion: 'solo configuracion',
   },
   {
     id: 4,
-    fkProyecto: 2
+    fkProyecto: 2,
+    descripcion: 'solo equipos',
   },
 ];
 
 let dataProyecto = [
   {
     id: 1,
+    fkPersona: 6,
     cliente: 'Universidad de Lima',
     JP: 'Marco',
-    IE: 'Luisandra',
     descripcion: 'Migracion de la cabecera',
     flujosTotal: 10,
     flujosResueltos: 5,
@@ -185,39 +213,48 @@ let dataProyecto = [
   },
   {
     id: 2,
+    fkPersona: 7,
     cliente: 'Rockys',
     JP: 'Julio Ponce',
-    IE: 'Melvin',
     descripcion: 'baja de enlaces',
     flujosTotal: 10,
     flujosResueltos: 5,
   },
   {
     id: 3,
+    fkPersona: 5,
     cliente: 'Petroperu',
     JP: 'Katherine',
-    IE: 'Armando',
     descripcion: 'SDWAN',
     flujosTotal: 8,
     flujosResueltos: 7,
   },
   {
     id: 4,
+    fkPersona: 8,
     cliente: 'Llamagas',
     JP: 'Karin Mendoza',
-    IE: 'Josue',
     descripcion: 'cambio de medio',
     flujosTotal: 15,
     flujosResueltos: 14,
   },
   {
     id: 5,
+    fkPersona: 8,
     cliente: 'Chinalco',
     JP: 'Denisse',
-    IE: 'Josue',
     descripcion: 'metrolan',
     flujosTotal: 20,
     flujosResueltos: 8,
+  },
+  {
+    id: 6,
+    fkPersona: 7,
+    cliente: 'BCP',
+    JP: 'Denisse',
+    descripcion: 'migracion de red',
+    flujosTotal: 12,
+    flujosResueltos: 3,
   }
 ];
 
@@ -227,13 +264,9 @@ function App() {
       <CompNav />
       <Container>
         <h2>Lista de proyectos</h2>
-        <Row>
-          <Col><CompProyectos dataProyecto={dataProyecto} /></Col>
-          <Col><CompProyecto dataProyecto={dataProyecto} /></Col>
-        </Row>
+        <CompListaProyectos dataProyecto={dataProyecto} dataPersona={dataPersona} />
         <h2>Vista proyecto</h2>
-        <Row>
-        </Row>
+        <CompProyecto dataProyecto={dataProyecto} dataFlujo={dataFlujo} />
         <h2>Vista por Flujo</h2>
         <CompFlujo dataTrabajo={dataTrabajo} dataFlujo={dataFlujo} />
         <h2>Backlog</h2>

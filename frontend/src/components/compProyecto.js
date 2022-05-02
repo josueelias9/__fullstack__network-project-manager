@@ -1,67 +1,88 @@
-import React from 'react';
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend,
-} from 'chart.js';
-import { Bar } from 'react-chartjs-2';
 
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Table from 'react-bootstrap/Table';
 
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend
-);
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import ListGroup from 'react-bootstrap/ListGroup'
 
-const options = {
-    responsive: true,
-    plugins: {
-        legend: {
-            position: 'top',
-        },
-        title: {
-            display: true,
-            text: 'Chart.js Bar Chart',
-        },
-    },
-};
-
-let labels = [];
-
-let data = {};
-
+import React, { useState } from 'react';
 
 function CompProyecto(props) {
+    let dataProyecto = props.dataProyecto;
+    let dataFlujo = props.dataFlujo;
 
-    const dataProyecto = props.dataProyecto;
+    const [dataFlujoFiltrado, setDataFlujoFiltrado] = useState(dataFlujo);
+    const [dataProyectoFiltrado, setDataProyectoFiltrado] = useState(dataProyecto);
 
-    labels = dataProyecto.map((d) => { return d.cliente });
+    function apla(event) {
+        event.preventDefault();
+        const num = parseInt(event.target[0].value);
 
-    data = {
-        labels,
-        datasets: [
-            {
-                label: 'flujosTotal',
-                data: dataProyecto.map((d) => d.flujosTotal),
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
-            },
-            {
-                label: 'flujosResueltos',
-                data: dataProyecto.map((d) => d.flujosResueltos),
-                backgroundColor: 'rgba(53, 162, 235, 0.5)',
-            },
-        ],
-    };
+        setDataFlujoFiltrado(dataFlujo.filter((d) => {
+            if (num == d.fkProyecto) {
+                return d;
+            }
+        }));
+
+        setDataProyectoFiltrado(
+            dataProyecto.filter(
+                (d) => {
+                    if (d.id == num)
+                        return d;
+                }
+            )
+        );
+    }
+    console.log(dataProyectoFiltrado[0]);
+    const hola = dataFlujoFiltrado.map(
+        (d) => (
+            <tr key={d.id}>
+                <td>{d.id}</td>
+                <td>{d.fkProyecto}</td>
+                <td>{d.descripcion}</td>
+            </tr>)
+    );
 
 
-    return <Bar options={options} data={data} />;
+    return <Row>
+        <Col>
+            <Form onSubmit={apla}>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>ingrese id del proyecto:</Form.Label>
+                    <Form.Control type="number" placeholder="Solo numeros" />
+                    <Form.Text className="text-muted">
+                        We'll never share your email with anyone else.
+                    </Form.Text>
+                </Form.Group>
+                <Button variant="primary" type="submit">
+                    Ver detalles del proyecto
+                </Button>
+            </Form>
+        </Col>
+        <Col>
+            <ListGroup variant="flush">
+                <ListGroup.Item>Cliente: {dataProyectoFiltrado[0].cliente}</ListGroup.Item>
+                <ListGroup.Item>JP: {dataProyectoFiltrado[0].JP}</ListGroup.Item>
+            </ListGroup>
+        </Col>
+        <Col>
+            <Table striped bordered hover>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>fk</th>
+                        <th>descripcion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {hola}
+                </tbody>
+            </Table>
+
+        </Col>
+    </Row>;
 
 }
 
