@@ -1,11 +1,15 @@
 
+import CompGoogle from './compGoogle';
+
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Table from 'react-bootstrap/Table';
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import ListGroup from 'react-bootstrap/ListGroup'
+import ListGroup from 'react-bootstrap/ListGroup';
+
+import { Wrapper, Status } from "@googlemaps/react-wrapper";
 
 import React, { useState } from 'react';
 
@@ -42,8 +46,13 @@ function CompProyecto(props) {
                 <td>{d.id}</td>
                 <td>{d.fkProyecto}</td>
                 <td>{d.descripcion}</td>
+                <td>{d.coordenadas}</td>
             </tr>)
     );
+
+    const render = (status: Status) => {
+        return <h1>{status}</h1>;
+      };
 
 
     return <Row>
@@ -74,13 +83,18 @@ function CompProyecto(props) {
                         <th>id</th>
                         <th>fk</th>
                         <th>descripcion</th>
+                        <th>coordenadas</th>
                     </tr>
                 </thead>
                 <tbody>
                     {hola}
                 </tbody>
             </Table>
-
+        </Col>
+        <Col>
+            <Wrapper apiKey={"YOUR_API_KEY"} render={render}>
+                <CompGoogle />
+            </Wrapper>
         </Col>
     </Row>;
 

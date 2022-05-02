@@ -146,6 +146,7 @@ let dataFlujo = [
     id: 1,
     fkProyecto: 1,
     descripcion: 'instalacion de equipos mas FO',
+    coordenadas:[1,1],
     inicio: { nombre: 'inicio', id: 0, color: 'lightblue' },
     fin: { nombre: 'fin', id: 1, color: 'lightblue' },
     tarea1: { nombre: 'tarea 1', id: 2, color: 'pink' },
@@ -169,6 +170,7 @@ let dataFlujo = [
     id: 2,
     fkProyecto: 1,
     descripcion: 'instalacion de equipos mas FO',
+    coordenadas:[1,1],
     inicio: { nombre: 'inicio', id: 0, color: 'lightblue' },
     fin: { nombre: 'fin', id: 1, color: 'lightblue' },
     tarea1: { nombre: 'tarea 1', id: 2, color: 'pink' },
@@ -192,11 +194,13 @@ let dataFlujo = [
     id: 3,
     fkProyecto: 2,
     descripcion: 'solo configuracion',
+    coordenadas:[1,1],
   },
   {
     id: 4,
     fkProyecto: 2,
     descripcion: 'solo equipos',
+    coordenadas:[1,1],
   },
 ];
 
