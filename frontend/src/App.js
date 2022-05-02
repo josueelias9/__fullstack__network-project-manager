@@ -3,6 +3,7 @@ import './App.css';
 
 import CompUpdate from './components/compUpdate';
 import CompResumen from './components/compResumen';
+import CompProyectos from './components/compProyectos';
 import CompProyecto from './components/compProyecto';
 import CompFlujo from './components/compFlujo';
 import CompNav from './components/compNav';
@@ -177,35 +178,46 @@ let dataProyecto = [
     cliente: 'Universidad de Lima',
     JP: 'Marco',
     IE: 'Luisandra',
-    descripcion: 'Migracion de la cabecera'
+    descripcion: 'Migracion de la cabecera',
+    flujosTotal: 10,
+    flujosResueltos: 5,
+
   },
   {
     id: 2,
     cliente: 'Rockys',
     JP: 'Julio Ponce',
     IE: 'Melvin',
-    descripcion: 'baja de enlaces'
+    descripcion: 'baja de enlaces',
+    flujosTotal: 10,
+    flujosResueltos: 5,
   },
   {
     id: 3,
     cliente: 'Petroperu',
     JP: 'Katherine',
     IE: 'Armando',
-    descripcion: 'SDWAN'
+    descripcion: 'SDWAN',
+    flujosTotal: 8,
+    flujosResueltos: 7,
   },
   {
     id: 4,
     cliente: 'Llamagas',
     JP: 'Karin Mendoza',
     IE: 'Josue',
-    descripcion: 'cambio de medio'
+    descripcion: 'cambio de medio',
+    flujosTotal: 15,
+    flujosResueltos: 14,
   },
   {
     id: 5,
     cliente: 'Chinalco',
     JP: 'Denisse',
     IE: 'Josue',
-    descripcion: 'metrolan'
+    descripcion: 'metrolan',
+    flujosTotal: 20,
+    flujosResueltos: 8,
   }
 ];
 
@@ -214,10 +226,17 @@ function App() {
     <div>
       <CompNav />
       <Container>
+        <h2>Lista de proyectos</h2>
         <Row>
+          <Col><CompProyectos dataProyecto={dataProyecto} /></Col>
           <Col><CompProyecto dataProyecto={dataProyecto} /></Col>
         </Row>
+        <h2>Vista proyecto</h2>
+        <Row>
+        </Row>
+        <h2>Vista por Flujo</h2>
         <CompFlujo dataTrabajo={dataTrabajo} dataFlujo={dataFlujo} />
+        <h2>Backlog</h2>
         <CompResumen dataTrabajo={dataTrabajo} dataPersona={dataPersona} />
       </Container>
       <Routes>

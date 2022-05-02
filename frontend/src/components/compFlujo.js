@@ -30,7 +30,6 @@ function CompFlujo(props) {
     console.log(dataFlujoFiltrado);
 
     return <Row>
-        <h2>Vista por Flujo</h2>
         <Col>
             <Form onSubmit={apla}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">

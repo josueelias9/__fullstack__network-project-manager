@@ -29,7 +29,6 @@ function CompResumen(props) {
 
     const c = datosP.map((datoP) => (<tr key={datoP.id}><td>{datoP.nombre}</td><td>{datoP.backlog}</td><td>{datoP.cargo}</td></tr>));
     return <Row>
-        <h2>Backlog</h2>
         <Col>
             <Table striped bordered hover variant="dark">
                 <thead>
