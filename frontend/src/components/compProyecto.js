@@ -92,7 +92,7 @@ function CompProyecto(props) {
             </Table>
         </Col>
         <Col>
-            <Wrapper apiKey={"YOUR_API_KEY"} render={render}>
+            <Wrapper apiKey={"AIzaSyAGgSj0uh5_yPn4ZcLpxaK5H-llGvmvxEI"} render={render}>
                 <CompGoogle />
             </Wrapper>
         </Col>

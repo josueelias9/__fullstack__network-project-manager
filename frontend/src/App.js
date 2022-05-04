@@ -1,18 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
 
-import CompUpdate from './components/compUpdate';
-import CompResumen from './components/compResumen';
-import CompProyecto from './components/compProyecto';
-import CompFlujo from './components/compFlujo';
 import CompNav from './components/compNav';
-import CompListaProyectos from './components/compListaProyectos';
-
-import Container from 'react-bootstrap/esm/Container';
+import CompAPI from './api/api';
 
 import { Routes, Route } from "react-router-dom";
 
 import React from 'react';
+import CompDashBoard from './components/CompDashboard';
+
+//let dataPersona = JSON.parse(localStorage.getItem('dataPersona'));
+//let dataTrabajo = JSON.parse(localStorage.getItem('dataTrabajo'));
+//let dataFlujo = JSON.parse(localStorage.getItem('dataFlujo'));
+//let dataProyecto = JSON.parse(localStorage.getItem('dataProyecto'));
 
 let dataPersona = [
   {
@@ -146,7 +146,7 @@ let dataFlujo = [
     id: 1,
     fkProyecto: 1,
     descripcion: 'instalacion de equipos mas FO',
-    coordenadas:[1,1],
+    coordenadas: [1, 1],
     inicio: { nombre: 'inicio', id: 0, color: 'lightblue' },
     fin: { nombre: 'fin', id: 1, color: 'lightblue' },
     tarea1: { nombre: 'tarea 1', id: 2, color: 'pink' },
@@ -170,7 +170,7 @@ let dataFlujo = [
     id: 2,
     fkProyecto: 1,
     descripcion: 'instalacion de equipos mas FO',
-    coordenadas:[1,1],
+    coordenadas: [1, 1],
     inicio: { nombre: 'inicio', id: 0, color: 'lightblue' },
     fin: { nombre: 'fin', id: 1, color: 'lightblue' },
     tarea1: { nombre: 'tarea 1', id: 2, color: 'pink' },
@@ -194,13 +194,13 @@ let dataFlujo = [
     id: 3,
     fkProyecto: 2,
     descripcion: 'solo configuracion',
-    coordenadas:[1,1],
+    coordenadas: [1, 1],
   },
   {
     id: 4,
     fkProyecto: 2,
     descripcion: 'solo equipos',
-    coordenadas:[1,1],
+    coordenadas: [1, 1],
   },
 ];
 
@@ -266,19 +266,9 @@ function App() {
   return (
     <div>
       <CompNav />
-      <Container>
-        <h2>Lista de proyectos</h2>
-        <CompListaProyectos dataProyecto={dataProyecto} dataPersona={dataPersona} />
-        <h2>Vista proyecto</h2>
-        <CompProyecto dataProyecto={dataProyecto} dataFlujo={dataFlujo} />
-        <h2>Vista por Flujo</h2>
-        <CompFlujo dataTrabajo={dataTrabajo} dataFlujo={dataFlujo} />
-        <h2>Backlog</h2>
-        <CompResumen dataTrabajo={dataTrabajo} dataPersona={dataPersona} />
-      </Container>
       <Routes>
-        <Route path="update" element={<CompUpdate />} />
-        <Route path="" element={<div></div>} />
+        <Route path="dash" element={<CompDashBoard dataProyecto={dataProyecto} dataTrabajo={dataTrabajo} dataFlujo={dataFlujo} dataPersona={dataPersona} />} />
+        <Route path="api" element={<CompAPI />} />
       </Routes>
     </div>
   );

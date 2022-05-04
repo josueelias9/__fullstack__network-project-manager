@@ -12,7 +12,6 @@ function CompProyectos(props) {
   const [data, setData] = useState(datosP);
 
 
-  console.log(dataPersona);
 
   const a = data.map((datoP) => {
     const b = dataPersona.map((d) => {
