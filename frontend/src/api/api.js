@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 const backendAPIPersona = "http://127.0.0.1:8000/tdp/dataPersona";
 const backendAPITrabajo = "http://127.0.0.1:8000/tdp/dataTrabajo";
 const backendAPIFlujo = "http://127.0.0.1:8000/tdp/dataFlujo";

@@ -63,7 +63,7 @@ dataTrabajo = [
         'id': 1,
         'fkFlujo': 1,
         'fkPersona': 1,
-        'trabajo': 'tarea 1',
+        'trabajo': 'equipos',
         'responsable': 'Hector',
         'estado_requiere': 1,
         'estado_activo': 0,
@@ -75,7 +75,7 @@ dataTrabajo = [
         'id': 2,
         'fkFlujo': 1,
         'fkPersona': 2,
-        'trabajo': 'tarea 2',
+        'trabajo': 'PEXT',
         'responsable': 'Juan',
         'estado_requiere': 1,
         'estado_activo': 1,
@@ -87,7 +87,7 @@ dataTrabajo = [
         'id': 3,
         'fkFlujo': 1,
         'fkPersona': 3,
-        'trabajo': 'tarea 3',
+        'trabajo': 'UMG',
         'responsable': 'Marco',
         'estado_requiere': 0,
         'estado_activo': 0,
@@ -178,15 +178,33 @@ dataFlujo = [
         'coordenadas': [1, 1],
         'inicio': {'nombre': 'inicio',  'id': 0, 'color': 'lightblue'},
         'fin':    {'nombre': 'fin',     'id': 1, 'color': 'lightblue'},
-        'tarea1': {'nombre': 'tarea 1', 'id': 2, 'color': 'pink'},
-        'tarea2': {'nombre': 'tarea 2', 'id': 3, 'color': 'pink'},
-        'tarea3': {'nombre': 'tarea 3', 'id': 4, 'color': 'pink'},
+        'tarea1': {'nombre': '',        'id': 2, 'color': 'pink'},
+        'tarea2': {'nombre': '',        'id': 3, 'color': 'pink'},
+        'tarea3': {'nombre': '',        'id': 4, 'color': 'pink'},
         'flujo': [
-            {'key': 0, 'text': 'inicio',  'color': 'lightblue', 'loc': '0 150'},
-            {'key': 1, 'text': 'fin',     'color': 'lightblue', 'loc': '450 150'},
-            {'key': 2, 'text': 'tarea 1', 'color': 'pink',      'loc': '300 0'},
-            {'key': 3, 'text': 'tarea 2', 'color': 'pink',      'loc': '150 0'},
-            {'key': 4, 'text': 'tarea 3', 'color': 'pink',      'loc': '150 300'},
+
+            {
+                'key': 0,   # estatico, es el key del trabajo
+                'text': 'inicio', # inicio y fin estatico / despues completar con el nombre del trabajo dinamico
+                'color': 'lightblue', # dinamico
+                'loc': '0 150' # estatico
+            },
+
+            {
+                'key': 1,
+                'text': 'fin',
+                'color': 'lightblue',
+                'loc': '450 150'
+            },
+            {
+                'key': 2,
+                'text': '',
+                'color': 'pink',
+                'loc': '300 0'
+            },
+
+            {'key': 3, 'text': '',        'color': 'pink',      'loc': '150 0'},
+            {'key': 4, 'text': '',        'color': 'pink',      'loc': '150 300'},
         ],
         'conexion': [
             {'key': -2, 'from': 0, 'to': 3},

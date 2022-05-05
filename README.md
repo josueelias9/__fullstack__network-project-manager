@@ -351,6 +351,8 @@ Tener claro que  del objeto linestring anterior, lo unico que pasamos es el "geo
 - En este link https://mygeodata.cloud/converter/kmz-to-json encontraras una herramienta para convertir un archivo KMZ a JSON.
 - finalmente, una vez con el archivo descargado, copiamos las coordenas que ya se encuentran en formato json y lo enviamos a nuestro programa.
 
+# __Testing__
+./manage.py test
 
 ---------------
 # __titulo 1__
