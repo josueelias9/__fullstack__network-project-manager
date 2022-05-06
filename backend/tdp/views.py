@@ -1,3 +1,4 @@
+from curses.ascii import HT
 from django.shortcuts import render
 
 # Create your views here.
@@ -336,11 +337,23 @@ dataProyecto = [
     }
 ]
 
+from django.utils.decorators import method_decorator
+import json
+from django.views.decorators.csrf import csrf_exempt
 
 class PersonaView(View):
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+        
     def get(self, request, *args, **kwargs):
         return JsonResponse(dataPersona, safe=False)
 
+    def post(self, request, *args, **kwargs):
+        dictEntrada = json.loads(request.body)
+        print(type(dictEntrada))
+        return HttpResponse(request.body)
 
 class TrabajoView(View):
     def get(self, request, *args, **kwargs):
