@@ -3,6 +3,7 @@ import './App.css';
 
 import CompNav from './components/compNav';
 import CompAPI from './api/api';
+import CompLogin from './components/compLogin';
 
 import { Routes, Route } from "react-router-dom";
 
@@ -269,6 +270,7 @@ function App() {
       <Routes>
         <Route path="dash" element={<CompDashBoard dataProyecto={dataProyecto} dataTrabajo={dataTrabajo} dataFlujo={dataFlujo} dataPersona={dataPersona} />} />
         <Route path="api" element={<CompAPI />} />
+        <Route path="login" element={<CompLogin />} />
       </Routes>
     </div>
   );

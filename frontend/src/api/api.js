@@ -16,21 +16,30 @@ function CompAPI() {
             let response;
             let json;
             async function APIGet() {
-                response = await fetch(backendAPIPersona);
-                json = await response.json();
-                setDataPersona( await json);
 
-                response = await fetch(backendAPITrabajo);
-                json = await response.json();
-                setDataTrabajo( await json);
+                try {
+                    response = await fetch(backendAPIPersona);
+                    json = await response.json();
+                    setDataPersona(await json);
 
-                response = await fetch(backendAPIFlujo);
-                json = await response.json();
-                setDataFlujo( await json);
+                    response = await fetch(backendAPITrabajo);
+                    json = await response.json();
+                    setDataTrabajo(await json);
 
-                response = await fetch(backendAPIProyecto);
-                json = await response.json();
-                setDataProyecto( await json);
+                    response = await fetch(backendAPIFlujo);
+                    json = await response.json();
+                    setDataFlujo(await json);
+
+                    response = await fetch(backendAPIProyecto);
+                    json = await response.json();
+                    setDataProyecto(await json);
+
+                    document.getElementById("test").innerText = "Se descargo correctamente la informacion de manera local";
+
+                } catch (error) {
+                    document.getElementById("test").innerText = "No hay conexion con la base de datos.";
+                    console.log(error);
+                }
 
             }
             APIGet();
@@ -43,7 +52,10 @@ function CompAPI() {
     localStorage.setItem('dataFlujo', JSON.stringify(dataFlujo));
     localStorage.setItem('dataProyecto', JSON.stringify(dataProyecto));
 
-    return <div>en comp api!!</div>;
+    return <div>
+        <h1>Carga la informacion:</h1>
+        <h4 id="test"></h4>
+    </div>;
 }
 
 export default CompAPI;

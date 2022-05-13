@@ -19,8 +19,8 @@ from django.urls import path
 from .views import PersonaView, TrabajoView, FlujoView, ProyectoView
 
 urlpatterns = [
-    path('dataPersona', PersonaView.as_view(),name='prueba'),
-    path('dataTrabajo', TrabajoView.as_view(),name='prueba'),
-    path('dataFlujo', FlujoView.as_view(),name='prueba'),
-    path('dataProyecto', ProyectoView.as_view(),name='prueba'),
+    path('dataPersona', PersonaView.as_view(), name='prueba'),
+    path('dataTrabajo', TrabajoView.as_view(), name='prueba'),
+    path('dataFlujo', FlujoView.as_view(), name='prueba'),
+    path('dataProyecto', ProyectoView.as_view(), name='prueba'),
 ]
