@@ -10,6 +10,8 @@ El proyecto consiste en desarrollar una plataforma web para la gestion de proyec
 Estructura del proyecto:
 ```
 |-- network-project-manager-for-Telefonica (repositorio)
+    |-- backend
+    |-- frontend
     |-- documentacion (documentacion)
     |-- README.md (documentacion)
     |-- proyecto.png (imagen referencial del proyecto)
@@ -27,33 +29,35 @@ Estructura del proyecto:
 - descargar repositorio
 - Crear entorno virtual llamado _env_
 ```bash
-cd (ruta)/network-project-manager-for-Telefonica/proyecto
-mkdir venv
+cd (ruta)/network-project-manager-for-Telefonica/backend
 python3 -m venv env
 ```
 - ejecutar el siguiente comando para activar el venv del proyecto
 
 ```bash
-source (ruta)/network-project-manager-for-Telefonica/proyecto/env/bin/activate
+source (ruta)/network-project-manager-for-Telefonica/backend/env/bin/activate
 ```
 - ejecute los requirements dentro del venv activado para que se instalen las dependencias
 
 ```bash
-cd (ruta)/network-project-manager-for-Telefonica/proyecto
+cd (ruta)/network-project-manager-for-Telefonica/backend
 pip3 install -r requirements.txt
 ```
 - inicie el servidor
 ```bash
-cd /home/josue/Documentos/GitHub/network-project-manager-for-Telefonica/proyecto/mysite
-
+cd (ruta)/network-project-manager-for-Telefonica/backend
 python3 manage.py runserver
 ```
-- vaya a la siguiente direccion. Aqui es donde se encuentra la pagina principal del proyecto.
-
+- puede inspeccionar el API del backend desde la siguiente ruta
 ```url
 http://127.0.0.1:8000/polls/personaDetail/
 ```
-
+- ahora instale las dependencias del frontend e inicielo
+```bash
+cd (ruta)/network-project-manager-for-Telefonica/frontend
+npm install
+npm start
+```
 listo
 ## Base de datos
 ### *Crea tu base de datos*
@@ -117,90 +121,8 @@ Base de datos:
 - Ubuntu 20.04.3 LTS 64 bits
 - GNOME 3.36.8
 - mysql  Ver 8.0.28-0ubuntu0.20.04.3 for Linux on x86_64 ((Ubuntu))
-# __Anotaciones diarias__
 
-## 2022-02-28
-- Decidí integrar toda la información en un solo sitio. Este sitio es GitHub.
-- tenemos un problema claro: las librerías, lenguajes de programación, frameworks, etc. cambian constantemente. Tenemos que buscar la forma iniciar la edición del proyecto con cosas estáticas, no cambiantes. Ejemplo claro: ¿el proyecto está hecho con Python 2 o 3?
-
-### *Desde 0*
-Estoy volviendo a ver este proyecto después de mucho tiempo (casi dos años). Comenzare por ver como se crea un proyecto con Django.
-
-- https://www.djangoproject.com/
-- “DOCUMENTATION”
-- “Tutorials”
-
-El siguiente link te explica como ver la versión de Python en Windows (py -V).
-
-## 2022-03-01
-Para acotar el alcance del proyecto, todo el desarrollo se hara en ubuntu
-
-### instalando github-desktop para ubuntu
-- Me guie de [este](https://www.youtube.com/watch?v=OwekbYMGi-0) tutorial para instalar github desktop pero tuve problemas a la hora de loguearme. 
-- en [esta](https://gist.github.com/berkorbay/6feda478a00b0432d13f1fc0a50467f1) pagina encontre la solución. Seguí las pautas indicadas por el usuario PaoloRanzi81 realizadas el 22 de febrero del 2021. 
-- No pude concretar porque la versión que instalé previamente estaba todavía en la máquina. Así que tuve que desinstalar la versión de github destop que instalé previamente. 
-- me guie de [este](https://www.youtube.com/watch?v=nQh9ujZGO78) tutorial y aplique el siguiente comando: sudo apt --purge remove github-desktop.
-
-Con esto pidimos satisfatoriamente instalar github desktop para ubuntu.
-### avanzando con django
-el objetivo ahora es hacer el tutoral que viene en la pagina oficial de django
-
-- https://www.djangoproject.com/
-- “DOCUMENTATION”
-- “Tutorials”
-
-antes de lograr ello, piden tengamos venv y pip habilitados. Nos guiamos de la siguiente referencia oficial para ello
-
-- https://www.djangoproject.com/
-- “DOCUMENTATION”
-- “Tutorials”
-- “Quick install guide”
-- “Install a official release”
-
-para instalar pip y venv, no me guie de la guia anterior, sino que use la misma terminal. Cuando quise usar pip y venv, la misma terminal me recomendo instalar ambas librerias con los siguientes comandos:
-
-- apt install python3.8-venv
-- sudo apt install python3-pip
-
-agregar que, estoy viendo en varias paginas que tanto pip como venv vienen instalados con la ultima version de python. Lo que podemos hacer es formatear la PC e instalar la ultima version de python y probar. Asi nos ahorramos todos estos pasos. 
-### *se hizo…*
-- se me ordenaron archivos excel. Se mejoro documentacion
-- se agrego archivo startUML para mejor entendimiento
-- se relaciono correctamente template con view para mejor seguimiento
-### *pendientes identificiados el dia de hoy*
-- los update no funcionan
-- los create no funcionan
-- los delete no funcionan
-- el javascript no funciona
-- eliminar imagen proyecto
-- crear nuevo base template solo para create, delete y update 
-- poner franja animada para template base 1
-- excel exportable, de cualquier modelo, no importa esto
-## 2022-03-02
-- ya funciona update, create y delete
-- se creo template base para create delete y update
-- se creo portada
-- CRUD de geojson operativo
-### *tareas mapeadas pendientes*
-- sedeDetail poner CRUD
-- hacer logica if con sedeDetail para que muestre imagen solo si es que hay tareas
-- hacer mas documentacion. Documentar logica de javascript.
-- revisar base.html. Hacer block “documentacion” para todas las vistas. Se enviara la documentacion a esta seccion. OJO: La fuente de la documentacion esta bien definida por la seecion “entregable” de este proyecto
-## 2022-03-03
-a veces JavaScript se traba. Hay que dar crl + F5 para forzar que cargue nuevamente.
-
-Se genera requirements.txt. Se da por finalizado el proyecto.
-## 2022-03-07
-- hacer que javascript interactue con tabla.
-- que la web sea cargada por un archivo excel
-- hacer que sea independiente las vistas javascript por proyecto
-- agregar zona de cobertura tdp
-## 2022-03-08
-- Se logro integrar MySQL al proyecto. 
-- Documentacion actualizada para poner en produccion la base de datos.
-- crear key en jeojson para enlazarlo con proyecto
 # __Documentación__
-
 
 ```
 |-- network-project-manager-for-Telefonica (nombre del proyecto)
