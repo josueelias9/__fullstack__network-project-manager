@@ -58,8 +58,6 @@ function CompGojs(props) {
     let dataTrabajoFiltrado = props.dataTrabajoFiltrado;
     let dataFlujo = props.dataFlujo;
 
-    let inicio = dataFlujo[0].inicio;
-    let fin = dataFlujo[0].fin;
     let tarea1 = dataFlujo[0].tarea1;
     let tarea2 = dataFlujo[0].tarea2;
     let tarea3 = dataFlujo[0].tarea3;
@@ -101,13 +99,12 @@ function CompGojs(props) {
         tarea3.color = 'green';
 
     flujo = [
-        { key: inicio.id, text: inicio.nombre, color: inicio.color, loc: '0 150' },
-        { key: tarea2.id, text: tarea2.nombre, color: tarea2.color, loc: '150 0' },
-        { key: tarea3.id, text: tarea3.nombre, color: tarea3.color, loc: '150 300' },
+        { key: 0, text: 'inicio', color: 'lightblue', loc: '0 150' },
+        { key: 1, text: 'fin',    color: 'lightblue', loc: '450 150' },
         { key: tarea1.id, text: tarea1.nombre, color: tarea1.color, loc: '300 0' },
-        { key: fin.id, text: fin.nombre, color: fin.color, loc: '450 150' }
+        { key: tarea2.id, text: tarea2.nombre, color: tarea2.color, loc: '150 0' },
+        { key: tarea3.id, text: tarea3.nombre, color: tarea3.color, loc: '150 300' }
     ];
-
 
 
     return <Container><ReactDiagram
