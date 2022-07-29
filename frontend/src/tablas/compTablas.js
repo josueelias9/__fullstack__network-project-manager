@@ -1,5 +1,6 @@
 import Container from 'react-bootstrap/Container'
-import Table from 'react-bootstrap/Table';
+import Table from 'react-bootstrap/Table'
+import Button from 'react-bootstrap/Button'
 
 function CompTablas(props) {
     //const theme = useContext(DataContext);
@@ -51,20 +52,15 @@ function CompTablas(props) {
             <td>{d.fkProyecto}</td>
             <td>{d.descripcion}</td>
             <td>{d.coordenadas}</td>
-            <td>{JSON.stringify(d.inicio)}</td>
-            <td>{JSON.stringify(d.fin)}</td>
-            <td>{JSON.stringify(d.tarea1)}</td>
-            <td>{JSON.stringify(d.tarea2)}</td>
-            <td>{JSON.stringify(d.tarea3)}</td>
             <td>{JSON.stringify(d.flujo)}</td>
             <td>{JSON.stringify(d.conexion)}</td>
         </tr>
     });
 
     return <Container clr="red">
-        <h3>sss</h3>
 
-        <Table striped bordered hover size="sm">
+        <h3>dataProyecto</h3>
+        <Table striped bordered hover size="sm" responsive="sm">
             <thead>
                 <tr>
                     <th>id</th>
@@ -80,7 +76,8 @@ function CompTablas(props) {
                 {a}
             </tbody>
         </Table>
-        <Table striped bordered hover size="sm">
+        <h3>dataTrabajo</h3>
+        <Table striped bordered hover size="sm" responsive="sm">
             <thead>
                 <tr>
                     <th>id</th>
@@ -99,7 +96,7 @@ function CompTablas(props) {
                 {b}
             </tbody>
         </Table>
-
+        <h3>dataPersona</h3>
         <Table striped bordered hover size="sm">
             <thead>
                 <tr>
@@ -113,7 +110,7 @@ function CompTablas(props) {
                 {c}
             </tbody>
         </Table>
-
+        <h3>dataFlujo</h3>
         <Table striped bordered hover size="sm">
             <thead>
                 <tr>
@@ -121,11 +118,6 @@ function CompTablas(props) {
                     <th>fkProyecto</th>
                     <th>descripcion</th>
                     <th>coordenadas</th>
-                    <th>inicio</th>
-                    <th>fin</th>
-                    <th>tarea1</th>
-                    <th>tarea2</th>
-                    <th>tarea3</th>
                     <th>flujo</th>
                     <th>conexion</th>
                 </tr>
@@ -134,6 +126,10 @@ function CompTablas(props) {
                 {d}
             </tbody>
         </Table>
+
+        <Button variant="primary" type="submit">
+                    Ver flujo
+                </Button>
 
     </Container>;
 

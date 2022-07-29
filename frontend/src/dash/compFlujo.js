@@ -43,6 +43,19 @@ function CompFlujo(props) {
                         We'll never share your email with anyone else.
                     </Form.Text>
                 </Form.Group>
+                <style type="text/css">
+                    {`
+                        .btn-primary {
+                          background-color: black;
+                          color: white;
+                        }
+                    
+                        .btn-xxl {
+                          padding: 1rem 1.5rem;
+                          font-size: 1.5rem;
+                        }
+                    `}
+                </style>
                 <Button variant="primary" type="submit">
                     Ver flujo
                 </Button>
@@ -57,7 +70,7 @@ function CompFlujo(props) {
 
 
 function CompTable(props) {
-    
+
     const trabajos = props.data;
     const hola = trabajos.map(
         (trabajo) => (<tr key={trabajo.id}>

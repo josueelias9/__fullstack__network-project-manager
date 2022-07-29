@@ -5,5 +5,6 @@ proyecto/mysite/polls/__pycache__/
 
 backend/env/
 backend/tdp/__pycache__/
-backend/tdp/migrations/__pycache__/
+backend/tdp/migrations/
 backend/backend/__pycache__/
+backend/db.sqlite3

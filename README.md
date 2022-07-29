@@ -1,12 +1,12 @@
-# __Alcance del proyecto__
+# - __Alcance del proyecto__
 El proyecto consiste en desarrollar una plataforma web para la gestion de proyectos de red (ISO layer 1,2 y 3) con el framework django. El nombre del proyecto es: _Plataforma para la Gestion de Proyectos de Red._
 
 ![](./proyecto.png)
 
-# __Entregable__
+# - __Entregable__
 - Software funcional subido en Github: Este es el link https://github.com/josueelias9/network-project-manager-for-Telefonica
 - Guía bien detallada del funcionamiento: En la seccion **Documentos** se explica como esta organizada toda la doucmentaicon.
-# __estructura de folder__
+# - __estructura de folder__
 Estructura del proyecto:
 ```
 |-- network-project-manager-for-Telefonica (repositorio)
@@ -25,7 +25,7 @@ Estructura del proyecto:
                 |-- settings.py (ahi que configurar el DB aqui)
         |-- env (esto lo instalas tu. Esta en los pasos)
 ```
-# __¿Como hacer funcionar el programa?__
+# - __¿Como hacer funcionar el programa?__
 - descargar repositorio
 - Crear entorno virtual llamado _env_
 ```bash
@@ -43,6 +43,25 @@ source (ruta)/network-project-manager-for-Telefonica/backend/env/bin/activate
 cd (ruta)/network-project-manager-for-Telefonica/backend
 pip3 install -r requirements.txt
 ```
+
+- ahora vamos a prepara la base de datos. Ejecutar los siguientes comandos para poder crear la base de datos. 
+```bash
+python3 manage.py makemigrations tdp
+python3 manage.py migrate
+```
+- luego crear super user
+  - user: admin
+  - email: admin@admin.admin
+  - password: admin
+
+- ejecutar el siguiente comando para poder popula la base de datos con datos iniciales.
+```bash
+python3 manage.py makemigrations --empty tdp 
+```
+- Dentro de la carpeta _migrations_ se creara un archivo. Copie segun corresponda el codigo que se encuentra en el archivo _inicializar_modelo.py_ en este file. Luego ejecutar el siguiente comando y vera como se "popula" la base de datos.
+```bash
+python3 manage.py migrate
+```
 - inicie el servidor
 ```bash
 cd (ruta)/network-project-manager-for-Telefonica/backend
@@ -59,10 +78,10 @@ npm install
 npm start
 ```
 listo
-## Base de datos
-### *Crea tu base de datos*
+## -- Base de datos (revisar)
+### --- *Crea tu base de datos*
 crea tu base de datos con _MySQL Workbench_
-### *Enlaza tu base de datos con el protecto*
+### --- *Enlaza tu base de datos con el protecto*
 tener en cuenta que en _setting.py_, tendras que poner los datos que correspondan segun tu base de datos:
 - _django_db_: es el nombre de la base de datos que tu creas
 - _root_: cuando entras a mysql workbench tienes que entrar con un usuario y contraseña. Aqui se pone el nombre del usuario
@@ -82,29 +101,29 @@ DATABASES = {
     }
 }
 ```
-### *crea tablas en tu base de datos*
+### --- *crea tablas en tu base de datos*
 
 ```bash
 python3 manage.py makemigrations
 python3 manage.py migrate
 ```
-### *llena tu base de datos con infomracion*
+### --- *llena tu base de datos con infomracion*
 ejecutar los comandos sql que estan descritos en el archivo _query.sql_
-### *troubleshooting*
+### --- *troubleshooting*
 en caso tengas problemas con la base de datos, ir a carpeta _migrations_ y eliminarla. Luego ejecutar
 ```bash
 python3 manage.py makemigrations
 python3 manage.py migrate
 ```
-# __Definiciones__
+# - __Definiciones__
 - Etapa de desarrollo: todo lo que hace el desarrollador
 - etapa de produccion: evaluacion del usuario
 
-# __Stakeholder__
+# - __Stakeholder__
 - __desarrollador__: trabaja el proyecto
 - __usuario__: es quien usara el proyecto
 
-# __Herramientas__
+# - __Herramientas__
 Lenguajes de programación: 
 - Python
 - JavaScript
@@ -115,14 +134,14 @@ Frameworks:
 
 Base de datos:
 - MySQL Workwench
-## versiones del entorno
+## -- versiones del entorno
 - pip 20.0.2 
 - python 3.8.10
 - Ubuntu 20.04.3 LTS 64 bits
 - GNOME 3.36.8
 - mysql  Ver 8.0.28-0ubuntu0.20.04.3 for Linux on x86_64 ((Ubuntu))
 
-# __Documentación__
+# - __Documentación__
 
 ```
 |-- network-project-manager-for-Telefonica (nombre del proyecto)
@@ -149,12 +168,12 @@ Organizacion de los archivos:
   - __idea en desarrollo.txt__: en desarrollo
   - __packet tracert__: carpeta con archivos PKP
   - __proyecto__: contiene todos los archivos de django y bootstrap
-## Documentacion macro
+## -- Documentacion macro
 La documentacion viene por varios frentes. Hay 2 archivos que definen claramente la documentacion de este proyecto:
 
 - diagrama de flujo del proyecto.mdj
 - varios.xlsx
-## documentacion tecnica
+## -- documentacion tecnica
 Dentro del codigo tambien encontraremos documentacion, pero esta se diferencia de la anterior ya que es mas detallada y tecnica
 
 Los files python usan la siguiente convencion para los comentarios Como primer nivel: 
@@ -175,13 +194,13 @@ y los archivos HTML usan el siguinete
 ```html
 <!-- -->
 ```
-# __templates__
+# - __templates__
 Hablando de templates, hay tres carpetas:
 - CUD: para vistas crear, update y delete
 - list: para vistas list
 - boostrap: para vistas detail
 - principal: la vista principal del proyecto
-## informacion acerca de los html
+## -- informacion acerca de los html
 cada HTML tiene una relacion uno a uno con las vistas. La convencion que se uso (nos guiamos de la guia oficial de django) es poner el nombre del modelo en el nombre del HTML
 
 |nombre template| view |
@@ -211,7 +230,7 @@ con ello creamos el siguiente codigo HTML
 </div>
 ```
 
-# __modelos__
+# - __modelos__
 en el archivo excel hay que poner la relacion de estos modelos
 - Proyecto
 - Persona
@@ -219,12 +238,12 @@ en el archivo excel hay que poner la relacion de estos modelos
 - Sede
 - InterfaceGeojson
 
-# __imagenes__
+# - __imagenes__
 se usa la siguiente convencion para nombrar las imagenes:
 - capa “nombre de capa”.”extension”: no estan relacionadas a ningun modelo
 - trabajo “nombre del trabajo”.”extension”: estan relacionadas al modelo Trabajo 
 
-# __geojson__
+# - __geojson__
 Geojson https://es.wikipedia.org/wiki/GeoJSON define los siguientes tipos:
 
 - Point
@@ -262,21 +281,21 @@ Aquí un geojson que la api de google puede entender. Se ve la definicion de los
 ]
 }
 ```
-## dato
+## -- dato
 Tener claro que  del objeto linestring anterior, lo unico que pasamos es el "geometry". Del objeto linestring anterior,  en el atributo __juego_de_arrays__ del modelo __InterfaceGeojson__  se ingreso lo siguiente:
 
 ```json
 	"geometry": { "type": "LineString", "coordinates": [ [-77.0460123,-12.275521], [-76.996733, -12.100521], [-77.016231, -12.112729] ] }
 ```
-## ¿como generar coordenadas? 
+## -- ¿como generar coordenadas? 
 - En el vide https://www.youtube.com/watch?v=PrxRJp-MZxk se explica como es que se puede hacer trazos en google maps y como exportarlos a KMZ. 
 - En este link https://mygeodata.cloud/converter/kmz-to-json encontraras una herramienta para convertir un archivo KMZ a JSON.
 - finalmente, una vez con el archivo descargado, copiamos las coordenas que ya se encuentran en formato json y lo enviamos a nuestro programa.
 
-# __Testing__
+# - __Testing__
 ./manage.py test
 
 ---------------
-# __titulo 1__
-## titulo 2
-### *titulo 3*
+# - __titulo 1__
+## -- titulo 2
+### --- *titulo 3*

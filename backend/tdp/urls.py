@@ -16,11 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from .views import PersonaView, TrabajoView, FlujoView, ProyectoView
+from .views import PersonaView, ProyectoPagination, TrabajoPagination, TrabajoView, FlujoView, ProyectoView
 
 urlpatterns = [
+    # 
     path('dataPersona', PersonaView.as_view(), name='prueba'),
     path('dataTrabajo', TrabajoView.as_view(), name='prueba'),
     path('dataFlujo', FlujoView.as_view(), name='prueba'),
     path('dataProyecto', ProyectoView.as_view(), name='prueba'),
+    # 
+    path('trabajoPagination', TrabajoPagination.as_view(), name='prueba'),
+    path('proyectoPagination', ProyectoPagination.as_view(), name='prueba'),
+  
 ]

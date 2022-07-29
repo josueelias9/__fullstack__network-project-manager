@@ -40,7 +40,6 @@ function CompAPI() {
                     document.getElementById("test").innerText = "No hay conexion con la base de datos.";
                     console.log(error);
                 }
-
             }
             APIGet();
         }

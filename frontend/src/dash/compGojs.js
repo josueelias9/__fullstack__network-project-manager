@@ -1,5 +1,5 @@
-import * as go from 'gojs';
-import { ReactDiagram } from 'gojs-react';
+import * as go from 'gojs'
+import { ReactDiagram } from 'gojs-react'
 import Container from 'react-bootstrap/Container'
 
 
@@ -55,63 +55,63 @@ function handleModelChange(changes) {
 
 function CompGojs(props) {
 
-    let dataTrabajoFiltrado = props.dataTrabajoFiltrado;
-    let dataFlujo = props.dataFlujo;
-
-    let tarea1 = dataFlujo[0].tarea1;
-    let tarea2 = dataFlujo[0].tarea2;
-    let tarea3 = dataFlujo[0].tarea3;
-    let flujo = dataFlujo[0].flujo;
-    let conexion = dataFlujo[0].conexion;
-
-
-    // tarea 1
-    tarea1.nombre = dataTrabajoFiltrado[0].trabajo + " / " + dataTrabajoFiltrado[0].responsable;
-    if (dataTrabajoFiltrado[0].estado_requiere == 0)
-        tarea1.color = 'grey';
-    else if (dataTrabajoFiltrado[0].estado_activo == 0)
-        tarea1.color = 'blue';
-    else if (dataTrabajoFiltrado[0].estado_finalizado == 0)
-        tarea1.color = 'red';
-    else
-        tarea1.color = 'green';
-
-    // tarea 2
-    tarea2.nombre = dataTrabajoFiltrado[1].trabajo + " / " + dataTrabajoFiltrado[1].responsable;
-    if (dataTrabajoFiltrado[1].estado_requiere == 0)
-        tarea2.color = 'grey';
-    else if (dataTrabajoFiltrado[1].estado_activo == 0)
-        tarea2.color = 'blue';
-    else if (dataTrabajoFiltrado[1].estado_finalizado == 0)
-        tarea2.color = 'red';
-    else
-        tarea2.color = 'green';
-
-    // tarea 3
-    tarea3.nombre = dataTrabajoFiltrado[2].trabajo + " / " + dataTrabajoFiltrado[2].responsable;
-    if (dataTrabajoFiltrado[2].estado_requiere == 0)
-        tarea3.color = 'grey';
-    else if (dataTrabajoFiltrado[2].estado_activo == 0)
-        tarea3.color = 'blue';
-    else if (dataTrabajoFiltrado[2].estado_finalizado == 0)
-        tarea3.color = 'red';
-    else
-        tarea3.color = 'green';
-
-    flujo = [
+    let dataTrabajoFiltrado = props.dataTrabajoFiltrado
+    let dataFlujo = props.dataFlujo
+    let gojs_conexion = dataFlujo[0].conexion
+    // se agrega el inicio y el fin ya que eso no va a cambiar nunca
+    let gojs_flujo = [
         { key: 0, text: 'inicio', color: 'lightblue', loc: '0 150' },
         { key: 1, text: 'fin',    color: 'lightblue', loc: '450 150' },
-        { key: tarea1.id, text: tarea1.nombre, color: tarea1.color, loc: '300 0' },
-        { key: tarea2.id, text: tarea2.nombre, color: tarea2.color, loc: '150 0' },
-        { key: tarea3.id, text: tarea3.nombre, color: tarea3.color, loc: '150 300' }
     ];
 
+    // si dataflujo tiene mas elementos que datatrabajo tenemos que completar 
+    // artificialmente datatrabajo para evitar problemas
+    if(dataFlujo[0].flujo.length > dataTrabajoFiltrado.length){
+        let dif = dataFlujo[0].flujo.length - dataTrabajoFiltrado.length
+        for(let i=0; i <dif;i++){
+            dataTrabajoFiltrado.push(    
+                {
+                    'id': 0,
+                    'fkFlujo': 0,
+                    'fkPersona': 0,
+                    'trabajo': 'completar',
+                    'responsable': 'completar',
+                    'estado_requiere': 0,
+                    'estado_activo': 0,
+                    'estado_finalizado': 0,
+                    'informacion': 'completar',
+                    'sede': 'completar'
+                }
+            )
+        }
+    }
+    for(let i=0; i<dataFlujo[0].flujo.length;i++){
+        // modificando los colores al elemento "flujo" que alimentara a gojs
+        dataFlujo[0].flujo[i].nombre = dataTrabajoFiltrado[i].trabajo + " / " + dataTrabajoFiltrado[i].responsable;
+        if (dataTrabajoFiltrado[i].estado_requiere == 0)
+            dataFlujo[0].flujo[i].color = 'grey';
+        else if (dataTrabajoFiltrado[i].estado_activo == 0)
+            dataFlujo[0].flujo[i].color = 'blue';
+        else if (dataTrabajoFiltrado[i].estado_finalizado == 0)
+            dataFlujo[0].flujo[i].color = 'red';
+        else
+            dataFlujo[0].flujo[i].color = 'green';
+
+        // agregando elementos a "conexion" que alimentara a gojs
+        gojs_flujo.push({ 
+            key: dataFlujo[0].flujo[i].key, 
+            text: dataFlujo[0].flujo[i].nombre, 
+            color: dataFlujo[0].flujo[i].color, 
+            loc: dataFlujo[0].flujo[i].loc 
+        })
+        
+    }
 
     return <Container><ReactDiagram
         initDiagram={initDiagram}
         divClassName='diagram-component'
-        nodeDataArray={flujo}
-        linkDataArray={conexion}
+        nodeDataArray={gojs_flujo}
+        linkDataArray={gojs_conexion}
         onModelChange={handleModelChange}
     /></Container>
         ;
