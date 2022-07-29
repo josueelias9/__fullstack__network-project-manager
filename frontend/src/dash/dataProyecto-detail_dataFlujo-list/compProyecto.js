@@ -9,6 +9,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Container from 'react-bootstrap/esm/Container';
+import ProgressBar from 'react-bootstrap/ProgressBar';
+
 
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 
@@ -75,6 +77,7 @@ function CompProyecto(props) {
             <ListGroup variant="flush">
                 <ListGroup.Item>Cliente: {dataProyectoFiltrado[0].cliente}</ListGroup.Item>
                 <ListGroup.Item>JP: {dataProyectoFiltrado[0].JP}</ListGroup.Item>
+                <ListGroup.Item>Responsable: {dataProyectoFiltrado[0].responsable}</ListGroup.Item>
             </ListGroup>
         </Col>
         <Col>
@@ -97,8 +100,17 @@ function CompProyecto(props) {
                 <CompGoogle />
             </Wrapper>
         </Col>
-    </Row></Container>;
+    </Row>
+    <Row>
+      <AnimatedExample/>
+    </Row>
+    </Container>;
 
 }
+
+function AnimatedExample() {
+    return <ProgressBar animated now={45} />;
+  }
+  
 
 export default CompProyecto;

@@ -48,7 +48,7 @@ function initDiagram() {
  * It is here that you would make any updates to your React state, which is dicussed below.
  */
 function handleModelChange(changes) {
-    console.log(changes);
+    //console.log(changes);
     //alert('GoJS model changed!');
 }
 
@@ -66,10 +66,10 @@ function CompGojs(props) {
 
     // si dataflujo tiene mas elementos que datatrabajo tenemos que completar 
     // artificialmente datatrabajo para evitar problemas
-    console.log(dataTrabajoFiltrado)
+    //console.log(dataTrabajoFiltrado)
 
     if(dataFlujo[0].flujo.length > dataTrabajoFiltrado.length){
-        console.log("dentro")
+        //console.log("dentro")
         let dif = dataFlujo[0].flujo.length - dataTrabajoFiltrado.length
         for(let i=0; i <dif;i++){
             dataTrabajoFiltrado.push(    

@@ -49,42 +49,98 @@ dataPersona = [
     }
 ]
 
+'''
+
+AD/HOMOLOGACION
+'avance':'50%',
+'documentos':'certificado de altura / EPS / prueba covid',
+'contrata':'cobra',
+
+L1/PEXT
+'fibra':'dos hilos',
+'nodo':'Santa Patricia',
+'ODF':'4',
+'sala':'datos',
+'piso':'2-A',
+'BC':'2',
+'SFP':'1Gbps 10km',
+
+L1/UMG
+'CTO':'123abc',
+'metraje':'100m',
+
+L2/CONSULTA
+'resultado':'se puede migrar sobre el recurso actual',
+
+L2/TX
+'equipo':'huawei',
+'puerto':'1/2/1',
+'out VLAN':'110',
+'in VLAN':'10',
+
+L3/PROVISION
+'WAN':'1.1.1.1/30',
+'VRF':'VRF_BCP',
+'SIP loopback':'127.0.0.1/32',
+'QoS':'100 plata / 50 cobre / 20 bronce',
+'BW':'100Mbps',
+'router':'ASR1001',
+
+L3/VALIDACION
+'contrata':'telemarketing',
+'comentario':'acceso al nodo aun no gestionado',
+
+'''
 
 dataTrabajo = [
     {
         'id': 1,
         'fkFlujo': 1,
         'fkPersona': 1,
-        'trabajo': 'UMG',
+        'trabajo': 'L1/UMG',
         'responsable': 'Hector',
         'estado_requiere': 1,
         'estado_activo': 0,
         'estado_finalizado': 0,
-        'informacion': 'esta tarea consiste en tal y tal cosas',
+        'informacion': {
+            'CTO':'123abc',
+            'metraje':'100m',
+        },
         'sede': 'encalada'
     },
     {
         'id': 2,
         'fkFlujo': 1,
         'fkPersona': 2,
-        'trabajo': 'PEXT',
+        'trabajo': 'L1/PEXT',
         'responsable': 'Juan',
         'estado_requiere': 1,
         'estado_activo': 1,
         'estado_finalizado': 0,
-        'informacion': 'esta tarea consiste en tal y tal cosas',
+        'informacion': {
+            'fibra':'dos hilos',
+            'nodo':'Santa Patricia',
+            'ODF':'4',
+            'sala':'datos',
+            'piso':'2-A',
+            'BC':'2',
+            'SFP':'1Gbps 10km',
+        },
         'sede': 'encalada'
     },
     {
         'id': 3,
         'fkFlujo': 1,
         'fkPersona': 3,
-        'trabajo': 'equipos',
+        'trabajo': 'L3/VALIDACION',
         'responsable': 'Marco',
         'estado_requiere': 0,
         'estado_activo': 0,
         'estado_finalizado': 0,
-        'informacion': 'esta tarea consiste en tal y tal cosas',
+        'informacion': {
+            'contrata':'telemarketing',
+            'comentario':'acceso al nodo aun no gestionado',
+        },
         'sede': 'encalada'
     },
     {
@@ -96,7 +152,9 @@ dataTrabajo = [
         'estado_requiere': 0,
         'estado_activo': 1,
         'estado_finalizado': 0,
-        'informacion': 'esta tarea consiste en tal y tal cosas',
+        'informacion': {
+            'temp':'temp',
+        },
         'sede': 'jesus maria'
     },
     {
@@ -108,7 +166,9 @@ dataTrabajo = [
         'estado_requiere': 1,
         'estado_activo': 1,
         'estado_finalizado': 1,
-        'informacion': 'esta tarea consiste en tal y tal cosas',
+        'informacion': {
+            'temp':'temp',
+        },
         'sede': 'jesus maria'
     },
     {
@@ -120,7 +180,9 @@ dataTrabajo = [
         'estado_requiere': 1,
         'estado_activo': 1,
         'estado_finalizado': 0,
-        'informacion': 'esta tarea consiste en tal y tal cosas',
+        'informacion': {
+            'temp':'temp',
+        },
         'sede': 'jesus maria'
     },
     {
@@ -132,7 +194,9 @@ dataTrabajo = [
         'estado_requiere': 0,
         'estado_activo': 1,
         'estado_finalizado': 0,
-        'informacion': 'esta tarea consiste en tal y tal cosas',
+        'informacion': {
+            'temp':'temp',
+        },
         'sede': 'jesus maria'
     },
     {
@@ -144,7 +208,9 @@ dataTrabajo = [
         'estado_requiere': 1,
         'estado_activo': 1,
         'estado_finalizado': 1,
-        'informacion': 'esta tarea consiste en tal y tal cosas',
+        'informacion': {
+            'temp':'temp',
+        },
         'sede': 'jesus maria'
     },
     {
@@ -156,7 +222,9 @@ dataTrabajo = [
         'estado_requiere': 1,
         'estado_activo': 1,
         'estado_finalizado': 0,
-        'informacion': 'esta tarea consiste en tal y tal cosas',
+        'informacion': {
+            'temp':'temp',
+        },
         'sede': 'jesus maria'
     }
 ]
@@ -169,13 +237,13 @@ dataFlujo = [
         'descripcion': 'instalacion de equipos mas FO',
         'coordenadas': [1, 1],
         'flujo': [
-            {'key': 2, 'color': 'pink', 'loc': '300 0'  , 'nombre': 'L1/umg'},
-            {'key': 3, 'color': 'pink', 'loc': '150 0'  , 'nombre': 'L1/pext'},
-            {'key': 4, 'color': 'pink', 'loc': '150 300', 'nombre': 'L2/consulta'},
-            {'key': 5, 'color': 'pink', 'loc': '150 150', 'nombre': 'AD/homologacion'},
-            {'key': 6, 'color': 'pink', 'loc': '300 300', 'nombre': 'L2/tx'},
-            {'key': 7, 'color': 'pink', 'loc': '300 150', 'nombre': 'L3/provision'},
-            {'key': 8, 'color': 'pink', 'loc': '450 150', 'nombre': 'L3/validacion'},
+            {'key': 2, 'color': 'pink', 'loc': '300 0'  , 'nombre': 'L1/UMG'},
+            {'key': 3, 'color': 'pink', 'loc': '150 0'  , 'nombre': 'L1/PEXT'},
+            {'key': 4, 'color': 'pink', 'loc': '150 300', 'nombre': 'L2/CONSULTA'},
+            {'key': 5, 'color': 'pink', 'loc': '150 150', 'nombre': 'AD/HOMOLOGACION'},
+            {'key': 6, 'color': 'pink', 'loc': '300 300', 'nombre': 'L2/TX'},
+            {'key': 7, 'color': 'pink', 'loc': '300 150', 'nombre': 'L3/PROVISION'},
+            {'key': 8, 'color': 'pink', 'loc': '450 150', 'nombre': 'L3/VALIDACION'},
         ],
         'conexion': [
             {'key': -1, 'from': 5, 'to': 3},

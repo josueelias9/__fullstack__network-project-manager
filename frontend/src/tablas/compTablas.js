@@ -1,8 +1,9 @@
 import Container from 'react-bootstrap/Container'
 import Table from 'react-bootstrap/Table'
-import Button from 'react-bootstrap/Button'
+import TriggerExample from '../general/triggerExample'
 
 function CompTablas(props) {
+    let tam = 20
     //const theme = useContext(DataContext);
     const dataProyecto = props.dataProyecto;
     const dataTrabajo = props.dataTrabajo;
@@ -14,9 +15,9 @@ function CompTablas(props) {
         return <tr key={d.id}>
             <td>{d.id}</td>
             <td>{d.fkPersona}</td>
-            <td>{d.cliente}</td>
-            <td>{d.JP}</td>
-            <td>{d.descripcion}</td>
+            <td><TriggerExample tam={tam} hola={d.cliente} /></td>
+            <td><TriggerExample tam={tam} hola={d.JP} /></td>
+            <td><TriggerExample tam={tam} hola={d.descripcion} /></td>
             <td>{d.flujosTotal}</td>
             <td>{d.flujosResueltos}</td>
         </tr>
@@ -27,22 +28,22 @@ function CompTablas(props) {
             <td>{d.id}</td>
             <td>{d.fkFlujo}</td>
             <td>{d.fkPersona}</td>
-            <td>{d.trabajo}</td>
-            <td>{d.responsable}</td>
+            <td><TriggerExample tam={tam} hola={d.trabajo} /></td>
+            <td><TriggerExample tam={tam} hola={d.responsable} /></td>
             <td>{d.estado_requiere}</td>
             <td>{d.estado_activo}</td>
             <td>{d.estado_finalizado}</td>
-            <td>{d.informacion}</td>
-            <td>{d.sede}</td>
+            <td><TriggerExample tam={tam} hola={JSON.stringify(d.informacion)} /></td>
+            <td><TriggerExample tam={tam} hola={d.sede} /></td>
         </tr>
     });
 
     const c = dataPersona.map((d) => {
         return <tr key={d.id}>
             <td>{d.id}</td>
-            <td>{d.nombre}</td>
-            <td>{d.cargo}</td>
-            <td>{d.tipo}</td>
+            <td><TriggerExample tam={tam} hola={d.nombre} /></td>
+            <td><TriggerExample tam={tam} hola={d.cargo} /></td>
+            <td><TriggerExample tam={tam} hola={d.tipo} /></td>
         </tr>
     });
 
@@ -50,15 +51,29 @@ function CompTablas(props) {
         return <tr key={d.id}>
             <td>{d.id}</td>
             <td>{d.fkProyecto}</td>
-            <td>{d.descripcion}</td>
+            <td><TriggerExample tam={tam} hola={d.descripcion} /></td>
             <td>{d.coordenadas}</td>
-            <td>{JSON.stringify(d.flujo)}</td>
-            <td>{JSON.stringify(d.conexion)}</td>
+            <td><TriggerExample tam={tam} hola={JSON.stringify(d.flujo)} /></td>
+            <td><TriggerExample tam={tam} hola={JSON.stringify(d.conexion)} /></td>
         </tr>
     });
 
     return <Container clr="red">
 
+        <h3>dataPersona</h3>
+        <Table striped bordered hover size="sm">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>nombre</th>
+                    <th>cargo</th>
+                    <th>tipo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {c}
+            </tbody>
+        </Table>
         <h3>dataProyecto</h3>
         <Table striped bordered hover size="sm" responsive="sm">
             <thead>
@@ -74,6 +89,22 @@ function CompTablas(props) {
             </thead>
             <tbody>
                 {a}
+            </tbody>
+        </Table>
+        <h3>dataFlujo</h3>
+        <Table striped bordered hover size="sm" responsive="sm">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>fkProyecto</th>
+                    <th>descripcion</th>
+                    <th>coordenadas</th>
+                    <th>flujo</th>
+                    <th>conexion</th>
+                </tr>
+            </thead>
+            <tbody>
+                {d}
             </tbody>
         </Table>
         <h3>dataTrabajo</h3>
@@ -96,40 +127,6 @@ function CompTablas(props) {
                 {b}
             </tbody>
         </Table>
-        <h3>dataPersona</h3>
-        <Table striped bordered hover size="sm">
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>nombre</th>
-                    <th>cargo</th>
-                    <th>tipo</th>
-                </tr>
-            </thead>
-            <tbody>
-                {c}
-            </tbody>
-        </Table>
-        <h3>dataFlujo</h3>
-        <Table striped bordered hover size="sm">
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>fkProyecto</th>
-                    <th>descripcion</th>
-                    <th>coordenadas</th>
-                    <th>flujo</th>
-                    <th>conexion</th>
-                </tr>
-            </thead>
-            <tbody>
-                {d}
-            </tbody>
-        </Table>
-
-        <Button variant="primary" type="submit">
-                    Ver flujo
-                </Button>
 
     </Container>;
 

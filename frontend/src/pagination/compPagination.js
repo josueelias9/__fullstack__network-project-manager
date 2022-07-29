@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Pagination from 'react-bootstrap/Pagination'
-import PageItem from 'react-bootstrap/PageItem'
 import Table from 'react-bootstrap/Table'
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Tooltip from 'react-bootstrap/Tooltip'
+import TriggerExample from '../general/triggerExample'
 
 function CompPagination() {
 
@@ -62,8 +62,8 @@ function CompPagination() {
                 <td>{d.estado_requiere}</td>
                 <td>{d.estado_activo}</td>
                 <td>{d.estado_finalizado}</td>
-                <td><TriggerExample hola={d.informacion}/></td>
-                <td><TriggerExample hola={d.sede}/></td>
+                <td><TriggerExample hola={JSON.stringify(d.informacion)} tam={10}/></td>
+                <td><TriggerExample hola={d.sede} tam={10}/></td>
             </tr>
         );
     } catch (error) {
@@ -97,34 +97,6 @@ function CompPagination() {
         </Container>
     )
 }
-
-
-function TriggerExample(props) {
-    let a = props.hola
-    let b = props.hola
-    let tam = 7
-    if(b.length > tam){
-        b = props.hola.slice(0, tam)
-        b = b + '...'
-    }
-    // console.log(typeof b === 'string')
-    // console.log(b)
-    const renderTooltip = (props) => (
-      <Tooltip id="button-tooltip" {...props}>
-        {a}
-      </Tooltip>
-    );
-  
-    return (
-      <OverlayTrigger
-        placement="bottom"
-        delay={{ show: 250, hide: 400 }}
-        overlay={renderTooltip}
-      >
-        <Button variant="light">{b}</Button>
-      </OverlayTrigger>
-    );
-  }
 
 export default CompPagination
 

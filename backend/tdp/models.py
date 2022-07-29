@@ -45,7 +45,8 @@ class Trabajo(models.Model):
     estado_activo = models.IntegerField(default=0)
     estado_finalizado = models.IntegerField(default=0)
     
-    informacion = models.CharField(max_length=50,default='')
+    informacion = models.JSONField()
+    
     sede = models.CharField(max_length=50,default='')
 
     def __str__(self):

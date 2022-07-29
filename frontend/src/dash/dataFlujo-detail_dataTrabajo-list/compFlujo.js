@@ -1,14 +1,14 @@
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-
 import CompGojs from './compGojs';
 
 import React, { useState } from 'react';
 
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Table from 'react-bootstrap/Table';
-import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import Table from 'react-bootstrap/Table'
+import Container from 'react-bootstrap/Container'
+import TriggerExample from '../../general/triggerExample'
 
 function CompFlujo(props) {
 
@@ -60,15 +60,23 @@ function CompTable(props) {
 
     const trabajos = props.data;
     const hola = trabajos.map(
-        (trabajo) => (<tr key={trabajo.id}>
-            <td>{trabajo.sede}</td>
-            <td>{trabajo.trabajo}</td>
-            <td>{trabajo.responsable}</td>
-            <td>{trabajo.estado_requiere}</td>
-            <td>{trabajo.estado_activo}</td>
-            <td>{trabajo.estado_finalizado}</td>
-            <td>{trabajo.informacion}</td>
-        </tr>)
+        (trabajo) => {
+            let texto = ""
+            let lista_key = Object.keys(trabajo.informacion)
+            for(let i = 0; i<lista_key.length; i ++ ){
+                texto = texto + lista_key[i] + ": "+trabajo.informacion[lista_key[i]]+" / "
+            }
+            console.log(trabajo.informacion)
+            return <tr key={trabajo.id}>
+                <td><TriggerExample hola={trabajo.sede} tam={7}/></td>
+                <td><TriggerExample hola={trabajo.trabajo} tam={7}/></td>
+                <td><TriggerExample hola={trabajo.responsable} tam={7}/></td>
+                <td>{trabajo.estado_requiere}</td>
+                <td>{trabajo.estado_activo}</td>
+                <td>{trabajo.estado_finalizado}</td>
+                <td><TriggerExample hola={texto} tam={7}/></td>
+                </tr>
+        }
     );
 
     return <Container><Table striped bordered hover>
@@ -90,6 +98,5 @@ function CompTable(props) {
         </tbody>
     </Table></Container>
 }
-
 
 export default CompFlujo;
