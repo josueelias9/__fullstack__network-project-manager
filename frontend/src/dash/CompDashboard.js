@@ -13,13 +13,20 @@ function CompDashBoard(props) {
     const dataPersona = props.dataPersona;
 
     return <Container>
-        <h2>Vista portafolio</h2>
+        {/* trabaja principalmente con dataProyecto en forma "lista" (todos los elementos) */}
+        <Container className="p-3 m-3 bg-secondary text-white"><h3>dataProyecto - list</h3></Container>
         <CompListaProyectos dataProyecto={dataProyecto} dataPersona={dataPersona} />
-        <h2>Vista proyecto</h2>
+        
+        {/* trabaja principalmente con dataProyecto en forma "detail" (un elemento) */}
+        <Container className="p-3 m-3 bg-secondary text-white"><h3>dataProyecto - detail / dataFlujo - list</h3></Container>
         <CompProyecto dataProyecto={dataProyecto} dataFlujo={dataFlujo} />
-        <h2>Vista por Flujo</h2>
+        
+        {/* trabaja principalmente con dataFlujo en forma "detail" (un elemento) */}
+        <Container className="p-3 m-3 bg-secondary text-white"><h3>dataFlujo - detail / dataTrabajo - list</h3></Container>
         <CompFlujo dataFlujo={dataFlujo} dataTrabajo={dataTrabajo} />
-        <h2>Backlog</h2>
+        
+        {/* trabaja principalmente con dataPersona en forma "lista" (todos los elementos) */}
+        <Container className="p-3 m-3 bg-secondary text-white"><h3>dataPersona - lista</h3></Container>
         <CompResumen dataPersona={dataPersona} dataTrabajo={dataTrabajo} />
     </Container>;
 }

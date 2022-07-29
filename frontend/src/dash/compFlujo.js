@@ -33,7 +33,7 @@ function CompFlujo(props) {
     }
 
 
-    return <Row>
+    return <Container className="p-3 m-3 bg-light"><Row>
         <Col>
             <Form onSubmit={apla}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -43,19 +43,6 @@ function CompFlujo(props) {
                         We'll never share your email with anyone else.
                     </Form.Text>
                 </Form.Group>
-                <style type="text/css">
-                    {`
-                        .btn-primary {
-                          background-color: black;
-                          color: white;
-                        }
-                    
-                        .btn-xxl {
-                          padding: 1rem 1.5rem;
-                          font-size: 1.5rem;
-                        }
-                    `}
-                </style>
                 <Button variant="primary" type="submit">
                     Ver flujo
                 </Button>
@@ -63,7 +50,7 @@ function CompFlujo(props) {
         </Col>
         <Col><CompTable data={dataTrabajoFiltrado} /></Col>
         <Col><CompGojs dataTrabajoFiltrado={dataTrabajoFiltrado} dataFlujo={dataFlujoFiltrado} /></Col>
-    </Row>;
+    </Row></Container>;
 }
 
 

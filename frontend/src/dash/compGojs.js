@@ -48,7 +48,7 @@ function initDiagram() {
  * It is here that you would make any updates to your React state, which is dicussed below.
  */
 function handleModelChange(changes) {
-    console.log('cambio');
+    console.log(changes);
     //alert('GoJS model changed!');
 }
 
@@ -61,12 +61,15 @@ function CompGojs(props) {
     // se agrega el inicio y el fin ya que eso no va a cambiar nunca
     let gojs_flujo = [
         { key: 0, text: 'inicio', color: 'lightblue', loc: '0 150' },
-        { key: 1, text: 'fin',    color: 'lightblue', loc: '450 150' },
+        { key: 1, text: 'fin',    color: 'lightblue', loc: '600 150' },
     ];
 
     // si dataflujo tiene mas elementos que datatrabajo tenemos que completar 
     // artificialmente datatrabajo para evitar problemas
+    console.log(dataTrabajoFiltrado)
+
     if(dataFlujo[0].flujo.length > dataTrabajoFiltrado.length){
+        console.log("dentro")
         let dif = dataFlujo[0].flujo.length - dataTrabajoFiltrado.length
         for(let i=0; i <dif;i++){
             dataTrabajoFiltrado.push(    
@@ -85,9 +88,10 @@ function CompGojs(props) {
             )
         }
     }
+       
     for(let i=0; i<dataFlujo[0].flujo.length;i++){
         // modificando los colores al elemento "flujo" que alimentara a gojs
-        dataFlujo[0].flujo[i].nombre = dataTrabajoFiltrado[i].trabajo + " / " + dataTrabajoFiltrado[i].responsable;
+        let aux = dataFlujo[0].flujo[i].nombre + " \n " + dataTrabajoFiltrado[i].responsable;
         if (dataTrabajoFiltrado[i].estado_requiere == 0)
             dataFlujo[0].flujo[i].color = 'grey';
         else if (dataTrabajoFiltrado[i].estado_activo == 0)
@@ -100,7 +104,7 @@ function CompGojs(props) {
         // agregando elementos a "conexion" que alimentara a gojs
         gojs_flujo.push({ 
             key: dataFlujo[0].flujo[i].key, 
-            text: dataFlujo[0].flujo[i].nombre, 
+            text: aux, 
             color: dataFlujo[0].flujo[i].color, 
             loc: dataFlujo[0].flujo[i].loc 
         })

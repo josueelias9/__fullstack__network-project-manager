@@ -8,6 +8,7 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import ListGroup from 'react-bootstrap/ListGroup';
+import Container from 'react-bootstrap/esm/Container';
 
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 
@@ -39,7 +40,7 @@ function CompProyecto(props) {
             )
         );
     }
-    console.log(dataProyectoFiltrado[0]);
+    //console.log(dataProyectoFiltrado[0]);
     const hola = dataFlujoFiltrado.map(
         (d) => (
             <tr key={d.id}>
@@ -55,7 +56,7 @@ function CompProyecto(props) {
       };
 
 
-    return <Row>
+    return <Container className="p-3 m-3 bg-light"><Row>
         <Col>
             <Form onSubmit={apla}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -96,7 +97,7 @@ function CompProyecto(props) {
                 <CompGoogle />
             </Wrapper>
         </Col>
-    </Row>;
+    </Row></Container>;
 
 }
 

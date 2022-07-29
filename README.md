@@ -44,17 +44,19 @@ cd (ruta)/network-project-manager-for-Telefonica/backend
 pip3 install -r requirements.txt
 ```
 
-- ahora vamos a prepara la base de datos. Ejecutar los siguientes comandos para poder crear la base de datos. 
+- ahora vamos a preparar la base de datos. Ejecutar los siguientes comandos para poder crear la base de datos. 
 ```bash
 python3 manage.py makemigrations tdp
 python3 manage.py migrate
 ```
-- luego crear super user
-  - user: admin
-  - email: admin@admin.admin
-  - password: admin
-
-- ejecutar el siguiente comando para poder popula la base de datos con datos iniciales.
+- luego crear super user con el siguiente comando y las siguientes indicaciones:
+```bash
+python3 manage.py createsuperuser
+admin
+admin@admin.admin
+admin
+```
+- ejecutar el siguiente comando para poder popular la base de datos con datos iniciales:
 ```bash
 python3 manage.py makemigrations --empty tdp 
 ```
@@ -67,11 +69,11 @@ python3 manage.py migrate
 cd (ruta)/network-project-manager-for-Telefonica/backend
 python3 manage.py runserver
 ```
-- puede inspeccionar el API del backend desde la siguiente ruta
+- Dale una vistazo a los datos del backend desde la siguiente URL. Acceda con las credenciales que fueron configuradas en el paso anterior.
 ```url
-http://127.0.0.1:8000/polls/personaDetail/
+http://127.0.0.1:8000/admin
 ```
-- ahora instale las dependencias del frontend e inicielo
+- ahora instale las dependencias del frontend e inicielo.
 ```bash
 cd (ruta)/network-project-manager-for-Telefonica/frontend
 npm install
@@ -130,7 +132,8 @@ Lenguajes de programación:
 
 Frameworks:
 - Django
-- Bootstrap 
+- React (para este proyecto solo se uso Hooks)
+- React-Bootstrap 
 
 Base de datos:
 - MySQL Workwench

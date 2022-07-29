@@ -1,8 +1,9 @@
 
-import Table from 'react-bootstrap/Table';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+import Table from 'react-bootstrap/Table'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
 import Card from 'react-bootstrap/Card'
+import Container from 'react-bootstrap/Container'
 
 
 function CompResumen(props) {
@@ -36,7 +37,7 @@ function CompResumen(props) {
             </tr>
         }
     });
-    return <Row>
+    return <Container className="p-3 m-3 bg-light"><Row>
         <Col>
             <Table striped bordered hover variant="dark">
                 <thead>
@@ -55,7 +56,7 @@ function CompResumen(props) {
             ¿Como es que se calcula en backlog?
             <Card.Img variant="top" src="backlog.png" />
         </Col>
-    </Row>;
+    </Row></Container>;
 }
 
 export default CompResumen;

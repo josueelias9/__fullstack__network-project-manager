@@ -71,7 +71,7 @@ function CompPagination() {
     }
     // render lo siguiente:
     return (
-        <Container>
+        <Container className="p-3 m-3 bg-light">
             <Table striped bordered hover>
                 <thead>
                     <tr>
