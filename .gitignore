@@ -1,1 +1,10 @@
-venv
+proyecto/env/
+proyecto/mysite/mysite/__pycache__/
+proyecto/mysite/polls/migrations/
+proyecto/mysite/polls/__pycache__/
+
+backend/env/
+backend/tdp/__pycache__/
+backend/tdp/migrations/
+backend/backend/__pycache__/
+backend/db.sqlite3

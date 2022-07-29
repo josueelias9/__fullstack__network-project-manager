@@ -4,7 +4,9 @@ from django.utils import timezone
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy, reverse
 
-
+#########################################################
+# son del ejemplo. Hay que borrarlos
+#########################################################
 class Question(models.Model):
 
     question_text = models.CharField(max_length=200)
@@ -32,8 +34,9 @@ class Choice(models.Model):
         return self.choice_text
 
 
-# =======================================================================
-
+#########################################################
+# modelos mios
+#########################################################
 class Persona(models.Model):
     nombre = models.CharField(max_length=100)
     puesto = models.CharField(max_length=100)

@@ -1,142 +1,166 @@
-# __Alcance del proyecto__
-El proyecto consiste en desarrollar una plataforma web para la gestion de proyectos de red (ISO layer 1,2 y 3) con el framework django. 
+# - __Alcance del proyecto__
+El proyecto consiste en desarrollar una plataforma web para la gestion de proyectos de red (ISO layer 1,2 y 3) con el framework django. El nombre del proyecto es: _Plataforma para la Gestion de Proyectos de Red._
 
-El nombre del proyecto es: _Plataforma para la Gestion de Proyectos de Red._
+![](./proyecto.png)
 
-# __Entregable__
+# - __Entregable__
 - Software funcional subido en Github: Este es el link https://github.com/josueelias9/network-project-manager-for-Telefonica
 - Guía bien detallada del funcionamiento: En la seccion **Documentos** se explica como esta organizada toda la doucmentaicon.
-
-# __¿Como hacer funcionar el programa?__
-- descargar repo con Github desktop
+# - __estructura de folder__
+Estructura del proyecto:
+```
+|-- network-project-manager-for-Telefonica (repositorio)
+    |-- backend
+    |-- frontend
+    |-- documentacion (documentacion)
+    |-- README.md (documentacion)
+    |-- proyecto.png (imagen referencial del proyecto)
+    |-- idea en desarrollo.txt (obviar)
+    |-- packet tracert redes (diseños de red)
+    |-- proyecto (codigo)
+        |-- query.sql (para llenar base de datos)
+        |-- requirements.txt (instalar)
+        |-- mysite (codigo)
+            |-- mysite (codigo)
+                |-- settings.py (ahi que configurar el DB aqui)
+        |-- env (esto lo instalas tu. Esta en los pasos)
+```
+# - __¿Como hacer funcionar el programa?__
+- descargar repositorio
+- Crear entorno virtual llamado _env_
+```bash
+cd (ruta)/network-project-manager-for-Telefonica/backend
+python3 -m venv env
+```
 - ejecutar el siguiente comando para activar el venv del proyecto
 
 ```bash
-source /home/josue/Documentos/GitHub/network-project-manager-for-Telefonica/proyecto/venv/Scripts/activate
+source (ruta)/network-project-manager-for-Telefonica/backend/env/bin/activate
 ```
-
 - ejecute los requirements dentro del venv activado para que se instalen las dependencias
 
 ```bash
-cd /home/josue/Documentos/GitHub/network-project-manager-for-Telefonica/proyecto
+cd (ruta)/network-project-manager-for-Telefonica/backend
+pip3 install -r requirements.txt
+```
 
-pip3 install requirements.txt
+- ahora vamos a prepara la base de datos. Ejecutar los siguientes comandos para poder crear la base de datos. 
+```bash
+python3 manage.py makemigrations tdp
+python3 manage.py migrate
+```
+- luego crear super user
+  - user: admin
+  - email: admin@admin.admin
+  - password: admin
+
+- ejecutar el siguiente comando para poder popula la base de datos con datos iniciales.
+```bash
+python3 manage.py makemigrations --empty tdp 
+```
+- Dentro de la carpeta _migrations_ se creara un archivo. Copie segun corresponda el codigo que se encuentra en el archivo _inicializar_modelo.py_ en este file. Luego ejecutar el siguiente comando y vera como se "popula" la base de datos.
+```bash
+python3 manage.py migrate
 ```
 - inicie el servidor
 ```bash
-cd /home/josue/Documentos/GitHub/network-project-manager-for-Telefonica/proyecto/mysite
-
+cd (ruta)/network-project-manager-for-Telefonica/backend
 python3 manage.py runserver
 ```
-- vaya a la siguiente direccion. Aqui es donde se encuentra la pagina principal del proyecto.
-
+- puede inspeccionar el API del backend desde la siguiente ruta
 ```url
 http://127.0.0.1:8000/polls/personaDetail/
 ```
-
+- ahora instale las dependencias del frontend e inicielo
+```bash
+cd (ruta)/network-project-manager-for-Telefonica/frontend
+npm install
+npm start
+```
 listo
+## -- Base de datos (revisar)
+### --- *Crea tu base de datos*
+crea tu base de datos con _MySQL Workbench_
+### --- *Enlaza tu base de datos con el protecto*
+tener en cuenta que en _setting.py_, tendras que poner los datos que correspondan segun tu base de datos:
+- _django_db_: es el nombre de la base de datos que tu creas
+- _root_: cuando entras a mysql workbench tienes que entrar con un usuario y contraseña. Aqui se pone el nombre del usuario
+- _123456_: contraseña para entrar a workbench
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django_db',
+        'USER': 'root', 
+        'PASSWORD': '123456',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'OPTIONS':{
+            'init_command': "SET sql_mode = 'STRICT_TRANS_TABLES'"
+        }
+    }
+}
+```
+### --- *crea tablas en tu base de datos*
 
-# __Definiciones__
+```bash
+python3 manage.py makemigrations
+python3 manage.py migrate
+```
+### --- *llena tu base de datos con infomracion*
+ejecutar los comandos sql que estan descritos en el archivo _query.sql_
+### --- *troubleshooting*
+en caso tengas problemas con la base de datos, ir a carpeta _migrations_ y eliminarla. Luego ejecutar
+```bash
+python3 manage.py makemigrations
+python3 manage.py migrate
+```
+# - __Definiciones__
 - Etapa de desarrollo: todo lo que hace el desarrollador
 - etapa de produccion: evaluacion del usuario
 
-# __Stakeholder__
+# - __Stakeholder__
 - __desarrollador__: trabaja el proyecto
 - __usuario__: es quien usara el proyecto
 
-# __Herramientas__
+# - __Herramientas__
 Lenguajes de programación: 
 - Python
 - JavaScript
 
 Frameworks:
 - Django
-- Bootstrap (no estoy seguro si es un framework)
+- Bootstrap 
 
 Base de datos:
-- SQLite (viene por defecto con Django, pero esperamos cambiarla por una mejor)
-
-## versiones del entorno
+- MySQL Workwench
+## -- versiones del entorno
 - pip 20.0.2 
 - python 3.8.10
 - Ubuntu 20.04.3 LTS 64 bits
 - GNOME 3.36.8
+- mysql  Ver 8.0.28-0ubuntu0.20.04.3 for Linux on x86_64 ((Ubuntu))
 
-# __Anotaciones diarias__
+# - __Documentación__
 
-## 2022-02-28
-- Decidí integrar toda la información en un solo sitio. Este sitio es GitHub.
-- tenemos un problema claro: las librerías, lenguajes de programación, frameworks, etc. cambian constantemente. Tenemos que buscar la forma iniciar la edición del proyecto con cosas estáticas, no cambiantes. Ejemplo claro: ¿el proyecto está hecho con Python 2 o 3?
+```
+|-- network-project-manager-for-Telefonica (nombre del proyecto)
+    |-- README.md (informacion macro)
+    |-- idea en desarrollo.txt (en desarrollo)
+    |-- packet tracert redes (carpeta con archivos PKP)
+    |-- documentacion (contiene informacion acerca del proyecto)
+        |-- varios.xlsx
+        |-- flujos.mdj
+    |-- proyecto (contiene todos los archivos de django y bootstrap)
+        |-- env (esta carpeta se tiene que crear)
+        |-- query.sql
+        |-- requirements.txt
+        |-- mysite
+            |-- polls (mi aplicacion)
+            |-- manage.py (archivo que levanta el servidor)
+ 
+```
 
-### *Desde 0*
-Estoy volviendo a ver este proyecto después de mucho tiempo (casi dos años). Comenzare por ver como se crea un proyecto con Django.
-
-- https://www.djangoproject.com/
-- “DOCUMENTATION”
-- “Tutorials”
-
-El siguiente link te explica como ver la versión de Python en Windows (py -V).
-
-## 2022-03-01
-Para acotar el alcance del proyecto, todo el desarrollo se hara en ubuntu
-
-### instalando github-desktop para ubuntu
-- Me guie de [este](https://www.youtube.com/watch?v=OwekbYMGi-0) tutorial para instalar github desktop pero tuve problemas a la hora de loguearme. 
-- en [esta](https://gist.github.com/berkorbay/6feda478a00b0432d13f1fc0a50467f1) pagina encontre la solución. Seguí las pautas indicadas por el usuario PaoloRanzi81 realizadas el 22 de febrero del 2021. 
-- No pude concretar porque la versión que instalé previamente estaba todavía en la máquina. Así que tuve que desinstalar la versión de github destop que instalé previamente. 
-- me guie de [este](https://www.youtube.com/watch?v=nQh9ujZGO78) tutorial y aplique el siguiente comando: sudo apt --purge remove github-desktop.
-
-Con esto pidimos satisfatoriamente instalar github desktop para ubuntu.
-### avanzando con django
-el objetivo ahora es hacer el tutoral que viene en la pagina oficial de django
-
-- https://www.djangoproject.com/
-- “DOCUMENTATION”
-- “Tutorials”
-
-antes de lograr ello, piden tengamos venv y pip habilitados. Nos guiamos de la siguiente referencia oficial para ello
-
-- https://www.djangoproject.com/
-- “DOCUMENTATION”
-- “Tutorials”
-- “Quick install guide”
-- “Install a official release”
-
-para instalar pip y venv, no me guie de la guia anterior, sino que use la misma terminal. Cuando quise usar pip y venv, la misma terminal me recomendo instalar ambas librerias con los siguientes comandos:
-
-- apt install python3.8-venv
-- sudo apt install python3-pip
-
-agregar que, estoy viendo en varias paginas que tanto pip como venv vienen instalados con la ultima version de python. Lo que podemos hacer es formatear la PC e instalar la ultima version de python y probar. Asi nos ahorramos todos estos pasos. 
-### *se hizo…*
-- se me ordenaron archivos excel. Se mejoro documentacion
-- se agrego archivo startUML para mejor entendimiento
-- se relaciono correctamente template con view para mejor seguimiento
-### *pendientes identificiados el dia de hoy*
-- los update no funcionan
-- los create no funcionan
-- los delete no funcionan
-- el javascript no funciona
-- eliminar imagen proyecto
-- crear nuevo base template solo para create, delete y update 
-- poner franja animada para template base 1
-- excel exportable, de cualquier modelo, no importa esto
-## 2022-03-02
-- ya funciona update, create y delete
-- se creo template base para create delete y update
-- se creo portada
-- CRUD de geojson operativo
-### *tareas mapeadas pendientes*
-- sedeDetail poner CRUD
-- hacer logica if con sedeDetail para que muestre imagen solo si es que hay tareas
-- hacer mas documentacion. Documentar logica de javascript.
-- revisar base.html. Hacer block “documentacion” para todas las vistas. Se enviara la documentacion a esta seccion. OJO: La fuente de la documentacion esta bien definida por la seecion “entregable” de este proyecto
-## 2022-03-03
-a veces JavaScript se traba. Hay que dar crl + F5 para forzar que cargue nuevamente.
-
-Se genera requirements.txt. Se da por finalizado el proyecto.
-
-# __Documentación__
 Organizacion de los archivos:
 - __network-project-manager-for-Telefonica__: nombre del proyecto
   - __README.md__: informacion macro
@@ -144,12 +168,12 @@ Organizacion de los archivos:
   - __idea en desarrollo.txt__: en desarrollo
   - __packet tracert__: carpeta con archivos PKP
   - __proyecto__: contiene todos los archivos de django y bootstrap
-## Documentacion macro
+## -- Documentacion macro
 La documentacion viene por varios frentes. Hay 2 archivos que definen claramente la documentacion de este proyecto:
 
 - diagrama de flujo del proyecto.mdj
 - varios.xlsx
-## documentacion tecnica
+## -- documentacion tecnica
 Dentro del codigo tambien encontraremos documentacion, pero esta se diferencia de la anterior ya que es mas detallada y tecnica
 
 Los files python usan la siguiente convencion para los comentarios Como primer nivel: 
@@ -168,15 +192,15 @@ y como segundo nivel:
 
 y los archivos HTML usan el siguinete
 ```html
-<!-- –->
+<!-- -->
 ```
-# __templates__
+# - __templates__
 Hablando de templates, hay tres carpetas:
 - CUD: para vistas crear, update y delete
 - list: para vistas list
 - boostrap: para vistas detail
 - principal: la vista principal del proyecto
-## informacion acerca de los html
+## -- informacion acerca de los html
 cada HTML tiene una relacion uno a uno con las vistas. La convencion que se uso (nos guiamos de la guia oficial de django) es poner el nombre del modelo en el nombre del HTML
 
 |nombre template| view |
@@ -206,7 +230,7 @@ con ello creamos el siguiente codigo HTML
 </div>
 ```
 
-# __modelos__
+# - __modelos__
 en el archivo excel hay que poner la relacion de estos modelos
 - Proyecto
 - Persona
@@ -214,12 +238,12 @@ en el archivo excel hay que poner la relacion de estos modelos
 - Sede
 - InterfaceGeojson
 
-# __imagenes__
+# - __imagenes__
 se usa la siguiente convencion para nombrar las imagenes:
 - capa “nombre de capa”.”extension”: no estan relacionadas a ningun modelo
 - trabajo “nombre del trabajo”.”extension”: estan relacionadas al modelo Trabajo 
 
-# __geojson__
+# - __geojson__
 Geojson https://es.wikipedia.org/wiki/GeoJSON define los siguientes tipos:
 
 - Point
@@ -257,13 +281,21 @@ Aquí un geojson que la api de google puede entender. Se ve la definicion de los
 ]
 }
 ```
-## dato
-Tener claro que a la hora de crear un objeto geojson, lo unico que pasamos es el "geometry". Del objeto linestring anterior,  en el atributo __juego_de_arrays__ del modelo __InterfaceGeojson__  se ingreso lo siguiente:
+## -- dato
+Tener claro que  del objeto linestring anterior, lo unico que pasamos es el "geometry". Del objeto linestring anterior,  en el atributo __juego_de_arrays__ del modelo __InterfaceGeojson__  se ingreso lo siguiente:
 
 ```json
 	"geometry": { "type": "LineString", "coordinates": [ [-77.0460123,-12.275521], [-76.996733, -12.100521], [-77.016231, -12.112729] ] }
 ```
-## ¿como generar coordenadas? 
+## -- ¿como generar coordenadas? 
 - En el vide https://www.youtube.com/watch?v=PrxRJp-MZxk se explica como es que se puede hacer trazos en google maps y como exportarlos a KMZ. 
 - En este link https://mygeodata.cloud/converter/kmz-to-json encontraras una herramienta para convertir un archivo KMZ a JSON.
 - finalmente, una vez con el archivo descargado, copiamos las coordenas que ya se encuentran en formato json y lo enviamos a nuestro programa.
+
+# - __Testing__
+./manage.py test
+
+---------------
+# - __titulo 1__
+## -- titulo 2
+### --- *titulo 3*
