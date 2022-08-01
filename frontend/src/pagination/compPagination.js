@@ -10,8 +10,8 @@ import TriggerExample from '../general/triggerExample'
 function CompPagination() {
 
     // endpoints del backend donde se se puede aplicar pagination
-    const trabajoPagination = "http://127.0.0.1:8000/tdp/trabajoPagination?page="
-    const proyectoPagination = "http://127.0.0.1:8000/tdp/proyectoPagination?page="
+    const trabajoPagination = "http://127.0.0.1:8000/tdp/TrabajoPagination?page="
+    const proyectoPagination = "http://127.0.0.1:8000/tdp/ProyectoPagination?page="
 
     // definimos dos useState: uno para los datos que traeremos del endpoint:
     const [data, setData] = useState()

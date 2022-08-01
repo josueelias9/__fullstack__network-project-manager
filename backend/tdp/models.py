@@ -33,6 +33,9 @@ class Flujo(models.Model):
     flujo = models.JSONField()
     conexion = models.JSONField()
 
+    def __str__(self):
+        return self.descripcion
+
 
 class Trabajo(models.Model):
     fkFlujo = models.IntegerField(default=0)

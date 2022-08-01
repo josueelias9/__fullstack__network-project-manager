@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-const backendAPIPersona = "http://127.0.0.1:8000/tdp/dataPersona";
-const backendAPITrabajo = "http://127.0.0.1:8000/tdp/dataTrabajo";
-const backendAPIFlujo = "http://127.0.0.1:8000/tdp/dataFlujo";
-const backendAPIProyecto = "http://127.0.0.1:8000/tdp/dataProyecto";
+const backendAPIPersona = "http://127.0.0.1:8000/tdp/PersonaView";
+const backendAPITrabajo = "http://127.0.0.1:8000/tdp/TrabajoView";
+const backendAPIFlujo = "http://127.0.0.1:8000/tdp/FlujoView";
+const backendAPIProyecto = "http://127.0.0.1:8000/tdp/ProyectoView";
 
 function CompAPI() {
     const [dataPersona, setDataPersona] = useState('');

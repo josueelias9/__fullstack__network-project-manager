@@ -16,16 +16,24 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from .views import PersonaView, ProyectoPagination, TrabajoPagination, TrabajoView, FlujoView, ProyectoView
-
+from .views import PersonaView, ProyectoView, FlujoView, TrabajoView
+from .views import ProyectoPagination, TrabajoPagination
+from .views import PersonaFiltro, ProyectoFiltro, FlujoFiltro
+from .views import PersonaCRUD
 urlpatterns = [
-    # 
-    path('dataPersona', PersonaView.as_view(), name='prueba'),
-    path('dataTrabajo', TrabajoView.as_view(), name='prueba'),
-    path('dataFlujo', FlujoView.as_view(), name='prueba'),
-    path('dataProyecto', ProyectoView.as_view(), name='prueba'),
-    # 
-    path('trabajoPagination', TrabajoPagination.as_view(), name='prueba'),
-    path('proyectoPagination', ProyectoPagination.as_view(), name='prueba'),
-  
+    # retorna tola la base de datos por modelo
+    path('PersonaView', PersonaView.as_view(), name='prueba'),
+    path('ProyectoView', ProyectoView.as_view(), name='prueba'),
+    path('FlujoView', FlujoView.as_view(), name='prueba'),
+    path('TrabajoView', TrabajoView.as_view(), name='prueba'),
+    # retorna segun paginacion
+    path('ProyectoPagination', ProyectoPagination.as_view(), name='prueba'),
+    path('TrabajoPagination', TrabajoPagination.as_view(), name='prueba'),
+    # filtra por id el modelo
+    path('PersonaFiltro',PersonaFiltro.as_view(),name='prueba'),
+    path('ProyectoFiltro',ProyectoFiltro.as_view(),name='prueba'),
+    path('FlujoFiltro',FlujoFiltro.as_view(),name='prueba'),
+    # para el crud
+    path('PersonaCRUD',PersonaCRUD.as_view(),name='prueba')
+
 ]
