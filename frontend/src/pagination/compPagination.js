@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Pagination from 'react-bootstrap/Pagination'
 import Table from 'react-bootstrap/Table'
 import Container from 'react-bootstrap/Container'
-import Button from 'react-bootstrap/Button'
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
-import Tooltip from 'react-bootstrap/Tooltip'
 import TriggerExample from '../general/triggerExample'
 
 function CompPagination() {

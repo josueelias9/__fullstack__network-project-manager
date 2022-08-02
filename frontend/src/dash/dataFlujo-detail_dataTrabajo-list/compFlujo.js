@@ -68,13 +68,13 @@ function CompTable(props) {
             }
             console.log(trabajo.informacion)
             return <tr key={trabajo.id}>
-                <td><TriggerExample hola={trabajo.sede} tam={7}/></td>
-                <td><TriggerExample hola={trabajo.trabajo} tam={7}/></td>
-                <td><TriggerExample hola={trabajo.responsable} tam={7}/></td>
+                <td><TriggerExample tam={7} hola={trabajo.sede} /></td>
+                <td><TriggerExample tam={7} hola={trabajo.trabajo} /></td>
+                <td><TriggerExample tam={7} hola={trabajo.responsable} /></td>
                 <td>{trabajo.estado_requiere}</td>
                 <td>{trabajo.estado_activo}</td>
                 <td>{trabajo.estado_finalizado}</td>
-                <td><TriggerExample hola={texto} tam={7}/></td>
+                <td><TriggerExample tam={7} hola={texto} /></td>
                 </tr>
         }
     );

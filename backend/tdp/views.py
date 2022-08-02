@@ -75,9 +75,9 @@ class PersonaFiltro(View):
         dict_response = {}
         # if(isinstance(id_persona,int)):
         try:
-            dict_response['filtro_persona'] = list(
+            dict_response['detalle'] = list(
                 Persona.objects.filter(id=int(id_persona)).values())
-            dict_response['filtro_proyectos'] = list(
+            dict_response['lista'] = list(
                 Proyecto.objects.filter(fkPersona=int(id_persona)).values())
             dict_response['info'] = 'todo bien'
         except:
@@ -92,9 +92,9 @@ class ProyectoFiltro(View):
         dict_response = {}
         # validar si el parametro obtenido del URL es un numero
         try:
-            dict_response['filtro_proyecto'] = list(
+            dict_response['detalle'] = list(
                 Proyecto.objects.filter(id=int(id_proyecto)).values())
-            dict_response['filtro_flujos'] = list(
+            dict_response['lista'] = list(
                 Flujo.objects.filter(fkProyecto=int(id_proyecto)).values())
             dict_response['info'] = 'todo bien'
         except:
@@ -108,9 +108,9 @@ class FlujoFiltro(View):
         id_flujo = request.GET.get('id')
         dict_response = {}
         try:
-            dict_response['filtro_flujo'] = list(
+            dict_response['detalle'] = list(
                 Flujo.objects.filter(id=int(id_flujo)).values())
-            dict_response['filtro_trabajos'] = list(
+            dict_response['lista'] = list(
                 Trabajo.objects.filter(fkFlujo=int(id_flujo)).values())
             dict_response['info'] = 'todo bien'
         except:
@@ -143,22 +143,23 @@ class PersonaCRUD(View):
 
     def get(self, request, *args, **kwargs):
         dict_response = {}
+        id=request.GET.get('id')
         dict_response['info'] = 'get ok!'
-        dict_request = json.loads(request.body)
-        dict_response['dd'] = list(
-            Persona.objects.filter(id=dict_request['id']).values())
+        dict_response['persona'] = list(
+            Persona.objects.filter(id=id).values())
         return JsonResponse(dict_response)
     # U
 
     def put(self, request, *args, **kwargs):
         dict_request = json.loads(request.body)
-        id_a_modificar = dict_request['id']
+        #id_a_modificar = dict_request['id']
         dict_response = {}
         dict_response['info'] = 'put ok'
-        Persona.objects.filter(id=id_a_modificar).update(
-            nombre=dict_request['nombre'],
-            cargo=dict_request['cargo'],
-            tipo=dict_request['tipo'],)
+        print(dict_request)
+        #Persona.objects.filter(id=id_a_modificar).update(
+        #    nombre=dict_request['nombre'],
+        #    cargo=dict_request['cargo'],
+        #    tipo=dict_request['tipo'],)
         return JsonResponse(dict_response)
     # D
 
