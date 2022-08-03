@@ -9,84 +9,56 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Table from 'react-bootstrap/Table';
+import Alert from 'react-bootstrap/Alert'
 
-function Casa2() {
-
-    const [persona, setPersona] = useState()
-    const [proyectos, setProyectos] = useState()
-    const [titulos, setTitulos] = useState()
-
-    async function get() {
-        // endpoint a trabajar
-        let main_endpoint = "http://127.0.0.1:8000/tdp/PersonaFiltro"
-        // ver como automatizamos esto
-        let id = 7
-        // formando enpoint real
-        let endpoint = main_endpoint + "?id=" + id
-        // peticion via fetch
-        let response = await fetch(endpoint)
-        let object = await response.json()
+function Detalle(props) {
+    let object = props.object
+    if (typeof object === "undefined") {
+        let variant = 'danger'
+        return <Alert key={variant} variant={variant}>
+            El props entregado a este componente no esta definido.
+        </Alert>
+    } else {
         // html de "detalle" (singular)
         let keys = Object.keys(object.detalle[0])
         let html_detalle = keys.map((key) => {
             return <ListGroup.Item key={key}><strong>{key}</strong>: {object.detalle[0][key]}</ListGroup.Item>
         })
-        setPersona(html_detalle)
-        // html de "lista" (plural)
-        let html_lista = object.lista.map((proyecto) => {
-            let keys_proyecto = Object.keys(proyecto)
-            console.log("-------------")
-            let f = keys_proyecto.map((key_proyecto) => {
-                // tener en cuenta que si si proyecto[key_proyecto] es un array[] o un objeto{} 
-                // tenemos que aplicar stringify para no tener problemas. Al aplicar typeof
-                // javascript detecta la lista[] y objecto{} como tipo "object"
-                if(typeof proyecto[key_proyecto] ==='object'){
-                    return <td key={key_proyecto}>{JSON.stringify(proyecto[key_proyecto])}</td>
-                }else{                    
-                    return <td key={key_proyecto}>{proyecto[key_proyecto]}</td>
-                }
-            })
-            return <tr key={proyecto.id}>
-                {f}
-                <td><Button>detail</Button></td>
-            </tr>
-        })
-        setProyectos(html_lista)
-        // ahora vamos por los titulos
-        let html_titulos = Object.keys(object.lista[0])
-        let html_proyecto_header = html_titulos.map((titulo) => {
-            return <th key={titulo}>{titulo}</th>
-        })
-        setTitulos(html_proyecto_header)
+        return <ListGroup variant="flush">
+            {html_detalle}
+        </ListGroup>
+    }
+}
 
+function Casa2() {
+
+    const [miObjeto, setMiObjeto] = useState()
+
+    async function get() {
+        // endpoint a trabajar
+        let PersonaFiltro_endpoint = "http://127.0.0.1:8000/tdp/PersonaFiltro"
+        // ver como automatizamos esto
+        let id = 8
+        // formando enpoint real
+        let endpoint = PersonaFiltro_endpoint + "?id=" + id
+        // peticion via fetch
+        let response = await fetch(endpoint)
+        let object = await response.json()
+        setMiObjeto(object)
     }
 
     return <Container>
         <Row><h2>este es el titulo</h2></Row>
         <Row>
             <Col sm={4}>
-
-                <ListGroup variant="flush">
-                    {persona}
-                </ListGroup>
+                <Detalle object={miObjeto} />
                 <h2>
                     <Button onClick={get}>boton</Button>
                     <Casa />
                 </h2>
             </Col>
             <Col sm={8}>
-
-                <Table striped bordered hover>
-                    <thead>
-                        <tr>
-                            {titulos}
-                            <th>detalle</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {proyectos}
-                    </tbody>
-                </Table>
+                <Tabla object={miObjeto} />
             </Col>
         </Row>
         <Row><h2>Segunda parte</h2></Row>
@@ -98,14 +70,59 @@ function Casa2() {
                 lista
             </Col>
         </Row>
-        <Asd/>
     </Container>
 }
 
 
-function Asd() {
-    console.log("")
-    return <div></div>
+function Tabla(props) {
+
+    let object = props.object
+
+    if (typeof object === "undefined") {
+        let variant = 'danger'
+        return <Alert key={variant} variant={variant}>
+            El props entregado a este componente no esta definido.
+        </Alert>
+
+    } else {
+        // html de "lista" (plural)
+        let html_lista = object.lista.map((proyecto) => {
+            let keys_proyecto = Object.keys(proyecto)
+            console.log("-------------")
+            let f = keys_proyecto.map((key_proyecto) => {
+                // tener en cuenta que si si proyecto[key_proyecto] es un array[] o un objeto{} 
+                // tenemos que aplicar stringify para no tener problemas. Al aplicar typeof
+                // javascript detecta la lista[] y objecto{} como tipo "object"
+                if (typeof proyecto[key_proyecto] === 'object') {
+                    return <td key={key_proyecto}>{JSON.stringify(proyecto[key_proyecto])}</td>
+                } else {
+                    return <td key={key_proyecto}>{proyecto[key_proyecto]}</td>
+                }
+            })
+            return <tr key={proyecto.id}>
+                {f}
+                <td><Button>detail</Button></td>
+            </tr>
+        })
+        // ahora vamos por los titulos
+        let html_titulos = Object.keys(object.lista[0])
+        let html_proyecto_header = html_titulos.map((titulo) => {
+            return <th key={titulo}>{titulo}</th>
+        })
+
+        return <Table striped bordered hover>
+            <thead>
+                <tr>
+                    {html_proyecto_header}
+                    <th>detalle</th>
+                </tr>
+            </thead>
+            <tbody>
+                {html_lista}
+            </tbody>
+        </Table>
+    }
+
 }
 
 function Casa() {
