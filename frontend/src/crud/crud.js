@@ -20,7 +20,7 @@ function Casa2() {
         // endpoint a trabajar
         let main_endpoint = "http://127.0.0.1:8000/tdp/PersonaFiltro"
         // ver como automatizamos esto
-        let id = 8
+        let id = 7
         // formando enpoint real
         let endpoint = main_endpoint + "?id=" + id
         // peticion via fetch
@@ -35,14 +35,15 @@ function Casa2() {
         // html de "lista" (plural)
         let html_lista = object.lista.map((proyecto) => {
             let keys_proyecto = Object.keys(proyecto)
+            console.log("-------------")
             let f = keys_proyecto.map((key_proyecto) => {
                 // tener en cuenta que si si proyecto[key_proyecto] es un array[] o un objeto{} 
                 // tenemos que aplicar stringify para no tener problemas. Al aplicar typeof
                 // javascript detecta la lista[] y objecto{} como tipo "object"
                 if(typeof proyecto[key_proyecto] ==='object'){
-                    return <td>{JSON.stringify(proyecto[key_proyecto])}</td>
+                    return <td key={key_proyecto}>{JSON.stringify(proyecto[key_proyecto])}</td>
                 }else{                    
-                    return <td>{proyecto[key_proyecto]}</td>
+                    return <td key={key_proyecto}>{proyecto[key_proyecto]}</td>
                 }
             })
             return <tr key={proyecto.id}>
