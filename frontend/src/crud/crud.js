@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/esm/Container';
 import Form from 'react-bootstrap/Form';
@@ -10,13 +10,27 @@ import Row from 'react-bootstrap/Row'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Table from 'react-bootstrap/Table';
 import Alert from 'react-bootstrap/Alert'
+import TriggerExample from '../general/triggerExample';
+
+const ThemeContext = React.createContext();
+
 
 function Detalle(props) {
+
+    const [macro, setMacro]=useContext(ThemeContext)
+
+    console.log("dentro de main")
+    console.log(macro)
+    console.log("fuera de main")
+
+
     let object = props.object
-    if (typeof object === "undefined") {
+    if (typeof object === "undefined" || object.detalle.length==0) {
         let variant = 'danger'
         return <Alert key={variant} variant={variant}>
-            El props entregado a este componente no esta definido.
+            Posibles problemas:
+            <li>El props entregado a este componente no esta definido.</li>
+            <li>El atributo "detalle" esta vacio</li>
         </Alert>
     } else {
         // html de "detalle" (singular)
@@ -32,71 +46,88 @@ function Detalle(props) {
 
 function Casa2() {
 
-    const [miObjeto, setMiObjeto] = useState()
+    const [persona, setPersona] = useState()
+    const [proyecto, setProyecto] = useState()
+    
+    
+    const [macro, setMacro] = useState("defaulT!!")
 
     async function get() {
         // endpoint a trabajar
-        let PersonaFiltro_endpoint = "http://127.0.0.1:8000/tdp/PersonaFiltro"
+        let PersonaFiltro_endpoint = "http://127.0.0.1:8000/tdp/PersonaFiltro?id=5"
+        let ProyectoFiltro_endpoint = "http://127.0.0.1:8000/tdp/ProyectoFiltro?id=10"
+        let TrabajoFiltro_endpoint = "http://127.0.0.1:8000/tdp/TrabajoFiltro?id=1"
         // ver como automatizamos esto
-        let id = 8
-        // formando enpoint real
-        let endpoint = PersonaFiltro_endpoint + "?id=" + id
         // peticion via fetch
-        let response = await fetch(endpoint)
-        let object = await response.json()
-        setMiObjeto(object)
+        let persona_response = await fetch(PersonaFiltro_endpoint)
+        let persona_object = await persona_response.json()
+        setPersona(persona_object)
+
+        let proyecto_response = await fetch(ProyectoFiltro_endpoint)
+        let proyecto_object = await proyecto_response.json()
+        setProyecto(proyecto_object)
     }
 
-    return <Container>
+    return <ThemeContext.Provider value={[macro, setMacro]}>
+    <Container>
         <Row><h2>este es el titulo</h2></Row>
         <Row>
             <Col sm={4}>
-                <Detalle object={miObjeto} />
+                <Detalle object={persona} />
                 <h2>
                     <Button onClick={get}>boton</Button>
                     <Casa />
                 </h2>
             </Col>
             <Col sm={8}>
-                <Tabla object={miObjeto} />
+                <Tabla object={persona} />
             </Col>
         </Row>
         <Row><h2>Segunda parte</h2></Row>
         <Row>
             <Col sm={4}>
-                detalle
+            <Detalle object={proyecto} />
+                <h2>
+                    <Button onClick={get}>boton</Button>
+                    <Casa />
+                </h2>
             </Col>
             <Col sm={8}>
-                lista
+            <Tabla object={proyecto} />
             </Col>
         </Row>
     </Container>
+    </ThemeContext.Provider>
 }
 
 
 function Tabla(props) {
+    const [macro, setMacro] = useContext(ThemeContext);
+    setMacro("oeoeoe")
+    console.log(macro)
 
     let object = props.object
 
-    if (typeof object === "undefined") {
+    if (typeof object === "undefined" || object.lista.length==0 ) {
         let variant = 'danger'
         return <Alert key={variant} variant={variant}>
-            El props entregado a este componente no esta definido.
+            Posibles problemas:
+            <li>El props entregado a este componente no esta definido.</li>
+            <li>El atributo "lista" esta vacio</li>
         </Alert>
 
     } else {
         // html de "lista" (plural)
         let html_lista = object.lista.map((proyecto) => {
             let keys_proyecto = Object.keys(proyecto)
-            console.log("-------------")
             let f = keys_proyecto.map((key_proyecto) => {
                 // tener en cuenta que si si proyecto[key_proyecto] es un array[] o un objeto{} 
                 // tenemos que aplicar stringify para no tener problemas. Al aplicar typeof
                 // javascript detecta la lista[] y objecto{} como tipo "object"
                 if (typeof proyecto[key_proyecto] === 'object') {
-                    return <td key={key_proyecto}>{JSON.stringify(proyecto[key_proyecto])}</td>
+                    return <td key={key_proyecto}>{<TriggerExample tam={20} hola={JSON.stringify(proyecto[key_proyecto])}/>}</td>
                 } else {
-                    return <td key={key_proyecto}>{proyecto[key_proyecto]}</td>
+                    return <td key={key_proyecto}>{<TriggerExample tam={20} hola={proyecto[key_proyecto]}/>}</td>
                 }
             })
             return <tr key={proyecto.id}>
@@ -157,13 +188,11 @@ function Casa() {
 
     const handleClose = () => {
         setShow(false)
-        console.log("sali")
         get()
 
     };
     const handleShow = () => {
         setShow(true)
-        console.log("entre")
     };
 
     return (

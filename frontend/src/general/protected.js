@@ -4,8 +4,8 @@ import CompTablas from '../tablas/compTablas'
 import CompAPI from '../api/api'
 import Carousel from 'react-bootstrap/Carousel'
 import CompDashBoard from '../dash/CompDashboard'
-import React from 'react'
 import Card from 'react-bootstrap/Card'
+import React from 'react'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Casa2 from '../crud/crud'
@@ -20,6 +20,7 @@ import {
     Outlet,
 } from "react-router-dom";
 import Container from 'react-bootstrap/esm/Container'
+import Button from 'react-bootstrap/esm/Button'
 
 
 
@@ -63,6 +64,18 @@ function Layout() {
     return (
         <div>
             <AuthStatus />
+
+            <Card className="bg-dark text-white">
+                <Card.Img src="capa aplicacion.jpg" alt="Card image" width="684" height="270"/>
+                <Card.ImgOverlay>
+                    <Card.Title>Card title</Card.Title>
+                    <Card.Text>
+                        This is a wider card with supporting text below as a natural lead-in
+                        to additional content. This content is a little bit longer.
+                    </Card.Text>
+                    <Card.Text>Last updated 3 mins ago</Card.Text>
+                </Card.ImgOverlay>
+            </Card>
             <ul>
                 <li>
                     <Link to="/">Public Page</Link>
@@ -111,13 +124,13 @@ function AuthStatus() {
     return (
         <p>
             Welcome {auth.user}!{" "}
-            <button
+            <Button
                 onClick={() => {
                     auth.signout(() => navigate("/"));
                 }}
             >
                 Sign out
-            </button>
+            </Button>
         </p>
     );
 }
@@ -160,7 +173,7 @@ function LoginPage() {
                 <label>
                     Username: <input name="username" type="text" />
                 </label>{" "}
-                <button type="submit">Login</button>
+                <Button type="submit">Login</Button>
             </form>
         </div>
     );
@@ -211,70 +224,70 @@ function ProtectedPage() {
     return (
         <Container>
             <Container className="p-3 m-3">
-            <Row xs={2} md={3} className="g-4">
-                <Col>
-                    <Card>
-                        <Card.Img variant="top" src="capa acceso.jpg" width="160" height="210" />
-                        <Card.Body>
-                            <Card.Title>Vista API</Card.Title>
-                            <Card.Text>
-                                Sincroniza tus datos con el servidor para tener la informacion
-                                mas actualizada.<br></br>
-                                <Link to="/protected/api">acceder</Link>
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </Col>
-                <Col>
-                    <Card>
-                        <Card.Img variant="top" src="capa fisica.jpg" width="160" height="210" />
-                        <Card.Body>
-                            <Card.Title>Vista dash</Card.Title>
-                            <Card.Text>
-                                Para tener un vistazo general de como se relacionanan
-                                las distintas bases de datos. Se requiere tener la base local actualizada.<br></br>
-                                <Link to="/protected/dash">acceder</Link>
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </Col>
-                <Col>
-                    <Card>
-                        <Card.Img variant="top" src="capa aplicacion.jpg" width="160" height="210"/>
-                        <Card.Body>
-                            <Card.Title>Tablas</Card.Title>
-                            <Card.Text>
-                                Para revisar todos los proyectos, trabajos, flujos, etc.<br></br>
-                                <Link to="/protected/tablas">acceder</Link>
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </Col>
-                <Col>
-                    <Card>
-                        <Card.Img variant="top" src="capa aplicacion.jpg" width="160" height="210" />
-                        <Card.Body>
-                            <Card.Title>Paginacion</Card.Title>
-                            <Card.Text>
-                                Descarga los reportes que nececesitas.<br></br>
-                                <Link to="/protected/pagination">acceder</Link>
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </Col>
-                <Col>
-                    <Card>
-                        <Card.Img variant="top" src="descanso.jpg" width="160" height="210" />
-                        <Card.Body>
-                            <Card.Title>CRUD</Card.Title>
-                            <Card.Text>
-                                Crea, modifica o elimina proyectos, flujos y trabajos.<br></br>
-                                <Link to="/protected/casa">acceder</Link>
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </Col>
-            </Row>
+                <Row xs={2} md={3} className="g-4">
+                    <Col>
+                        <Card>
+                            <Card.Img variant="top" src="capa acceso.jpg" width="160" height="210" />
+                            <Card.Body>
+                                <Card.Title>Vista API</Card.Title>
+                                <Card.Text>
+                                    Sincroniza tus datos con el servidor para tener la informacion
+                                    mas actualizada.<br></br>
+                                    <Link to="/protected/api">acceder</Link>
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                    <Col>
+                        <Card>
+                            <Card.Img variant="top" src="capa fisica.jpg" width="160" height="210" />
+                            <Card.Body>
+                                <Card.Title>Vista dash</Card.Title>
+                                <Card.Text>
+                                    Para tener un vistazo general de como se relacionanan
+                                    las distintas bases de datos. Se requiere tener la base local actualizada.<br></br>
+                                    <Link to="/protected/dash">acceder</Link>
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                    <Col>
+                        <Card>
+                            <Card.Img variant="top" src="capa aplicacion.jpg" width="160" height="210" />
+                            <Card.Body>
+                                <Card.Title>Tablas</Card.Title>
+                                <Card.Text>
+                                    Para revisar todos los proyectos, trabajos, flujos, etc.<br></br>
+                                    <Link to="/protected/tablas">acceder</Link>
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                    <Col>
+                        <Card>
+                            <Card.Img variant="top" src="capa aplicacion.jpg" width="160" height="210" />
+                            <Card.Body>
+                                <Card.Title>Paginacion</Card.Title>
+                                <Card.Text>
+                                    Descarga los reportes que nececesitas.<br></br>
+                                    <Link to="/protected/pagination">acceder</Link>
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                    <Col>
+                        <Card>
+                            <Card.Img variant="top" src="descanso.jpg" width="160" height="210" />
+                            <Card.Body>
+                                <Card.Title>CRUD</Card.Title>
+                                <Card.Text>
+                                    Crea, modifica o elimina proyectos, flujos y trabajos.<br></br>
+                                    <Link to="/protected/casa">acceder</Link>
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                </Row>
             </Container>
             <Routes>
                 <Route path="/api" element={<CompAPI />} />
