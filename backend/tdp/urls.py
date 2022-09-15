@@ -21,7 +21,7 @@ from .views import ProyectoPagination, TrabajoPagination
 from .views import PersonaFiltro, ProyectoFiltro, FlujoFiltro
 from .views import PersonaCRUD
 urlpatterns = [
-    # retorna tola la base de datos por modelo
+    # retorna toda la base de datos por modelo
     path('PersonaView', PersonaView.as_view(), name='prueba'),
     path('ProyectoView', ProyectoView.as_view(), name='prueba'),
     path('FlujoView', FlujoView.as_view(), name='prueba'),

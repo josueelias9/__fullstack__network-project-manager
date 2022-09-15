@@ -54,8 +54,8 @@ function Casa2() {
 
     async function get() {
         // endpoint a trabajar
-        let PersonaFiltro_endpoint = "http://127.0.0.1:8000/tdp/PersonaFiltro?id=5"
-        let ProyectoFiltro_endpoint = "http://127.0.0.1:8000/tdp/ProyectoFiltro?id=10"
+        let PersonaFiltro_endpoint = "http://127.0.0.1:8000/tdp/PersonaFiltro?id=8"
+        let ProyectoFiltro_endpoint = "http://127.0.0.1:8000/tdp/ProyectoFiltro?id=1"
         let TrabajoFiltro_endpoint = "http://127.0.0.1:8000/tdp/TrabajoFiltro?id=1"
         // ver como automatizamos esto
         // peticion via fetch
@@ -108,6 +108,10 @@ function Tabla(props) {
 
     let object = props.object
 
+    function borrame(event,asd){
+        console.log(asd)
+    }
+
     if (typeof object === "undefined" || object.lista.length==0 ) {
         let variant = 'danger'
         return <Alert key={variant} variant={variant}>
@@ -132,7 +136,7 @@ function Tabla(props) {
             })
             return <tr key={proyecto.id}>
                 {f}
-                <td><Button>detail</Button></td>
+                <td><Button onClick={(event)=>{borrame(event,proyecto.id)}}>detail</Button></td>
             </tr>
         })
         // ahora vamos por los titulos
